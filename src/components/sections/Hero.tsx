@@ -1,14 +1,14 @@
 'use client';
 
+import { HOME_PAGE_IDS } from '@/configs/sectionIDs';
+import { scrollToSection } from '@/utils/browseUtils';
 import { Image } from '@nextui-org/react';
 import { motion } from 'framer-motion';
 import { Dumbbell, Heart, Salad } from 'lucide-react';
 import { FC, useEffect, useState } from 'react';
-import HeroDialogIcon from '../HeroDialogIcon';
 import { Typewriter } from 'react-simple-typewriter';
-import { Button } from '@nextui-org/react';
-import { scrollToSection } from '@/utils/browseUtils';
-import { HOME_PAGE_IDS } from '@/configs/sectionIDs';
+import ActionButton from '../ActionButton';
+import HeroDialogIcon from '../HeroDialogIcon';
 
 const Hero: FC = () => {
   const [rotation, setRotation] = useState(0);
@@ -50,22 +50,20 @@ const Hero: FC = () => {
             chciałabym zachęcić Ciebie.
           </p>
           <div className="mt-4 flex flex-col md:flex-row w-full justify-center gap-6">
-            <Button
-              onClick={() => scrollToSection(HOME_PAGE_IDS.personalne)}
-              size="lg"
-              radius="sm"
-              className="text-white bg-orange hover:scale-105"
-            >
-              Umów się na trening
-            </Button>
-            <Button
-              onClick={() => scrollToSection(HOME_PAGE_IDS.ebooki)}
-              size="lg"
-              radius="sm"
-              className="text-white bg-orange hover:scale-105"
-            >
-              Trenuj z Ebookami
-            </Button>
+            <ActionButton
+              text="Umów się na trening"
+              onClick={() => {
+                scrollToSection(HOME_PAGE_IDS.personalne);
+              }}
+              additionalStyle="w-full"
+            />
+            <ActionButton
+              text="Trenuj z Ebookami"
+              onClick={() => {
+                scrollToSection(HOME_PAGE_IDS.ebooki);
+              }}
+              additionalStyle="w-full"
+            />
           </div>
         </div>
         <motion.div
@@ -113,10 +111,10 @@ const Hero: FC = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.5 }}
                 variants={{
                   visible: { opacity: 1, x: 0 },
-                  hidden: { opacity: 0, x: 200 },
+                  hidden: { opacity: 0, x: 50 },
                 }}
                 className="hidden md:inline-flex w-[300px] h-full absolute right-0 top-0 bg-pink z-0"
               />

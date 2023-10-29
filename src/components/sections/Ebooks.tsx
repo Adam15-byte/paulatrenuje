@@ -12,7 +12,9 @@ const Ebooks = () => {
       <div className="px-5 flex gap-2">
         <div className="w-1 bg-orange h-[100]" />
         <div className="space-y-4">
-          <h2 className="text-4xl font-bold uppercase">Ebooki</h2>
+          <h2 className="text-4xl font-bold uppercase tracking-wider">
+            Ebooki
+          </h2>
           <div className="uppercase flex items-center cursor-pointer group">
             Zobacz wszystkie
             <ChevronRight
@@ -23,7 +25,7 @@ const Ebooks = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 h-full md:h-fit gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 h-full md:h-fit gap-10 px-5">
         {ebooksConfig.map((ebook) => (
           <BigEbookTile key={ebook.title} ebook={ebook} />
         ))}
