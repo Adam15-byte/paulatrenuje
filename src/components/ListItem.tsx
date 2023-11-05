@@ -34,7 +34,7 @@ const ListItem: FC<ListItemProps> = ({ text, index }) => {
           visible: { opacity: 1, x: 0 },
           hidden: { opacity: 0, x: 50 },
         }}
-        className="tracking-wide leading-8"
+        className="tracking-wide leading-6"
       >
         {text}
       </motion.div>

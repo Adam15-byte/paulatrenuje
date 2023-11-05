@@ -11,7 +11,7 @@ const EbookHighlight = () => {
             <h2 className="text-4xl font-bold uppercase tracking-wider">
               <span className="text-gray">8 TYGODNIOWY</span>
               <br /> <span className="text-orange">PROGRAM TRENINGOWY</span>
-              <br /> UKIERUNKOWANY NA WYSZCZUPLENIE NÓG
+              <br /> DLA TWOICH NÓG
             </h2>
             <p className="tracking-wide leading-8">
               Kompletny poradnik dotyczący metod treningowych pomagających

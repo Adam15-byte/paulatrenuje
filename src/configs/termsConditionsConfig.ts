@@ -235,7 +235,7 @@ export const termsConditionsConfig = [
   },
 ];
 
-export const privacyPolicy = [
+export const privacyPolicyConfig = [
   {
     title: '1. DEFINICJE.',
     subtitle:

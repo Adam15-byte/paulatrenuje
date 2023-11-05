@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="shortcut icon" href={'/LogoBezNapisu1.png'} />
       </head>
-      <body className={cn(poppins.className, 'w-[100vw]')}>
+      <body className={cn(poppins.className)}>
         <div className="flex flex-col w-full items-center">
           <NavBar />
           <div className="min-h-screen max-w-7xl w-full">{children}</div>

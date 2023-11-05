@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FC } from 'react';
 
 interface BigEbookTileProps {
@@ -14,7 +15,8 @@ interface BigEbookTileProps {
 const BigEbookTile: FC<BigEbookTileProps> = ({ ebook }) => {
   const { titleFirstPart, titleSecondPart, title, picture, tags } = ebook;
   return (
-    <div
+    <Link
+      href={`/ebooks/${ebook.id}`}
       className={cn(
         title === 'Slim legs' ? 'col-span-1 md:col-span-2' : 'col-span-1',
         'min-h-[300px] group transition-all w-full relative p-5 cursor-pointer'
@@ -57,7 +59,7 @@ const BigEbookTile: FC<BigEbookTileProps> = ({ ebook }) => {
         }}
         className="absolute top-0 bottom-0 right-0 w-[70%] group-hover:w-[90%] md:w-full md:group-hover:w-[70%] transition-all bg-pink z-0"
       />
-    </div>
+    </Link>
   );
 };
 

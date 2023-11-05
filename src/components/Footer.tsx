@@ -7,10 +7,10 @@ const Footer = () => {
       <div className="flex flex-row justify-between w-full">
         <p className="mr-6">@2023 PaulaTrenuje. All Rights Reserved</p>
         <div className="flex flex-col md:flex-row gap-4">
-          <Link href="/" className="text-gray-500">
+          <Link href="/regulamin" className="text-gray-500">
             Regulamin
           </Link>
-          <Link href="/" className="text-gray-500">
+          <Link href="/polityka-prywatnosci" className="text-gray-500">
             Polityka prywatności
           </Link>
         </div>

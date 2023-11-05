@@ -10,13 +10,17 @@ interface ActionButtonProps {
   href?: string;
   onClick?: () => void;
   additionalStyle?: string;
+  leftIcon?: JSX.Element;
+  rightIcon?: JSX.Element;
 }
 
 const ActionButton: FC<ActionButtonProps> = ({
   text,
   href,
   onClick,
-  additionalStyle,
+  additionalStyle = 'w-full md:mx-auto',
+  leftIcon,
+  rightIcon,
 }) => {
   if (href) {
     return (
@@ -29,7 +33,9 @@ const ActionButton: FC<ActionButtonProps> = ({
             'text-white bg-orange z-20 absolute group-hover:animate-pulse group-hover:scale-[102%]'
           )}
         >
+          {leftIcon}
           {text}
+          {rightIcon}
         </Button>
         <Button
           size="lg"
@@ -39,7 +45,9 @@ const ActionButton: FC<ActionButtonProps> = ({
             'text-white bg-pink group-hover:scale-[102%]'
           )}
         >
+          {leftIcon}
           {text}
+          {rightIcon}
         </Button>
       </Link>
     );
@@ -56,7 +64,9 @@ const ActionButton: FC<ActionButtonProps> = ({
             'text-white bg-orange z-20 absolute group-hover:animate-pulse group-hover:scale-[102%]'
           )}
         >
+          {leftIcon}
           {text}
+          {rightIcon}
         </Button>
         <Button
           size="lg"
@@ -67,7 +77,9 @@ const ActionButton: FC<ActionButtonProps> = ({
             'text-white bg-pink group-hover:scale-[102%]'
           )}
         >
+          {leftIcon}
           {text}
+          {rightIcon}
         </Button>
       </div>
     );
