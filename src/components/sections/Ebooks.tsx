@@ -12,7 +12,7 @@ const Ebooks = () => {
       <div className="px-5 flex gap-2">
         <div className="w-1 bg-orange h-[100]" />
         <div className="space-y-4">
-          <h2 className="text-4xl font-bold uppercase tracking-wider">
+          <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-wider">
             Ebooki
           </h2>
           <div className="uppercase flex items-center cursor-pointer group">
@@ -27,7 +27,11 @@ const Ebooks = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 h-full md:h-fit gap-10 px-5">
         {ebooksConfig.map((ebook) => (
-          <BigEbookTile key={ebook.title} ebook={ebook} />
+          <BigEbookTile
+            key={ebook.title}
+            ebook={ebook}
+            ebooksList={ebooksConfig}
+          />
         ))}
       </div>
     </section>

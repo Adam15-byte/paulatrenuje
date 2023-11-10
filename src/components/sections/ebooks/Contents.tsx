@@ -34,7 +34,7 @@ const Contents: FC<ContentsProps> = ({ ebookData }) => {
   };
   const { minimum, maximum } = getMinAndMaxPosition();
   return (
-    <div className="flex flex-col px-2 max-w-4xl self-center gap-8 mt-16 w-full">
+    <section className="flex flex-col px-2 max-w-4xl self-center gap-8 mt-16 w-full">
       <div className="flex justify-between w-full items-center gap-6 md:gap-10">
         <div
           onClick={handlePreviousPage}
@@ -47,7 +47,9 @@ const Contents: FC<ContentsProps> = ({ ebookData }) => {
           />
         </div>
         <div className="flex flex-col gap-4 items-center">
-          <h2 className="text-5xl md:text-7xl font-bold">Spis treści</h2>
+          <h2 className="text-5xl md:text-7xl font-bold uppercase text-center tracking-wide">
+            Spis treści
+          </h2>
           <p className="text-lg md:text-xl font-semibold bg-gray px-4 py-2 rounded-md text-white">
             Strona {page}/{maxPage}
           </p>
@@ -144,7 +146,7 @@ const Contents: FC<ContentsProps> = ({ ebookData }) => {
           }
         })}
       </AnimatePresence>
-    </div>
+    </section>
   );
 };
 

@@ -8,7 +8,7 @@ import { Dumbbell, Heart, Salad } from 'lucide-react';
 import { FC, useEffect, useState } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 import ActionButton from '../ActionButton';
-import HeroDialogIcon from '../HeroDialogIcon';
+import AnimatedDialogIcon from '../AnimatedDialogIcon';
 
 const Hero: FC = () => {
   const [rotation, setRotation] = useState(0);
@@ -42,7 +42,9 @@ const Hero: FC = () => {
               delaySpeed={1000}
             />
           </h2>
-          <h1 className="text-4xl md:text-6xl font-bold">Paula Trenuje</h1>
+          <h1 className="text-5xl md:text-7xl font-bold uppercase">
+            Paula Trenuje
+          </h1>
           <div className="w-20 h-1 bg-orange" />
           <p className="mt-12 text-lg md:text-xl">
             Nazywam się Paula Dziubdziela i jestem trenerem personalnym. Moim
@@ -80,9 +82,9 @@ const Hero: FC = () => {
         {/* Right */}
         <div className="w-full h-max flex justify-center items-end relative">
           <Image
-            src={'/hero.png'}
-            width={400}
-            height={400}
+            src={'/new_hero.png'}
+            width={450}
+            height={450}
             alt={'hero-image'}
             className="z-20"
           />
@@ -120,21 +122,21 @@ const Hero: FC = () => {
               />
 
               {/* Animated icons */}
-              <HeroDialogIcon
+              <AnimatedDialogIcon
                 icon={<Heart size={'28px'} color="white" />}
                 additionalClassName="absolute right-20 md:right-32 top-32"
                 arrowPlacement="bottomLeft"
                 delay={4}
                 repeatDelay={2}
               />
-              <HeroDialogIcon
+              <AnimatedDialogIcon
                 icon={<Salad size={'28px'} color="white" />}
                 additionalClassName="absolute left-20 md:left-40 top-20"
                 arrowPlacement="bottomRight"
                 delay={2}
                 repeatDelay={2}
               />
-              <HeroDialogIcon
+              <AnimatedDialogIcon
                 icon={<Dumbbell size={'28px'} color="white" />}
                 additionalClassName="absolute left-28 top-48"
                 arrowPlacement="topRight"

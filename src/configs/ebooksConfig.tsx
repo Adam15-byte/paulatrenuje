@@ -1,4 +1,5 @@
 import { FileText, Smartphone, Sun, Truck } from 'lucide-react';
+import { Story } from 'react-insta-stories/dist/interfaces';
 
 const iconProps = {
   strokeWidth: 1,
@@ -48,6 +49,10 @@ export const ebooksConfig = [
     title: 'Slim legs',
     titleFirstPart: 'Slim',
     titleSecondPart: ' legs',
+    trainingsInfo: {
+      weeks: '8 tygodni',
+      workouts: '32 treningi',
+    },
     tags: ['get thin', 'workout plan', 'cardio', 'sweat', 'TRX', 'abs'],
     shortDescription:
       'Wszystko na temat WYSMUKLANIA nóg - zbiór wiedzy na temat treningu nóg i pośladków.',
@@ -64,6 +69,8 @@ export const ebooksConfig = [
       'Propozycja 32 treningów ułożone w przykładowy 8 tygodniowy plan treningowy oparty na zasadach teoretycznych opisanych w ebooku',
       'Treningi do wykonania w domu lub na siłowni',
     ],
+    forWhom:
+      'Niemal codziennie dostaję pytania na moim instagramie, od dziewczyn , kobiet, moich obserwatorek jak sobie poradzić z masywnymi udami. W tym ebooku opisuję od A do Z jak to zrobić, gdyż sama borykałam się z tym "problemem". Niezależnie od tego jaki masz staż treningowy, wiedza zawarta w tym ebooku pomoże Ci lepiej zrozumieć zasady programowania treningowego.',
     contents: [
       { label: 'MÓJ PRZYPADEK' },
       {
@@ -174,6 +181,59 @@ export const ebooksConfig = [
       '/slim_legs_page3.png',
       '/slim_legs_page4.png',
     ],
+    dedicatedStoryTitle: 'SMUKŁE UDA🦵🏼🍑',
+    stories: [
+      {
+        type: 'video',
+        url: '/stories_content/slim_legs_story_1.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/slim_legs_story_2.mp4',
+      },
+      {
+        type: 'image',
+        url: '/stories_content/slim_legs_story_3.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/slim_legs_story_4.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/slim_legs_story_5.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/slim_legs_story_6.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/slim_legs_story_7.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/slim_legs_story_8.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'video',
+        url: '/stories_content/slim_legs_story_9.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/slim_legs_story_10.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/slim_legs_story_11.mp4',
+      },
+    ],
   },
   {
     id: 'sweat_at_home',
@@ -181,6 +241,10 @@ export const ebooksConfig = [
     title: 'Sweat at home',
     titleFirstPart: 'Sweat',
     titleSecondPart: ' at home',
+    trainingsInfo: {
+      weeks: '8 tygodni',
+      workouts: '32 treningi',
+    },
     tags: [
       'at home',
       '12 weeks',
@@ -204,6 +268,8 @@ export const ebooksConfig = [
       'Wideo instruktażowe do wszystkich ćwiczeń',
       'Oprócz kształtowania sylwetki, skupiamy się również na polepszeniu naszej sprawności, wytrzymałości, siły i kondycji',
     ],
+    forWhom:
+      'Z moim programem Sweat At Home, nie tylko schudniesz, ale i wyrzeźbisz mięśnie. Poprawisz ogólną sprawność, która w życiu codziennym jest bardzo potrzebna. Nie ma tu miejsca na nudę. Każdy trening to nowe wyzwanie.',
     contents: [
       { label: 'WSTĘP' },
       { label: 'ROZKŁAD TRENINGÓW' },
@@ -232,6 +298,77 @@ export const ebooksConfig = [
       '/sweat_at_home_page3.png',
       '/sweat_at_home_page4.png',
     ],
+    dedicatedStoryTitle: 'SWEAT AT HOME💦',
+    stories: [
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_1.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_2.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_3.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_4.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_5.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_6.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_7.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_8.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_9.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_10.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_11.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_12.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_13.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_14.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_15.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_16.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/sweat_at_home_story_17.mp4',
+      },
+    ],
   },
   {
     id: 'fit_at_home',
@@ -239,6 +376,10 @@ export const ebooksConfig = [
     title: 'Fit at home',
     titleFirstPart: 'Fit',
     titleSecondPart: ' at home',
+    trainingsInfo: {
+      weeks: '12 tygodni',
+      workouts: '48 treningi',
+    },
     tags: [
       'abs',
       '8 weeks',
@@ -259,6 +400,8 @@ export const ebooksConfig = [
       'Wideo instruktażowe do wszystkich ćwiczeń',
       'Podstawy żywienia dzięki którym zaplanujesz swoją dietę',
     ],
+    forWhom:
+      'Z programem Fit At Home wzmocnisz i wymodelujesz swoje ciało, poprawisz kondycję oraz spalisz zbędną tkankę tłuszczową. Przez 12 tygodni zrealizujesz kompleksowy plan treningowy na całe ciało. Przez ten czas wyrobisz sobie dobre nawyki, a dzięki po treningowym endorfinom pokochasz aktywność fizyczną.',
     contents: [
       { label: 'Cele programu' },
       { label: 'Opis treningów' },
@@ -335,7 +478,190 @@ export const ebooksConfig = [
       '/fit_at_home_page3.png',
       '/fit_at_home_page4.png',
     ],
+    dedicatedStoryTitle: 'EBOOK/wyzwanie',
+    stories: [
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_home_1.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_home_2.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_home_3.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_home_4.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_home_5.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_home_6.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_home_7.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_home_8.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_home_9.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_home_10.mp4',
+      },
+      {
+        type: 'image',
+        url: '/stories_content/fit_at_home_11.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_home_12.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_home_13.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_home_14.mp4',
+      },
+      {
+        type: 'image',
+        url: '/stories_content/fit_at_home_15.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/fit_at_home_16.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/fit_at_home_17.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/fit_at_home_18.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/fit_at_home_19.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/fit_at_home_20.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/fit_at_home_21.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/fit_at_home_22.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/fit_at_home_23.jpg',
+        duration: 3000,
+      },
+    ],
   },
 ];
 
 export type EbookConfigType = (typeof ebooksConfig)[0];
+
+export type EbookForShoppingBag = Pick<
+  EbookConfigType,
+  'id' | 'title' | 'price' | 'discountPrice' | 'picture'
+>;
+
+export const opinionsStories: Story[] = [
+  {
+    type: 'image',
+    url: '/stories_content/opinion_story_1.jpg',
+    duration: 3000,
+  },
+  {
+    type: 'image',
+    url: '/stories_content/opinion_story_2.jpg',
+    duration: 3000,
+  },
+  {
+    type: 'image',
+    url: '/stories_content/opinion_story_3.jpg',
+    duration: 3000,
+  },
+  {
+    type: 'image',
+    url: '/stories_content/opinion_story_4.jpg',
+    duration: 3000,
+  },
+  {
+    type: 'image',
+    url: '/stories_content/opinion_story_5.jpg',
+    duration: 3000,
+  },
+  {
+    type: 'image',
+    url: '/stories_content/opinion_story_6.jpg',
+    duration: 3000,
+  },
+  {
+    type: 'image',
+    url: '/stories_content/opinion_story_7.jpg',
+    duration: 3000,
+  },
+  {
+    type: 'image',
+    url: '/stories_content/opinion_story_8.jpg',
+    duration: 3000,
+  },
+  {
+    type: 'image',
+    url: '/stories_content/opinion_story_9.jpg',
+    duration: 3000,
+  },
+  {
+    type: 'image',
+    url: '/stories_content/opinion_story_10.jpg',
+    duration: 3000,
+  },
+  {
+    type: 'image',
+    url: '/stories_content/opinion_story_11.jpg',
+    duration: 3000,
+  },
+  {
+    type: 'image',
+    url: '/stories_content/opinion_story_12.jpg',
+    duration: 3000,
+  },
+  {
+    type: 'image',
+    url: '/stories_content/opinion_story_13.jpg',
+    duration: 3000,
+  },
+  {
+    type: 'image',
+    url: '/stories_content/opinion_story_14.jpg',
+    duration: 3000,
+  },
+];

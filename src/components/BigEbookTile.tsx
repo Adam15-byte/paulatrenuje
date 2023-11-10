@@ -10,15 +10,19 @@ import { FC } from 'react';
 
 interface BigEbookTileProps {
   ebook: EbookConfigType;
+  ebooksList: EbookConfigType[];
 }
 
-const BigEbookTile: FC<BigEbookTileProps> = ({ ebook }) => {
+const BigEbookTile: FC<BigEbookTileProps> = ({ ebook, ebooksList }) => {
   const { titleFirstPart, titleSecondPart, title, picture, tags } = ebook;
+  const isEbooksDisplayedEven = ebooksList.length % 2 === 0;
   return (
     <Link
       href={`/ebooks/${ebook.id}`}
       className={cn(
-        title === 'Slim legs' ? 'col-span-1 md:col-span-2' : 'col-span-1',
+        title === 'Slim legs' && !isEbooksDisplayedEven
+          ? 'col-span-1 md:col-span-2'
+          : 'col-span-1',
         'min-h-[300px] group transition-all w-full relative p-5 cursor-pointer'
       )}
     >

@@ -11,7 +11,7 @@ const config: Config = {
   theme: {
     colors: {
       pink: '#ffe1d6',
-      orange: '#f37141',
+      orange: '#f88231',
       gray: '#9a9a9a',
       black: '#000',
       white: '#FFF',
