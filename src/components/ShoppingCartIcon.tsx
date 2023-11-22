@@ -3,14 +3,35 @@
 import { ShoppingBag } from 'lucide-react';
 import { Badge } from '@nextui-org/react';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
+import Link from 'next/link';
+import { Button } from '@nextui-org/react';
 
 const ShoppingCartIcon = () => {
-  const { bagWorthValue } = useShoppingBag();
+  const { bagWorthValue, shoppingBag } = useShoppingBag();
   return (
-    <Badge content="0" size="lg" className="bg-orange text-white ">
-      <div className="flex gap-2 bg-gray hover:bg-orange transition-all rounded-lg p-4 text-white text-lg font-semibold cursor-pointer hover:scale-105">
-        <ShoppingBag size={24} strokeWidth={3} /> {bagWorthValue} zł
-      </div>
+    <Badge
+      content={shoppingBag.length}
+      size="lg"
+      className="bg-orange text-white "
+    >
+      <Link href={'/koszyk'} className={'relative group'}>
+        <div
+          className={
+            'text-white flex text-lg py-3 px-6 font-semibold rounded-lg bg-orange z-10 absolute group-hover:animate-pulse group-hover:scale-[102%] gap-2 tracking-wider'
+          }
+        >
+          <ShoppingBag size={24} strokeWidth={3} />
+          {bagWorthValue} zł
+        </div>
+        <div
+          className={
+            'text-white flex text-lg py-3 px-6 font-semibold rounded-lg bg-pink group-hover:scale-[102%] gap-2 tracking-wider'
+          }
+        >
+          <ShoppingBag size={24} strokeWidth={3} />
+          {bagWorthValue} zł
+        </div>
+      </Link>
     </Badge>
   );
 };

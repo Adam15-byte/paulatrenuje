@@ -85,3 +85,13 @@ body {
   -webkit-animation: AnimateBG 3s ease infinite;
   animation: AnimateBG 3s ease infinite;
 }
+
+.selected-payment-item {
+  background: linear-gradient(-45deg, #f7f0ed, #fad3c3, #f7f0ed);
+  background-size: 300% 300%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-animation: AnimateBG 5s ease infinite;
+  animation: AnimateBG 5s ease infinite;
+}

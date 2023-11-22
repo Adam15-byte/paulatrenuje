@@ -6,10 +6,12 @@ import useWindowDimensions from '@/hooks/useWindowDimension';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FC, useEffect, useState } from 'react';
 import Image from 'next/image';
-import ActionButton from '@/components/ActionButton';
+import PrimaryButton from '@/components/PrimaryButton';
 import { ShoppingBag } from 'lucide-react';
 import SmallInfoCard from '@/components/SmallInfoCard';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
+import { useDisclosure } from '@nextui-org/react';
+import AddedToBagModal from '@/components/AddedToBagModal';
 
 interface AboutEbookProps {
   ebookData: EbookConfigType;
@@ -24,7 +26,7 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
     discountPrice,
     commonFeatures,
   } = ebookData;
-  const { addItem } = useShoppingBag();
+  const { addItem, isItemIncludedInBag } = useShoppingBag();
   const { width: screenWidth } = useWindowDimensions();
   const isScreenSmall = screenWidth < 900;
   const rotationBasedScreen = isScreenSmall
@@ -77,9 +79,21 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
     }
     return () => clearInterval(intervalId);
   }, [array, isHoveringImages, isInitialLoad]);
+
+  const {
+    isOpen: isModalOep,
+    onOpen: onModalOpen,
+    onOpenChange: onModalOpenChange,
+  } = useDisclosure();
+
   if (array) {
     return (
       <section className="flex flex-col px-5 md:flex-row">
+        <AddedToBagModal
+          ebookData={ebookData}
+          isOpen={isModalOep}
+          onOpenChange={onModalOpenChange}
+        />
         <div className="flex flex-col w-full h-full items-center justify-center">
           <div
             onMouseEnter={handleMouseEnter}
@@ -169,13 +183,19 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
               {discountPrice ? `${price} zł` : null}
             </span>
           </p>
-          <ActionButton
+          <PrimaryButton
             leftIcon={<ShoppingBag size={24} strokeWidth={2.5} />}
             additionalStyle="w-full mx-auto mb-2 text-lg font-semibold"
-            text="Dodaj do koszyka"
+            text={
+              isItemIncludedInBag && isItemIncludedInBag(ebookData.id)
+                ? 'Produkt dodany do koszyka'
+                : 'Dodaj do koszyka'
+            }
             onClick={() => {
-              addItem(ebookData);
+              addItem && addItem(ebookData);
+              onModalOpen();
             }}
+            disabled={isItemIncludedInBag && isItemIncludedInBag(ebookData.id)}
           />
           {/* Payment methods */}
           <div className="flex gap-2 justify-center mb-4">

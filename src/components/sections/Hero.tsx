@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { Dumbbell, Heart, Salad } from 'lucide-react';
 import { FC, useEffect, useState } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
-import ActionButton from '../ActionButton';
+import PrimaryButton from '../PrimaryButton';
 import AnimatedDialogIcon from '../AnimatedDialogIcon';
 
 const Hero: FC = () => {
@@ -52,14 +52,14 @@ const Hero: FC = () => {
             chciałabym zachęcić Ciebie.
           </p>
           <div className="mt-4 flex flex-col md:flex-row w-full justify-center gap-6">
-            <ActionButton
+            <PrimaryButton
               text="Umów się na trening"
               onClick={() => {
                 scrollToSection(HOME_PAGE_IDS.personalne);
               }}
               additionalStyle="w-full"
             />
-            <ActionButton
+            <PrimaryButton
               text="Trenuj z Ebookami"
               onClick={() => {
                 scrollToSection(HOME_PAGE_IDS.ebooki);

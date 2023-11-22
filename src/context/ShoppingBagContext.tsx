@@ -7,20 +7,16 @@ interface IShoppingBagContext {
   shoppingBag: EbookForShoppingBag[];
   addItem: (_: EbookForShoppingBag) => void;
   removeItem: (_: EbookForShoppingBag) => void;
-  itemIncludedInBag: (_: EbookForShoppingBag) => boolean;
+  isItemIncludedInBag: (_: string) => boolean;
   bagWorthValue: number;
+  discountedValue: number;
+  discountBasedOnNumberOfProducts: number;
 }
 
 // Create the context
-const ShoppingBagContext = createContext<IShoppingBagContext>({
-  shoppingBag: [],
-  addItem: (_: EbookForShoppingBag) => {},
-  removeItem: (_: EbookForShoppingBag) => {},
-  itemIncludedInBag: (_: EbookForShoppingBag) => {
-    return true;
-  },
-  bagWorthValue: 0,
-});
+const ShoppingBagContext = createContext<IShoppingBagContext | undefined>(
+  undefined
+);
 
 interface ChildrenProps {
   children: ReactNode;
@@ -28,10 +24,25 @@ interface ChildrenProps {
 // Context provider component
 export const ShoppingBagProvider: React.FC<ChildrenProps> = ({ children }) => {
   const [shoppingBag, setShoppingBag] = useState<EbookForShoppingBag[]>([]);
-
+  console.log('shoppingBag:', shoppingBag);
   const addItem = (item: EbookForShoppingBag) => {
     setShoppingBag((prevState) => [...prevState, item]);
   };
+
+  const calculateDiscountBasedOnNumberOfProducts = (): number => {
+    switch (shoppingBag.length) {
+      case 1:
+        return 0;
+      case 2:
+        return 0.1;
+      case 3:
+        return 0.3;
+      default:
+        return 0;
+    }
+  };
+  const discountBasedOnNumberOfProducts =
+    calculateDiscountBasedOnNumberOfProducts();
 
   const removeItem = (item: EbookForShoppingBag) => {
     setShoppingBag((prevState) =>
@@ -39,8 +50,8 @@ export const ShoppingBagProvider: React.FC<ChildrenProps> = ({ children }) => {
     );
   };
 
-  const itemIncludedInBag = (item: EbookForShoppingBag) => {
-    return !!shoppingBag.find((bagItem) => bagItem.id === item.id);
+  const isItemIncludedInBag = (id: string) => {
+    return !!shoppingBag.find((bagItem) => bagItem.id === id);
   };
 
   const bagWorthValue = shoppingBag
@@ -52,15 +63,19 @@ export const ShoppingBagProvider: React.FC<ChildrenProps> = ({ children }) => {
       }
     })
     .reduce((acc, currentValue) => acc + currentValue, 0);
-
+  const discountedValue = (
+    discountBasedOnNumberOfProducts * bagWorthValue
+  );
   return (
     <ShoppingBagContext.Provider
       value={{
         shoppingBag,
         addItem,
         removeItem,
-        itemIncludedInBag,
+        isItemIncludedInBag,
         bagWorthValue,
+        discountedValue,
+        discountBasedOnNumberOfProducts,
       }}
     >
       {children}

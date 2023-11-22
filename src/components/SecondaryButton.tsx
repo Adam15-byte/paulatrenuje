@@ -5,63 +5,64 @@ import Link from 'next/link';
 import { Button } from '@nextui-org/react';
 import { cn } from '@/lib/utils';
 
-interface ActionButtonProps {
+interface SecondaryButtonProps {
   text: string;
   href?: string;
   onClick?: () => void;
   additionalStyle?: string;
   leftIcon?: JSX.Element;
   rightIcon?: JSX.Element;
+  disabled?: boolean;
 }
 
-const ActionButton: FC<ActionButtonProps> = ({
+const SecondaryButton: FC<SecondaryButtonProps> = ({
   text,
   href,
   onClick,
   additionalStyle = 'w-full md:mx-auto',
   leftIcon,
   rightIcon,
+  disabled,
 }) => {
-  if (href) {
+  if (href && disabled !== true) {
     return (
       <Link href={href} className={cn(additionalStyle, 'relative group')}>
-        <Button
-          size="lg"
-          radius="sm"
+        <div
           className={cn(
             additionalStyle,
-            'text-white bg-orange z-20 absolute group-hover:animate-pulse group-hover:scale-[102%]'
+            'text-orange border shadow-md border-gray justify-center text-md py-3 px-6 font-semibold rounded-lg bg-orange z-10 absolute group-hover:animate-pulse group-hover:scale-[102%] gap-2 tracking-wide'
           )}
         >
           {leftIcon}
           {text}
           {rightIcon}
-        </Button>
-        <Button
-          size="lg"
-          radius="sm"
+        </div>
+        <div
           className={cn(
             additionalStyle,
-            'text-white bg-pink group-hover:scale-[102%]'
+            'text-white flex justify-center text-md py-3 px-6 font-semibold rounded-lg bg-pink group-hover:scale-[102%] gap-2 tracking-wide'
           )}
         >
           {leftIcon}
           {text}
           {rightIcon}
-        </Button>
+        </div>
       </Link>
     );
   }
   if (onClick) {
     return (
-      <div className={cn(additionalStyle, 'relative group cursor-pointer')}>
+      <div className={cn(additionalStyle, 'relative cursor-pointer')}>
         <Button
-          size="lg"
+          disabled={disabled}
+          size="md"
           radius="sm"
           onClick={onClick}
           className={cn(
             additionalStyle,
-            'text-white bg-orange z-20 absolute group-hover:animate-pulse group-hover:scale-[102%]'
+            disabled ? 'bg-gray' : 'bg-white',
+            disabled ? '' : 'hover:animate-pulse hover:scale-[102%]',
+            'text-orange border shadow-md border-gray z-20 absolute text-md font-semibold tracking-wide'
           )}
         >
           {leftIcon}
@@ -69,12 +70,14 @@ const ActionButton: FC<ActionButtonProps> = ({
           {rightIcon}
         </Button>
         <Button
-          size="lg"
+          disabled={disabled}
+          size="md"
           radius="sm"
           onClick={onClick}
           className={cn(
             additionalStyle,
-            'text-white bg-pink group-hover:scale-[102%]'
+            disabled ? '' : 'hover:scale-[102%]',
+            'text-white bg-pink text-md font-semibold tracking-wide'
           )}
         >
           {leftIcon}
@@ -86,4 +89,4 @@ const ActionButton: FC<ActionButtonProps> = ({
   }
 };
 
-export default ActionButton;
+export default SecondaryButton;

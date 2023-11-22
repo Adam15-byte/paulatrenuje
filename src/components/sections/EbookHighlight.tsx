@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import ActionButton from '../ActionButton';
+import PrimaryButton from '../PrimaryButton';
 
 const EbookHighlight = () => {
   return (
@@ -21,7 +21,7 @@ const EbookHighlight = () => {
             </p>
           </div>
         </div>
-        <ActionButton
+        <PrimaryButton
           text="zobacz więcej"
           href="/"
           additionalStyle="w-full md:w-[200px] md:mx-auto"
