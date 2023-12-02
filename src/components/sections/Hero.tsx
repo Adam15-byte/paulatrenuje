@@ -11,18 +11,16 @@ import PrimaryButton from '../PrimaryButton';
 import AnimatedDialogIcon from '../AnimatedDialogIcon';
 
 const Hero: FC = () => {
-  const isBrowser = () => typeof window !== 'undefined';
   const [rotation, setRotation] = useState(0);
 
-  const handleScroll = () => {
-    const scrollY = isBrowser() ? window.scrollY : 0;
-    setRotation(scrollY / 3);
-  };
-
   useEffect(() => {
-    isBrowser() && window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setRotation(scrollY / 3);
+    };
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      isBrowser() && window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 

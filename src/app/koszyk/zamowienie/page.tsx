@@ -23,6 +23,7 @@ import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { IPaymentMethod, fetchPaymentMethods } from './fetchPaymentMethods';
 import useWindowDimensions from '@/hooks/useWindowDimension';
+import { useRouter } from 'next/navigation';
 registerLocale(require('i18n-iso-countries/langs/pl.json'));
 
 const unavailableImages = [
@@ -51,7 +52,7 @@ interface IFormInput {
 }
 
 const Page: FC = () => {
-  const isBrowser = () => typeof window !== 'undefined';
+  const router = useRouter();
   const p24 = new P24(
     Number(process.env.NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID),
     Number(process.env.NEXT_PUBLIC_PRZELEWY24_POS_ID),
@@ -144,7 +145,7 @@ const Page: FC = () => {
       waitForResult: true,
     };
     const result = await p24.createTransaction(order);
-    isBrowser() && window.location.replace(result.link);
+    router.push(result.link);
   };
   return (
     <section className="flex mt-16 z-20 lg:mt-28 lg:min-h-0 w-full px-5 flex-col gap-4 lg:gap-12 lg:justify-between">
