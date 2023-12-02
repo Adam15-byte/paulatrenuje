@@ -1,9 +1,7 @@
-import React from 'react';
-import { privacyPolicyConfig } from '@/configs/termsConditionsConfig';
 import ProductsList from '@/components/sections/shopping-bag/ProductsList';
+import PromoAvailable from '@/components/sections/shopping-bag/PromoAvailable';
 import ShoppingBagSummary from '@/components/sections/shopping-bag/ShoppingBagSummary';
 import SimilarProductsBag from '@/components/sections/shopping-bag/SimilarProductsBag';
-import PromoAvailable from '@/components/sections/shopping-bag/PromoAvailable';
 
 const page = () => {
   return (

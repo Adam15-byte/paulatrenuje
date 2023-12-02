@@ -22,6 +22,7 @@ import Link from 'next/link';
 import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { IPaymentMethod, fetchPaymentMethods } from './fetchPaymentMethods';
+import useWindowDimensions from '@/hooks/useWindowDimension';
 registerLocale(require('i18n-iso-countries/langs/pl.json'));
 
 const unavailableImages = [
@@ -59,17 +60,12 @@ const Page: FC = () => {
       sandbox: true,
     }
   );
-  // Check if it is mobile
-  const checkIsMobileDevice = () => {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    );
-  };
+  const { width: screenWidth } = useWindowDimensions();
 
   // Fetch payment methods
   const { bagWorthValue } = useShoppingBag();
   const roundedValue = Number(bagWorthValue.toFixed(0));
-  const isMobile = checkIsMobileDevice();
+  const isMobile = screenWidth < 700;
   const [isAllMethodsShown, setIsAllMethodsShown] = useState<boolean>(false);
   const paymentMethodsURL = `https://sandbox.przelewy24.pl/api/v1/payment/methods/pl?amount=${roundedValue}&currency=PLN`;
   const { data, isLoading } = useQuery({
