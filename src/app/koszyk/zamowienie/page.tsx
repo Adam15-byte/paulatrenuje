@@ -1,18 +1,27 @@
 'use client';
 
+import { generateTransactionId } from '@/app/api/actions';
 import PrimaryButton from '@/components/PrimaryButton';
 import SecondaryButton from '@/components/SecondaryButton';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
 import { cn } from '@/lib/utils';
+import {
+  Country,
+  Currency,
+  Encoding,
+  Language,
+  Order,
+  P24,
+} from '@ingameltd/node-przelewy24';
 import { Checkbox, Input, Select, SelectItem } from '@nextui-org/react';
 import { useQuery } from '@tanstack/react-query';
 import countries, { registerLocale } from 'i18n-iso-countries';
 import { MailIcon } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { IPaymentMethod, fetchPaymentMethods } from './fetchPaymentMethods';
-import Link from 'next/link';
 registerLocale(require('i18n-iso-countries/langs/pl.json'));
 
 const unavailableImages = [
@@ -41,7 +50,16 @@ interface IFormInput {
 }
 
 const Page: FC = () => {
-  // Check if it mobile
+  const p24 = new P24(
+    Number(process.env.NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID),
+    Number(process.env.NEXT_PUBLIC_PRZELEWY24_POS_ID),
+    process.env.NEXT_PUBLIC_PRZELEWY24_APIKEY ?? '',
+    process.env.NEXT_PUBLIC_PRZELEWY24_CRC ?? '',
+    {
+      sandbox: true,
+    }
+  );
+  // Check if it is mobile
   const checkIsMobileDevice = () => {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
@@ -49,8 +67,8 @@ const Page: FC = () => {
   };
 
   // Fetch payment methods
-  const { discountedValue } = useShoppingBag();
-  const roundedValue = Number(discountedValue.toFixed(0));
+  const { bagWorthValue } = useShoppingBag();
+  const roundedValue = Number(bagWorthValue.toFixed(0));
   const isMobile = checkIsMobileDevice();
   const [isAllMethodsShown, setIsAllMethodsShown] = useState<boolean>(false);
   const paymentMethodsURL = `https://sandbox.przelewy24.pl/api/v1/payment/methods/pl?amount=${roundedValue}&currency=PLN`;
@@ -80,9 +98,7 @@ const Page: FC = () => {
     [data, isMobile, isAllMethodsShown]
   );
   console.log('paymentMethods:', paymentMethods);
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<
-    number | undefined
-  >();
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<number>(0);
   const initialMount = useRef<boolean>(true);
   useEffect(() => {
     if (paymentMethods.length && initialMount.current) {
@@ -112,10 +128,26 @@ const Page: FC = () => {
   const [rules, setRules] = useState<boolean>(false);
   const [p24Rules, setP24Rules] = useState<boolean>(false);
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
-    console.log('rules:', rules);
-    console.log('p24Rules:', p24Rules);
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    const sessionId = await generateTransactionId(data.emailAddress);
+    const order: Order = {
+      sessionId: sessionId,
+      amount: bagWorthValue * 100,
+      currency: Currency.PLN,
+      description: 'Zamówienie ebooków',
+      email: data.emailAddress,
+      country: Country.Poland,
+      language: data.country as Language,
+      urlReturn: `http://localhost:3000/koszyk/zamowienie/${sessionId}`,
+      urlStatus: 'http://localhost:3000/api/transactionStatus',
+      timeLimit: 15,
+      encoding: Encoding.UTF8,
+      method: selectedPaymentMethod,
+      regulationAccept: p24Rules,
+      waitForResult: true,
+    };
+    const result = await p24.createTransaction(order);
+    window.location.replace(result.link);
   };
   return (
     <section className="flex mt-16 z-20 lg:mt-28 lg:min-h-0 w-full px-5 flex-col gap-4 lg:gap-12 lg:justify-between">
