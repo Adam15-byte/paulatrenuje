@@ -7,10 +7,6 @@ import {
 } from '@ingameltd/node-przelewy24';
 import { transactions } from '../serverData';
 
-interface P24Res {
-  merchantId: string;
-}
-
 export async function POST(req: NextRequest, res: Response) {
   const p24 = new P24(
     Number(process.env.NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID),
@@ -23,7 +19,7 @@ export async function POST(req: NextRequest, res: Response) {
   );
   const verify: NotificationRequest = await req.json();
   console.log('verify:', verify);
-  const notificationRes = p24.verifyNotification(verify);
+  const notificationRes = await p24.verifyNotification(verify);
   console.log('notificationRes:', notificationRes);
   const verifyRequest: Verification = {
     sessionId: verify.sessionId,
