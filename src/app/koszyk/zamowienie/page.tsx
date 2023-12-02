@@ -51,6 +51,7 @@ interface IFormInput {
 }
 
 const Page: FC = () => {
+  const isBrowser = () => typeof window !== 'undefined';
   const p24 = new P24(
     Number(process.env.NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID),
     Number(process.env.NEXT_PUBLIC_PRZELEWY24_POS_ID),
@@ -143,7 +144,7 @@ const Page: FC = () => {
       waitForResult: true,
     };
     const result = await p24.createTransaction(order);
-    window.location.replace(result.link);
+    isBrowser() && window.location.replace(result.link);
   };
   return (
     <section className="flex mt-16 z-20 lg:mt-28 lg:min-h-0 w-full px-5 flex-col gap-4 lg:gap-12 lg:justify-between">

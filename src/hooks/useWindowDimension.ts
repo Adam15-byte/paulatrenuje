@@ -9,6 +9,8 @@ function getWindowDimensions() {
 }
 
 export default function useWindowDimensions() {
+  const isBrowser = () => typeof window !== 'undefined';
+
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
@@ -18,8 +20,10 @@ export default function useWindowDimensions() {
       setWindowDimensions(getWindowDimensions());
     }
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    isBrowser() && window.addEventListener('resize', handleResize);
+    return () => {
+      isBrowser() && window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return windowDimensions;
