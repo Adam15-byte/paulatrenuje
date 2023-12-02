@@ -2,7 +2,6 @@
 
 import ListItem from '@/components/ListItem';
 import { EbookConfigType, paymentMethodsIcons } from '@/configs/ebooksConfig';
-import useWindowDimensions from '@/hooks/useWindowDimension';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FC, useEffect, useState } from 'react';
 import Image from 'next/image';
@@ -27,8 +26,9 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
     commonFeatures,
   } = ebookData;
   const { addItem, isItemIncludedInBag } = useShoppingBag();
-  const { width: screenWidth } = useWindowDimensions();
-  const isScreenSmall = screenWidth < 900;
+  // temporarily disabled
+  // const { width: screenWidth } = useWindowDimensions();
+  const isScreenSmall = false;
   const rotationBasedScreen = isScreenSmall
     ? 'rotate3d(1, -2, -1, 4deg) perspective(100px)'
     : 'rotate3d(1, -3, -1, 8deg) perspective(500px)';
