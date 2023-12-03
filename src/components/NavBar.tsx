@@ -11,7 +11,7 @@ import axios from 'axios';
 const NavBar = () => {
   const checkPost = async () => {
     const data = await axios.post(
-      'https://paulatrenuje.vercel.app/api/transactionStatus',
+      'http://localhost:3000/api/transactionStatus',
       {
         p24_merchant_id: '11111',
         p24_pos_id: '22222',

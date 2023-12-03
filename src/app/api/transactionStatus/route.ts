@@ -19,16 +19,24 @@ export async function POST(req: NextRequest, res: Response) {
   );
   const verify: NotificationRequest = await req.json();
   console.log('verify:', verify);
-  const notificationRes = await p24.verifyNotification(verify);
-  console.log('notificationRes:', notificationRes);
+  const notificationResponse = await p24.verifyNotification(verify);
+  console.log('notificationRes:', notificationResponse);
   const verifyRequest: Verification = {
     sessionId: verify.sessionId,
     orderId: verify.orderId,
     currency: verify.currency,
     amount: verify.amount,
   };
-  const verifyRes = await p24.verifyTransaction(verifyRequest);
-  console.log('verifyRes:', verifyRes);
+  const verifyResponse = await p24.verifyTransaction(verifyRequest);
+  if (verifyResponse && notificationResponse) {
+    transactions.map((item) => {
+      if (item.id === verify.sessionId) {
+        return { ...item, isPaid: true };
+      } else {
+        return item;
+      }
+    });
+  }
   return new Response('Test Api Route', {
     status: 200,
   });

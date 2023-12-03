@@ -65,7 +65,7 @@ const Page: FC = () => {
   // const { width: screenWidth } = useWindowDimensions();
 
   // Fetch payment methods
-  const { bagWorthValue } = useShoppingBag();
+  const { bagWorthValue, shoppingBag } = useShoppingBag();
   const roundedValue = Number(bagWorthValue.toFixed(0));
   const isMobile = false;
   const [isAllMethodsShown, setIsAllMethodsShown] = useState<boolean>(false);
@@ -127,7 +127,13 @@ const Page: FC = () => {
   const [p24Rules, setP24Rules] = useState<boolean>(false);
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    const sessionId = await generateTransactionId(data.emailAddress);
+    const sessionId = await generateTransactionId({
+      userEmail: data.emailAddress,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      productIds: shoppingBag.map((item) => item.id),
+      moneyCharged: bagWorthValue,
+    });
     const order: Order = {
       sessionId: sessionId,
       amount: bagWorthValue * 100,
@@ -136,8 +142,8 @@ const Page: FC = () => {
       email: data.emailAddress,
       country: Country.Poland,
       language: data.country as Language,
-      urlReturn: `https://paulatrenuje.vercel.app/koszyk/zamowienie/${sessionId}`,
-      urlStatus: 'https://paulatrenuje.vercel.app/api/transactionStatus',
+      urlReturn: `http://localhost:3000/koszyk/zamowienie/${sessionId}`,
+      urlStatus: 'http://localhost:3000/api/transactionStatus',
       timeLimit: 15,
       encoding: Encoding.UTF8,
       method: selectedPaymentMethod,
