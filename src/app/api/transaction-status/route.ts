@@ -5,7 +5,6 @@ import {
   P24,
   Verification,
 } from '@ingameltd/node-przelewy24';
-import { transactions } from '../serverData';
 
 export async function POST(req: NextRequest, res: Response) {
   const p24 = new P24(
@@ -29,13 +28,7 @@ export async function POST(req: NextRequest, res: Response) {
   };
   const verifyResponse = await p24.verifyTransaction(verifyRequest);
   if (verifyResponse && notificationResponse) {
-    transactions.map((item) => {
-      if (item.id === verify.sessionId) {
-        return { ...item, isPaid: true };
-      } else {
-        return item;
-      }
-    });
+    console.log('log');
   }
   return new Response('Test Api Route', {
     status: 200,

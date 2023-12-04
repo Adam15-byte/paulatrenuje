@@ -27,6 +27,28 @@ const config: Config = {
       },
     },
   },
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            primary: {
+              DEFAULT: '#f88231',
+              foreground: '#FFF',
+            },
+            success: {
+              DEFAULT: '#d3f4e1',
+              foreground: '#13a150',
+            },
+            danger: {
+              DEFAULT: '#fdd2e0',
+              foreground: '#f5296e',
+            },
+            focus: '#f88231',
+          },
+        },
+      },
+    }),
+  ],
 };
 export default config;

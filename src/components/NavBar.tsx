@@ -1,17 +1,15 @@
 'use client';
 
-import Link from 'next/link';
-import React from 'react';
-import Image from 'next/image';
-import ShoppingCartIcon from './ShoppingCartIcon';
 import { Button } from '@nextui-org/button';
-import { addToRandomInt, checkAsyncItems } from '@/app/api/actions';
 import axios from 'axios';
+import Image from 'next/image';
+import Link from 'next/link';
+import ShoppingCartIcon from './ShoppingCartIcon';
 
 const NavBar = () => {
   const checkPost = async () => {
     const data = await axios.post(
-      'http://localhost:3000/api/transactionStatus',
+      'http://localhost:3000/api/transaction-status',
       {
         p24_merchant_id: '11111',
         p24_pos_id: '22222',
@@ -36,20 +34,6 @@ const NavBar = () => {
             className="object-contain"
           />
         </Link>
-        <Button
-          onClick={async () => {
-            await addToRandomInt();
-          }}
-        >
-          ADD+
-        </Button>
-        <Button
-          onClick={async () => {
-            await checkAsyncItems();
-          }}
-        >
-          Check
-        </Button>
         <Button
           onClick={async () => {
             await checkPost();

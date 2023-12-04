@@ -23,6 +23,8 @@ import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { IPaymentMethod, fetchPaymentMethods } from './fetchPaymentMethods';
 import { useRouter } from 'next/navigation';
+import { ITransactionValidator } from '@/lib/validators/transactionsValidators';
+import axios from 'axios';
 registerLocale(require('i18n-iso-countries/langs/pl.json'));
 
 const unavailableImages = [
@@ -95,7 +97,6 @@ const Page: FC = () => {
         : [],
     [data, isMobile, isAllMethodsShown]
   );
-  console.log('paymentMethods:', paymentMethods);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<number>(0);
   const initialMount = useRef<boolean>(true);
   useEffect(() => {
@@ -126,24 +127,18 @@ const Page: FC = () => {
   const [rules, setRules] = useState<boolean>(false);
   const [p24Rules, setP24Rules] = useState<boolean>(false);
 
-  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    const sessionId = await generateTransactionId({
-      userEmail: data.emailAddress,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      productIds: shoppingBag.map((item) => item.id),
-      moneyCharged: bagWorthValue,
-    });
+  const onSubmit: SubmitHandler<IFormInput> = async (formData) => {
+    const sessionId = await generateTransactionId();
     const order: Order = {
       sessionId: sessionId,
       amount: bagWorthValue * 100,
       currency: Currency.PLN,
       description: 'Zamówienie ebooków',
-      email: data.emailAddress,
+      email: formData.emailAddress,
       country: Country.Poland,
-      language: data.country as Language,
+      language: formData.country as Language,
       urlReturn: `http://localhost:3000/koszyk/zamowienie/${sessionId}`,
-      urlStatus: 'http://localhost:3000/api/transactionStatus',
+      urlStatus: 'http://localhost:3000/api/transaction-status',
       timeLimit: 15,
       encoding: Encoding.UTF8,
       method: selectedPaymentMethod,
@@ -151,6 +146,21 @@ const Page: FC = () => {
       waitForResult: true,
     };
     const result = await p24.createTransaction(order);
+    const transactionBody: ITransactionValidator = {
+      id: sessionId,
+      userEmail: formData.emailAddress,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      productIds: shoppingBag.map((item) => item.id),
+      moneyCharged: bagWorthValue,
+      isPaid: false,
+      isEmailSent: false,
+      createdAt: new Date().toISOString(),
+    };
+    const { data } = await axios.post(
+      '/api/transactions/create',
+      transactionBody
+    );
     router.push(result.link);
   };
   return (

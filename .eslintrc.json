@@ -8,7 +8,7 @@
     "no-empty": "warn",
     "no-cond-assign": ["error", "always"],
     "object-curly-spacing": [
-      "error",
+      "off",
       "always",
       {
         "arraysInObjects": false

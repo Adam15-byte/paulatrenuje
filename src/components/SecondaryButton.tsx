@@ -8,6 +8,8 @@ import { cn } from '@/lib/utils';
 interface SecondaryButtonProps {
   text: string;
   href?: string;
+  type?: 'button' | 'submit';
+  form?: string;
   onClick?: () => void;
   additionalStyle?: string;
   leftIcon?: JSX.Element;
@@ -18,6 +20,8 @@ interface SecondaryButtonProps {
 const SecondaryButton: FC<SecondaryButtonProps> = ({
   text,
   href,
+  type,
+  form,
   onClick,
   additionalStyle = 'w-full md:mx-auto',
   leftIcon,
@@ -54,6 +58,8 @@ const SecondaryButton: FC<SecondaryButtonProps> = ({
     return (
       <div className={cn(additionalStyle, 'relative cursor-pointer')}>
         <Button
+          type={type}
+          form={form}
           disabled={disabled}
           size="md"
           radius="sm"
@@ -70,6 +76,8 @@ const SecondaryButton: FC<SecondaryButtonProps> = ({
           {rightIcon}
         </Button>
         <Button
+          type={type}
+          form={form}
           disabled={disabled}
           size="md"
           radius="sm"

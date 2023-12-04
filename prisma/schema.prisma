@@ -11,8 +11,8 @@ datasource db {
 }
 
 model PromoCode {
-  id Int @id @default(autoincrement())
-  name String
+  id String @id @default(cuid())
+  name String @unique
   value Int
   promoType String
   usedNumber Int
@@ -27,5 +27,5 @@ model Transaction {
   moneyCharged Int
   isPaid Boolean
   isEmailSent Boolean
-  createdAt DateTime
+  createdAt String
 }
