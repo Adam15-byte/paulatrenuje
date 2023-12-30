@@ -19,7 +19,6 @@ const AddPromoCode = () => {
   });
   const promoTypesAvailable = ['%', 'PLN'];
   const onSubmit: SubmitHandler<IPromoCodeValidator> = async (formData) => {
-    console.log('data:', formData);
     const dataFormatted: IPromoCodeValidator = {
       ...formData,
       value: Number(formData.value),

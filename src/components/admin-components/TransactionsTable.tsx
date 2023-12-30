@@ -16,6 +16,7 @@ import axios from 'axios';
 import { useCallback, useState, useMemo } from 'react';
 import { transactionsColumns } from './columns';
 import { SearchIcon } from 'lucide-react';
+import { IEmailValidator } from '@/lib/validators/emailValidator';
 
 const TransactionsTable = () => {
   const [filterValue, setFilterValue] = useState<string>('');
@@ -59,6 +60,15 @@ const TransactionsTable = () => {
   const renderCell = useCallback(
     (item: Record<string | number, any>, columnKey: string | number) => {
       const cellValue = item[columnKey];
+      const onEmailClick = async () => {
+        const dataFormatted: IEmailValidator = {
+          firstName: item.firstName,
+          userEmail: item.userEmail,
+          productIds: item.productIds,
+          moneyCharged: item.moneyCharged,
+        };
+        await axios.post('/api/email-send/user-confirmation', dataFormatted);
+      };
       switch (columnKey) {
         case 'productIds':
           return cellValue.join(', ');
@@ -78,7 +88,12 @@ const TransactionsTable = () => {
           );
         case 'actions':
           return (
-            <Button size="sm" radius="sm" color="primary">
+            <Button
+              size="sm"
+              radius="sm"
+              color="primary"
+              onClick={onEmailClick}
+            >
               Wyślij email
             </Button>
           );
