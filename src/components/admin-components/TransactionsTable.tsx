@@ -17,6 +17,7 @@ import { useCallback, useState, useMemo } from 'react';
 import { transactionsColumns } from './columns';
 import { SearchIcon } from 'lucide-react';
 import { IEmailValidator } from '@/lib/validators/emailValidator';
+import { toast } from 'react-hot-toast';
 
 const TransactionsTable = () => {
   const [filterValue, setFilterValue] = useState<string>('');
@@ -67,7 +68,12 @@ const TransactionsTable = () => {
           productIds: item.productIds,
           moneyCharged: item.moneyCharged,
         };
-        await axios.post('/api/email-send/user-confirmation', dataFormatted);
+        try {
+          await axios.post('/api/email-send/user-confirmation', dataFormatted);
+          toast.success('Email wysłany');
+        } catch (e) {
+          toast.error('Nie udało się wysłać emaila');
+        }
       };
       switch (columnKey) {
         case 'productIds':

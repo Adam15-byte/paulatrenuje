@@ -6,6 +6,7 @@ import React from 'react';
 import Footer from '@/components/Footer';
 import { cn } from '@/lib/utils';
 import Providers from '@/context/Providers';
+import { Toaster } from 'react-hot-toast';
 
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
@@ -30,6 +31,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href={'/LogoBezNapisu1.png'} />
       </head>
       <body className={cn(poppins.className)}>
+        <Toaster position="top-center" />
         <Providers>
           <div className="flex flex-col w-full items-center">
             <NavBar />

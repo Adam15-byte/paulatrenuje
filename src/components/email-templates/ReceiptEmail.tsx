@@ -22,12 +22,14 @@ const baseUrl = process.env.VERCEL_URL
   : '';
 
 interface Props {
+  userEmail: string;
   firstName: string;
   moneyCharged: number;
   productIds: string[];
 }
 
 export const ReceiptEmail: React.FC<Props> = ({
+  userEmail,
   firstName,
   moneyCharged,
   productIds,
@@ -37,7 +39,7 @@ export const ReceiptEmail: React.FC<Props> = ({
     <Preview>Miłych treningów, przynoszę twoje ebooki!</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Section className="bg-pink">
+        <Section className="bg-pink p-4">
           <Row>
             <Column>
               <Text style={global.paragraphWithBold}>
@@ -56,7 +58,7 @@ export const ReceiptEmail: React.FC<Props> = ({
             className="object-contain"
             style={{ margin: 'auto' }}
           />
-          <Heading style={global.heading}>Its On Its Way.</Heading>
+          <Heading style={global.heading}>Czas działać</Heading>
           <Text style={global.text}>Twoje zamówienie jest zrealizowane</Text>
           <Text style={{ ...global.text, marginTop: 24 }}>
             Ten email jest potwierdzeniem płatności, która została zrealizowana
@@ -72,30 +74,37 @@ export const ReceiptEmail: React.FC<Props> = ({
           {productIds.map((id, index) => {
             const productData = ebooksConfig.find((ebook) => ebook.id === id);
             if (productData) {
+              const downloadlink = `https://www.paulatreningi.pl/api/email-send/pdf-waterproof/${userEmail}/${id}`;
               return (
                 <Row key={id}>
                   <Column>
-                    <Img
-                      src={`https://www.paulatreningi.pl${productData.picture}`}
-                      alt={`${productData.title} image`}
-                      // style={{ float: 'left' }}
-                      width="260"
-                      height="300"
-                    />
+                    <Link href={downloadlink}>
+                      <Img
+                        src={`https://www.paulatreningi.pl${productData.picture}`}
+                        alt={`${productData.title} image`}
+                        width="150"
+                      />
+                    </Link>
                   </Column>
-                  <Column style={{ verticalAlign: 'top', paddingLeft: '12px' }}>
+                  <Column
+                    style={{ verticalAlign: 'middle', paddingLeft: '12px' }}
+                  >
                     <Text
                       style={{
                         ...paragraph,
                         fontWeight: '500',
-                        fontSize: '16px',
+                        fontSize: '18px',
                       }}
                     >
                       {productData.title}
                     </Text>
                     <Link
-                      href="http://www.paulatreningi.pl"
-                      style={{ ...global.text, fontSize: '18px' }}
+                      href={downloadlink}
+                      style={{
+                        ...global.text,
+                        fontSize: '18px',
+                        color: '#f88231',
+                      }}
                     >
                       Pobierz
                     </Link>
@@ -105,92 +114,29 @@ export const ReceiptEmail: React.FC<Props> = ({
             }
           })}
         </Section>
-
         <Hr style={global.hr} />
         <Section style={menu.container}>
-          <Text style={menu.title}>Get Help</Text>
-          <Row style={menu.content}>
-            <Column style={{ width: '33%' }} colSpan={1}>
-              <Link href="/" style={menu.text}>
-                Shipping Status
-              </Link>
-            </Column>
-            <Column style={{ width: '33%' }} colSpan={1}>
-              <Link href="/" style={menu.text}>
-                Shipping & Delivery
-              </Link>
-            </Column>
-            <Column style={{ width: '33%' }} colSpan={1}>
-              <Link href="/" style={menu.text}>
-                Returns & Exchanges
-              </Link>
-            </Column>
-          </Row>
-          <Row style={{ ...menu.content, paddingTop: '0' }}>
-            <Column style={{ width: '33%' }} colSpan={1}>
-              <Link href="/" style={menu.text}>
-                How to Return
-              </Link>
-            </Column>
-            <Column style={{ width: '66%' }} colSpan={2}>
-              <Link href="/" style={menu.text}>
-                Contact Options
-              </Link>
-            </Column>
-          </Row>
-          <Hr style={global.hr} />
-          <Row style={menu.tel}>
-            <Column>
-              <Row>
-                <Column style={{ width: '16px' }}>
-                  <Img
-                    src={`${baseUrl}/static/nike-phone.png`}
-                    width="16px"
-                    height="26px"
-                    style={{ paddingRight: '14px' }}
-                  />
-                </Column>
-                <Column>
-                  <Text style={{ ...menu.text, marginBottom: '0' }}>
-                    1-800-806-6453
-                  </Text>
-                </Column>
-              </Row>
-            </Column>
-            <Column>
-              <Text
-                style={{
-                  ...menu.text,
-                  marginBottom: '0',
-                }}
-              >
-                4 am - 11 pm PT
-              </Text>
-            </Column>
-          </Row>
-        </Section>
-        <Hr style={global.hr} />
-        <Section style={paddingY}>
-          <Text style={global.heading}>Nike.com</Text>
+          <Text style={global.heading}>PaulaTreningi.com</Text>
           <Row style={categories.container}>
             <Column align="center">
-              <Link href="/" style={categories.text}>
-                Men
+              <Link href="https://paulatreningi.pl" style={categories.text}>
+                Strona główna
               </Link>
             </Column>
             <Column align="center">
-              <Link href="/" style={categories.text}>
-                Women
+              <Link
+                href="https://paulatreningi.pl/#ebooki"
+                style={categories.text}
+              >
+                Ebooki
               </Link>
             </Column>
             <Column align="center">
-              <Link href="/" style={categories.text}>
-                Kids
-              </Link>
-            </Column>
-            <Column align="center">
-              <Link href="/" style={categories.text}>
-                Customize
+              <Link
+                href="https://paulatreningi.pl/#personalne"
+                style={categories.text}
+              >
+                Treningi personalne
               </Link>
             </Column>
           </Row>
@@ -199,21 +145,29 @@ export const ReceiptEmail: React.FC<Props> = ({
         <Section style={paddingY}>
           <Row style={footer.policy}>
             <Column className="mr-8">
-              <Text style={footer.text} className="cursor-pointer">
+              <Link
+                href="https://paulatreningi.pl/regulamin"
+                style={footer.text}
+                className="cursor-pointer"
+              >
                 Regulamin
-              </Text>
+              </Link>
             </Column>
             <Column>
-              <Text style={footer.text} className="cursor-pointer">
-                Privacy Policy
-              </Text>
+              <Link
+                href="https://paulatreningi.pl/polityka-prywatnosci"
+                style={footer.text}
+                className="cursor-pointer"
+              >
+                Polityka prywatności
+              </Link>
             </Column>
           </Row>
           <Text style={{ ...footer.text, paddingTop: 30, paddingBottom: 30 }}>
             Skontaktuj się ze mną na instagramie jeśli masz pytania.
           </Text>
           <Text style={footer.text}>
-            © 2022 PaulaTreningi, All Rights Reserved.
+            © 2024 PaulaTreningi, All Rights Reserved.
           </Text>
         </Section>
       </Container>
@@ -245,7 +199,7 @@ const global = {
     ...paddingX,
     ...paddingY,
   },
-  paragraphWithBold: { ...paragraph, fontWeight: 'bold' },
+  paragraphWithBold: { ...paragraph },
   heading: {
     fontSize: '32px',
     lineHeight: '1.3',
@@ -304,12 +258,6 @@ const message = {
   padding: '40px 74px',
   textAlign: 'center',
 } as React.CSSProperties;
-
-const adressTitle = {
-  ...paragraph,
-  fontSize: '15px',
-  fontWeight: 'bold',
-};
 
 const recomendationsText = {
   margin: '0',
@@ -382,8 +330,10 @@ const categories = {
 
 const footer = {
   policy: {
-    width: '166px',
-    margin: 'auto',
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '10px',
+    alignItems: 'center',
   },
   text: {
     margin: '0',

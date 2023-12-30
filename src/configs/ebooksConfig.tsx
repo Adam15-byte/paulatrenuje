@@ -46,6 +46,7 @@ export const ebooksConfig = [
   {
     id: 'slim_legs',
     picture: '/slim-legs.png',
+    file: '/ebooks/SLIM_LEG_PROGRAM.pdf',
     title: 'Slim legs',
     titleFirstPart: 'Slim',
     titleSecondPart: ' legs',
@@ -238,6 +239,7 @@ export const ebooksConfig = [
   {
     id: 'sweat_at_home',
     picture: '/sweat-at-home.png',
+    file: '/ebooks/SWEAT_AT_HOME.pdf',
     title: 'Sweat at home',
     titleFirstPart: 'Sweat',
     titleSecondPart: ' at home',
@@ -373,6 +375,7 @@ export const ebooksConfig = [
   {
     id: 'fit_at_home',
     picture: '/fit-at-home.png',
+    file: '/ebooks/FIT_AT_HOME.pdf',
     title: 'Fit at home',
     titleFirstPart: 'Fit',
     titleSecondPart: ' at home',

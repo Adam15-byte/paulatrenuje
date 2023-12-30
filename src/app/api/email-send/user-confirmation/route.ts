@@ -12,9 +12,9 @@ export async function POST(req: Request) {
     const data = await resend.emails.send({
       from: 'Paula <Paula@paulatreningi.pl>',
       to: userEmail,
-      subject: 'Hello world',
-      text: 'Hello',
-      react: ReceiptEmail({ productIds, moneyCharged, firstName }),
+      subject: 'Potwierdzenie zakupu',
+      text: 'Potwierdzenie zakupu',
+      react: ReceiptEmail({ userEmail, productIds, moneyCharged, firstName }),
     });
     return Response.json(data);
   } catch (e) {
