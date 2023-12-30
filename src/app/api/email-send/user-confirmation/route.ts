@@ -3,9 +3,8 @@ import { EmailValidator } from '@/lib/validators/emailValidator';
 import { Resend } from 'resend';
 import { z } from 'zod';
 
-const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API);
-
 export async function POST(req: Request) {
+  const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API);
   try {
     const body = await req.json();
     const { userEmail, productIds, moneyCharged, firstName } =
@@ -15,7 +14,6 @@ export async function POST(req: Request) {
       to: userEmail,
       subject: 'Hello world',
       text: 'Hello',
-      //       react: EmailTemplate({ firstName: 'John', productIds: ['lol', 'what'] }),
       react: ReceiptEmail({ productIds, moneyCharged, firstName }),
     });
     return Response.json(data);

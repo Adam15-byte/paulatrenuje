@@ -34,13 +34,6 @@ const NavBar = () => {
             className="object-contain"
           />
         </Link>
-        <Button
-          onClick={async () => {
-            await checkPost();
-          }}
-        >
-          Check post
-        </Button>
         <ShoppingCartIcon />
       </nav>
     </header>
