@@ -1,12 +1,15 @@
 import { ebooksConfig } from '@/configs/ebooksConfig';
 import fs from 'fs';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 import { PDFDocument, rgb } from 'pdf-lib';
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
-  const { email, ebookId } = req.query;
+export async function GET(req: NextRequest, res: any) {
+  // get the last element from path
+  const ebookId = req.nextUrl.searchParams.get('ebookId');
+  const email = req.nextUrl.searchParams.get('email');
+  console.log('logged email:', email);
+  console.log('logged ebookId:', ebookId);
   const filePath = ebooksConfig.find((ebook) => ebook.id === ebookId)?.file;
-
   try {
     if (filePath && typeof email === 'string') {
       const fullFilePath = 'https://paulatreningi.pl' + filePath;
@@ -25,11 +28,10 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
       });
 
       const pdfBytes = await pdfDoc.save();
-      res.writeHead(200, {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment; filename=${ebookId}-ebook.pdf`,
-      });
-      res.end(Buffer.from(pdfBytes));
+      res.status(200);
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'attachment; filename=' + ebookId);
+      res.send(pdfBytes);
     }
   } catch (e) {
     return new Response(`Could not send the confirmation email, reason: ${e}`, {
