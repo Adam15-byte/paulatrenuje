@@ -3,10 +3,9 @@ import fs from 'fs';
 import { NextRequest, NextResponse } from 'next/server';
 import { PDFDocument, rgb } from 'pdf-lib';
 
-export async function GET(req: NextRequest, res: any) {
-  // get the last element from path
-  const ebookId = req.nextUrl.searchParams.get('ebookId');
-  const email = req.nextUrl.searchParams.get('email');
+export async function GET(req: NextRequest, res: NextResponse) {
+  const ebookId = req.nextUrl.href.split('/').slice(-1)[0];
+  const email = req.nextUrl.href.split('/').slice(-2)[0];
   console.log('logged email:', email);
   console.log('logged ebookId:', ebookId);
   const filePath = ebooksConfig.find((ebook) => ebook.id === ebookId)?.file;
@@ -28,10 +27,14 @@ export async function GET(req: NextRequest, res: any) {
       });
 
       const pdfBytes = await pdfDoc.save();
-      res.status(200);
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', 'attachment; filename=' + ebookId);
-      res.send(pdfBytes);
+      const res = new NextResponse(pdfBytes, {
+        status: 200,
+        headers: new Headers({
+          'content-disposition': `attachment; filename=${ebookId}-ebook.pdf`,
+          'content-type': 'application/pdf',
+        }),
+      });
+      return res;
     }
   } catch (e) {
     return new Response(`Could not send the confirmation email, reason: ${e}`, {
