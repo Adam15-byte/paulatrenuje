@@ -7,21 +7,6 @@ import Link from 'next/link';
 import ShoppingCartIcon from './ShoppingCartIcon';
 
 const NavBar = () => {
-  const checkPost = async () => {
-    const data = await axios.post(
-      'http://localhost:3000/api/transaction-status',
-      {
-        p24_merchant_id: '11111',
-        p24_pos_id: '22222',
-        p24_session_id: '333333',
-        p24_amount: '444444',
-        p24_currency: '555555',
-        p24_order_id: '6666666',
-        p24_sign: '7777777',
-      }
-    );
-    console.log('data:', data);
-  };
   return (
     <header className="w-full z-10 py-2 bg-white">
       <nav className="max-w-7xl mx-auto flex justify-between items-center sm:px-16 px-6">
@@ -33,6 +18,9 @@ const NavBar = () => {
             height={70}
             className="object-contain"
           />
+        </Link>
+        <Link href="http://localhost:3000/api/email-send/pdf-waterproof/AdamJankowski5@gmail.com/slim_legs">
+          Check post
         </Link>
         <ShoppingCartIcon />
       </nav>
