@@ -20,7 +20,6 @@ import { capitalizeFirstLetter } from '@/utils/stringUtils';
 interface Props {
   userEmail: string;
   firstName: string;
-  moneyCharged: number;
   productIds: string[];
 }
 

@@ -7,14 +7,13 @@ export async function POST(req: Request) {
   const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API);
   try {
     const body = await req.json();
-    const { userEmail, productIds, moneyCharged, firstName } =
-      EmailValidator.parse(body);
+    const { userEmail, productIds, firstName } = EmailValidator.parse(body);
     const data = await resend.emails.send({
       from: 'Paula <Paula@paulatreningi.pl>',
       to: userEmail,
       subject: 'Potwierdzenie zakupu',
       text: 'Potwierdzenie zakupu',
-      react: ReceiptEmail({ userEmail, productIds, moneyCharged, firstName }),
+      react: ReceiptEmail({ userEmail, productIds, firstName }),
     });
     return Response.json(data);
   } catch (e) {
