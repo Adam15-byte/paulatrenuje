@@ -11,6 +11,7 @@ export async function POST(req: Request) {
         ...validatedData,
       },
     });
+    console.log('transaction gate 1');
     return new Response('Ok');
   } catch (e) {
     if (e instanceof z.ZodError) {
