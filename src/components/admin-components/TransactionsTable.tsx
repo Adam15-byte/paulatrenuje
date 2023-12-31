@@ -18,6 +18,8 @@ import { transactionsColumns } from './columns';
 import { SearchIcon } from 'lucide-react';
 import { IEmailValidator } from '@/lib/validators/emailValidator';
 import { toast } from 'react-hot-toast';
+import { queryClient } from '@/context/Providers';
+import SendEmailButton from './SendEmailButton';
 
 const TransactionsTable = () => {
   const [filterValue, setFilterValue] = useState<string>('');
@@ -61,18 +63,25 @@ const TransactionsTable = () => {
   const renderCell = useCallback(
     (item: Record<string | number, any>, columnKey: string | number) => {
       const cellValue = item[columnKey];
+      let isLoading = false;
       const onEmailClick = async () => {
+        isLoading = true;
         const dataFormatted: IEmailValidator = {
           firstName: item.firstName,
           userEmail: item.userEmail,
           productIds: item.productIds,
-          moneyCharged: item.moneyCharged,
         };
         try {
           await axios.post('/api/email-send/user-confirmation', dataFormatted);
+          await axios.post('/api/transactions/change/email-sent', {
+            id: item.id,
+          });
+          queryClient.invalidateQueries({ queryKey: ['transactions'] });
+          isLoading = false;
           toast.success('Email wysłany');
         } catch (e) {
           toast.error('Nie udało się wysłać emaila');
+          isLoading = false;
         }
       };
       switch (columnKey) {
@@ -93,16 +102,7 @@ const TransactionsTable = () => {
             <Chip color="danger">Nie</Chip>
           );
         case 'actions':
-          return (
-            <Button
-              size="sm"
-              radius="sm"
-              color="primary"
-              onClick={onEmailClick}
-            >
-              Wyślij email
-            </Button>
-          );
+          return <SendEmailButton onEmailClick={onEmailClick} />;
         default:
           return cellValue;
       }

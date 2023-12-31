@@ -10,9 +10,14 @@ export const TransactionValidator = z.object({
   isEmailSent: z.boolean(),
   createdAt: z.string(),
 });
+
+export const TransactionIDValidator = z.object({
+  id: z.string(),
+});
 export const TransactionsArrayValidator = z.array(TransactionValidator);
 
 export type ITransactionValidator = z.infer<typeof TransactionValidator>;
 export type ITransactionArrayValidator = z.infer<
   typeof TransactionsArrayValidator
 >;
+export type ITransactionIDValidator = z.infer<typeof TransactionIDValidator>;

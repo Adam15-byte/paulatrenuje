@@ -6,6 +6,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
   const ebookId = req.nextUrl.href.split('/').slice(-1)[0];
   const email = req.nextUrl.href.split('/').slice(-2)[0];
   const filePath = ebooksConfig.find((ebook) => ebook.id === ebookId)?.file;
+  console.log('gate2');
   try {
     if (filePath && typeof email === 'string') {
       const fullFilePath = 'https://paulatreningi.pl' + filePath;
@@ -19,9 +20,9 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
       pages.forEach((page) => {
         page.drawText(email, {
-          x: 50,
-          y: 50,
-          size: 12,
+          x: 30,
+          y: 20,
+          size: 8,
           color: rgb(0, 0, 0),
         });
       });

@@ -63,8 +63,6 @@ const Page: FC = () => {
       sandbox: true,
     }
   );
-  // To add back later
-  // const { width: screenWidth } = useWindowDimensions();
 
   // Fetch payment methods
   const { bagWorthValue, shoppingBag } = useShoppingBag();
@@ -131,21 +129,24 @@ const Page: FC = () => {
     const sessionId = await generateTransactionId();
     const order: Order = {
       sessionId: sessionId,
-      amount: bagWorthValue * 100,
+      amount: 100,
       currency: Currency.PLN,
       description: 'Zamówienie ebooków',
       email: formData.emailAddress,
       country: Country.Poland,
       language: formData.country as Language,
-      urlReturn: `http://localhost:3000/koszyk/zamowienie/${sessionId}`,
-      urlStatus: 'http://localhost:3000/api/transaction-status',
+      urlReturn: `https://www.paulatreningi.pl/koszyk/zamowienie/${sessionId}`,
+      urlStatus: 'https://www.paulatreningi.pl/api/transaction-status',
       timeLimit: 15,
       encoding: Encoding.UTF8,
       method: selectedPaymentMethod,
       regulationAccept: p24Rules,
       waitForResult: true,
     };
+    // get link to payment
     const result = await p24.createTransaction(order);
+
+    // create transaction in database
     const transactionBody: ITransactionValidator = {
       id: sessionId,
       userEmail: formData.emailAddress,
@@ -157,10 +158,7 @@ const Page: FC = () => {
       isEmailSent: false,
       createdAt: new Date().toISOString(),
     };
-    const { data } = await axios.post(
-      '/api/transactions/create',
-      transactionBody
-    );
+    await axios.post('/api/transactions/create', transactionBody);
     router.push(result.link);
   };
   return (

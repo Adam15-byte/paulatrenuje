@@ -1,8 +1,11 @@
+import { db } from '@/lib/db';
+import { IEmailValidator } from '@/lib/validators/emailValidator';
 import {
   NotificationRequest,
   P24,
   Verification,
 } from '@ingameltd/node-przelewy24';
+import axios from 'axios';
 import { NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest, res: Response) {
@@ -24,8 +27,28 @@ export async function POST(req: NextRequest, res: Response) {
     amount: verify.amount,
   };
   const verifyResponse = await p24.verifyTransaction(verifyRequest);
+  // IF TRANSACTION IS CONFIRMED
   if (verifyResponse && notificationResponse) {
-    console.log('log');
+    // get transaction data
+    const transactionData = await db.transaction.findUnique({
+      where: { id: verify.sessionId },
+    });
+    if (transactionData) {
+      // send email
+      const dataFormatted: IEmailValidator = {
+        firstName: transactionData?.firstName,
+        userEmail: transactionData?.userEmail,
+        productIds: transactionData?.productIds,
+      };
+      await axios.post('/api/email-send/user-confirmation', dataFormatted);
+      // change transaction status
+      await axios.post('/api/transactions/change/email-sent', {
+        id: transactionData.id,
+      });
+      await axios.post('/api/transactions/change/paid', {
+        id: transactionData.id,
+      });
+    }
   }
   return new Response('Test Api Route', {
     status: 200,
