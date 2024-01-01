@@ -41,11 +41,11 @@ const NavBar = () => {
             );
             console.log(
               'NEXT_PUBLIC_PRZELEWY24_APIKEY:',
-              Number(process.env.NEXT_PUBLIC_PRZELEWY24_APIKEY)
+              String(process.env.NEXT_PUBLIC_PRZELEWY24_APIKEY)
             );
             console.log(
               'NEXT_PUBLIC_PRZELEWY24_CRC:',
-              Number(process.env.NEXT_PUBLIC_PRZELEWY24_CRC)
+              String(process.env.NEXT_PUBLIC_PRZELEWY24_CRC)
             );
             await p24.testAccess();
           }}
