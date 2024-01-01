@@ -45,7 +45,7 @@ export const ReceiptEmail: React.FC<Props> = ({
         <Hr style={global.hr} />
         <Section style={message}>
           <Img
-            src="https://www.paulatreningi.pl/LogoBezNapisu1.png"
+            src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/LogoBezNapisu1.png`}
             alt="Paula Trenuje Logo"
             width={70}
             height={70}
@@ -67,13 +67,13 @@ export const ReceiptEmail: React.FC<Props> = ({
           {productIds.map((id, index) => {
             const productData = ebooksConfig.find((ebook) => ebook.id === id);
             if (productData) {
-              const downloadlink = `https://www.paulatreningi.pl/api/email-send/pdf-waterproof/${userEmail}/${id}`;
+              const downloadlink = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/email-send/pdf-waterproof/${userEmail}/${id}`;
               return (
                 <Row align="left" key={id}>
                   <Column>
                     <Link href={downloadlink}>
                       <Img
-                        src={`https://www.paulatreningi.pl${productData.picture}`}
+                        src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${productData.picture}`}
                         alt={`${productData.title} image`}
                         width="150"
                       />

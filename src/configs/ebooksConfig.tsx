@@ -13,10 +13,10 @@ const iconPropsHover = {
 };
 
 export const paymentMethodsIcons = [
-  '/applepay.svg',
+  '/zabka.svg',
   '/blik.svg',
   '/ma_symbol.svg',
-  '/p24now-square.svg',
+  '/mbank.svg',
 ];
 
 export const commonFeatures = [
@@ -58,7 +58,7 @@ export const ebooksConfig = [
     shortDescription:
       'Wszystko na temat WYSMUKLANIA nóg - zbiór wiedzy na temat treningu nóg i pośladków.',
     price: 199,
-    discountPrice: 159,
+    discountPrice: null,
     pointsDescription: [
       'Wszystko na temat WYSMUKLANIA nóg',
       'Zbiór wiedzy na temat treningu nóg i pośladków',

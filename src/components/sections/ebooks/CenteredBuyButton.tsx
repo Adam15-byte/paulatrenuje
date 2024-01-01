@@ -1,11 +1,10 @@
 'use client';
 
 import PrimaryButton from '@/components/PrimaryButton';
-import AddedToBagModal from '@/components/AddedToBagModal';
 import { EbookConfigType } from '@/configs/ebooksConfig';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
-import { useDisclosure } from '@nextui-org/react';
 import { ShoppingBag } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { FC } from 'react';
 
 interface CenteredBuyButtonProps {
@@ -14,32 +13,22 @@ interface CenteredBuyButtonProps {
 
 const CenteredBuyButton: FC<CenteredBuyButtonProps> = ({ ebookData }) => {
   const { addItem, isItemIncludedInBag } = useShoppingBag();
-  const {
-    isOpen: isModalOpen,
-    onOpen: onModalOpen,
-    onOpenChange: onModalOpenChange,
-  } = useDisclosure();
-
+  const router = useRouter();
   return (
     <div className="w-full flex justify-center px-5 mt-2 md:mt-8">
-      <AddedToBagModal
-        ebookData={ebookData}
-        isOpen={isModalOpen}
-        onOpenChange={onModalOpenChange}
-      />
       <PrimaryButton
         leftIcon={<ShoppingBag size={24} strokeWidth={2.5} />}
         additionalStyle="w-full max-w-[600px] mx-auto mb-2 text-lg font-semibold"
         text={
-          isItemIncludedInBag && isItemIncludedInBag(ebookData.id)
-            ? 'Produkt dodany do koszyka'
+          isItemIncludedInBag(ebookData.id)
+            ? 'Produkt znajduje się w koszyku'
             : 'Dodaj do koszyka'
         }
         onClick={() => {
-          addItem && addItem(ebookData);
-          onModalOpen();
+          addItem(ebookData);
+          router.push('/koszyk', { scroll: false });
         }}
-        disabled={isItemIncludedInBag && isItemIncludedInBag(ebookData.id)}
+        disabled={isItemIncludedInBag(ebookData.id)}
       />
     </div>
   );

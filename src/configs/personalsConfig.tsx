@@ -75,7 +75,7 @@ export const personalsConfigs = [
     icon: <Medal {...iconProps} />,
     iconHover: <Medal {...iconPropsHover} />,
     description:
-      'Nie czekaj, odezwij się do mnie na Instagramie. Ustalmy cenę, czas i miejsce pierwszego treningu.',
+      'Nie czekaj, odezwij się do mnie na maila PaulaDziubdziela.fitness@gmail.com Ustalmy cenę, czas i miejsce pierwszego treningu.',
   },
 ];
 

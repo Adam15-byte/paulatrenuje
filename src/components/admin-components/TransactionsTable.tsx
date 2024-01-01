@@ -39,9 +39,11 @@ const TransactionsTable = () => {
     const validatedData = TransactionsArrayValidator.parse(result.data);
     return validatedData;
   };
+  // refetch every 1 minute
   const { data, isLoading } = useQuery({
     queryKey: ['transactions'],
     queryFn: () => fetchTransactions(),
+    refetchInterval: 60000,
   });
 
   const filteredData = useMemo(() => {

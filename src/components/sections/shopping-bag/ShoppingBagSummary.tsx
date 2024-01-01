@@ -12,6 +12,7 @@ const ShoppingBagSummary = () => {
     bagWorthValue,
     discountBasedOnNumberOfProducts,
     discountedValue,
+    valueAfterDiscount,
   } = useShoppingBag();
   const [isPromoFormOpen, setIsPromoFormOpen] = useState<boolean>(false);
   const [promoCode, setPromoCode] = useState<string>('');
@@ -22,8 +23,6 @@ const ShoppingBagSummary = () => {
     setPromoCode('');
   };
 
-  const valueAfterDiscount =
-    bagWorthValue - bagWorthValue * discountBasedOnNumberOfProducts;
   return (
     <div className="flex flex-col gap-4">
       {!isPromoFormOpen ? (
@@ -47,13 +46,13 @@ const ShoppingBagSummary = () => {
       <p> Suma przed rabatami: {bagWorthValue} zł</p>
       {discountBasedOnNumberOfProducts ? (
         <p className="font-semibold text-orange">
-          {shoppingBag.length} produkty w koszyku. -
+          {shoppingBag.length} produkty w koszyku: -
           {discountBasedOnNumberOfProducts * 100}% na wszystkie produkty.{' '}
         </p>
       ) : null}
       <p className="font-semibold text-orange">
         {' '}
-        Rabat: {(discountedValue * bagWorthValue).toFixed(1)} zł
+        Rabat: {discountedValue.toFixed(1)} zł
       </p>
       <p className="text-gray"> Koszt dostawy: 0 zł</p>
       <p className="font-bold"> Łącznie: {valueAfterDiscount} zł</p>

@@ -37,8 +37,7 @@ const InfoCard: FC<InfoCardProps> = ({ cardInfo }) => {
         </div>
       </div>
       <a
-        target="_blank"
-        href="https://www.instagram.com/paulaxdz/"
+        href="mailto:PaulaDziubdziela.fitness@gmail.com?subject=Treningi personalne&body=Cześć Paula, chciałabym umówić się na trening personalny. Poniżej podaję kilka informacji o sobie:"
         className="relative mx-auto"
       >
         <Button

@@ -19,9 +19,6 @@ const NavBar = () => {
             className="object-contain"
           />
         </Link>
-        <Link href="http://localhost:3000/api/email-send/pdf-waterproof/AdamJankowski5@gmail.com/slim_legs">
-          Check post
-        </Link>
         <ShoppingCartIcon />
       </nav>
     </header>

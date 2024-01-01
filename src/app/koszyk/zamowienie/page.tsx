@@ -25,6 +25,7 @@ import { IPaymentMethod, fetchPaymentMethods } from './fetchPaymentMethods';
 import { useRouter } from 'next/navigation';
 import { ITransactionValidator } from '@/lib/validators/transactionsValidators';
 import axios from 'axios';
+import CheckoutSummary from '@/components/sections/shopping-bag/CheckoutSummary';
 registerLocale(require('i18n-iso-countries/langs/pl.json'));
 
 const unavailableImages = [
@@ -108,7 +109,7 @@ const Page: FC = () => {
   const countriesCodes = countries.getNames('pl', { select: 'official' });
 
   // Form handling
-  const { register, handleSubmit } = useForm<IFormInput>({
+  const { register, handleSubmit, formState } = useForm<IFormInput>({
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -122,6 +123,7 @@ const Page: FC = () => {
       przelewy24Rules: false,
     },
   });
+  const { isSubmitting } = formState;
   const [rules, setRules] = useState<boolean>(false);
   const [p24Rules, setP24Rules] = useState<boolean>(false);
 
@@ -135,8 +137,8 @@ const Page: FC = () => {
       email: formData.emailAddress,
       country: Country.Poland,
       language: formData.country as Language,
-      urlReturn: `https://www.paulatreningi.pl/koszyk/zamowienie/${sessionId}`,
-      urlStatus: 'https://www.paulatreningi.pl/api/transaction-status',
+      urlReturn: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/koszyk/zamowienie/${sessionId}`,
+      urlStatus: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/transaction-status`,
       timeLimit: 15,
       encoding: Encoding.UTF8,
       method: selectedPaymentMethod,
@@ -160,6 +162,15 @@ const Page: FC = () => {
     };
     await axios.post('/api/transactions/create', transactionBody);
     router.push(result.link);
+  };
+
+  const mutatePaymentName = (name: string) => {
+    switch (name) {
+      case 'BLIK - PSP':
+        return 'BLIK';
+      default:
+        return name;
+    }
   };
   return (
     <section className="flex mt-16 z-20 lg:mt-28 lg:min-h-0 w-full px-5 flex-col gap-4 lg:gap-12 lg:justify-between">
@@ -295,7 +306,9 @@ const Page: FC = () => {
                   alt={`${item.name} payment icon`}
                   className="mb-1 object-contain h-20"
                 />
-                <p className="text-xs mt-auto text-center">{item.name}</p>
+                <p className="text-xs mt-auto text-center">
+                  {mutatePaymentName(item.name)}
+                </p>
               </div>
             ))}
           </div>
@@ -308,7 +321,7 @@ const Page: FC = () => {
               additionalStyle="max-w-[250px] px-8"
             />
           </div>
-
+          <CheckoutSummary />
           <p>
             Twoje dane osobowe zostaną użyte do obsługi twojego zamówienia,
             przygotowania usługi elektronicznej i dla innych celów o których
@@ -353,12 +366,14 @@ const Page: FC = () => {
           </Checkbox>
         </div>
       </form>
+
       <div className="flex w-full justify-center">
         <PrimaryButton
-          text="Przejdź do płatności"
+          text={isSubmitting ? 'Przekierowywanie' : 'Przejdź do płatności'}
           type="submit"
           form="hook-form"
           additionalStyle="w-full md:max-w-[500px]"
+          isLoading={isSubmitting}
           onClick={() => {
             handleSubmit(onSubmit);
           }}

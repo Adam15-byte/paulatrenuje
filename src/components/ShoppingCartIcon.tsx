@@ -7,7 +7,8 @@ import Link from 'next/link';
 import { Button } from '@nextui-org/react';
 
 const ShoppingCartIcon = () => {
-  const { bagWorthValue, shoppingBag } = useShoppingBag();
+  const { bagWorthValue, shoppingBag, valueAfterDiscount, discountedValue } =
+    useShoppingBag();
   return (
     <Badge
       content={shoppingBag.length}
@@ -21,7 +22,17 @@ const ShoppingCartIcon = () => {
           }
         >
           <ShoppingBag size={24} strokeWidth={3} />
-          {bagWorthValue} zł
+          {discountedValue ? (
+            <p>
+              {valueAfterDiscount}{' '}
+              <span className="line-through text-sm text-zinc-800">
+                {bagWorthValue}
+              </span>{' '}
+              zł
+            </p>
+          ) : (
+            <p>{bagWorthValue} zł</p>
+          )}
         </div>
         <div
           className={
@@ -29,7 +40,17 @@ const ShoppingCartIcon = () => {
           }
         >
           <ShoppingBag size={24} strokeWidth={3} />
-          {bagWorthValue} zł
+          {discountedValue ? (
+            <p>
+              {valueAfterDiscount}{' '}
+              <span className="line-through text-sm text-zinc-800">
+                {bagWorthValue}
+              </span>{' '}
+              zł
+            </p>
+          ) : (
+            <p>{bagWorthValue} zł</p>
+          )}
         </div>
       </Link>
     </Badge>

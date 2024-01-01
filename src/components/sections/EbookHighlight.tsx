@@ -10,8 +10,8 @@ const EbookHighlight = () => {
           <div className="space-y-4">
             <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-wider">
               <span className="text-gray">8 TYGODNIOWY</span>
-              <br /> <span className="text-orange">PROGRAM TRENINGOWY</span>
-              <br /> DLA TWOICH NÓG
+              <br /> <span className="text-orange">PROGRAM </span>
+              <br /> TRENINGOWY
             </h2>
             <p className="tracking-wide leading-8">
               Kompletny poradnik dotyczący metod treningowych pomagających

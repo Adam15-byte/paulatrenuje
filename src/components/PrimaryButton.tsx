@@ -15,6 +15,7 @@ interface PrimaryButtonProps {
   leftIcon?: JSX.Element;
   rightIcon?: JSX.Element;
   disabled?: boolean;
+  isLoading?: boolean;
 }
 
 const PrimaryButton: FC<PrimaryButtonProps> = ({
@@ -27,6 +28,7 @@ const PrimaryButton: FC<PrimaryButtonProps> = ({
   leftIcon,
   rightIcon,
   disabled,
+  isLoading,
 }) => {
   if (href && disabled !== true) {
     return (
@@ -66,8 +68,10 @@ const PrimaryButton: FC<PrimaryButtonProps> = ({
           onClick={onClick}
           className={cn(
             additionalStyle,
-            disabled ? 'bg-gray' : 'bg-orange',
-            disabled ? '' : 'hover:animate-pulse hover:scale-[102%]',
+            disabled || isLoading ? 'bg-gray' : 'bg-orange',
+            disabled || isLoading
+              ? ''
+              : 'hover:animate-pulse hover:scale-[102%]',
             'text-white z-20 absolute text-lg font-semibold tracking-wider'
           )}
         >
@@ -84,7 +88,7 @@ const PrimaryButton: FC<PrimaryButtonProps> = ({
           onClick={onClick}
           className={cn(
             additionalStyle,
-            disabled ? '' : 'hover:scale-[102%]',
+            disabled || isLoading ? '' : 'hover:scale-[102%]',
             'text-white bg-pink text-lg font-semibold tracking-wider'
           )}
         >

@@ -23,7 +23,7 @@ const PromoAvailable = () => {
             <p>
               {' '}
               Dodaj do koszyka dwa produkty. Kupując 3 produkty otrzymasz{' '}
-              <span className="font-semibold">30%</span> zniżki na wszystkie
+              <span className="font-semibold">20%</span> zniżki na wszystkie
               kupowane produkty.{' '}
             </p>
           ) : null}

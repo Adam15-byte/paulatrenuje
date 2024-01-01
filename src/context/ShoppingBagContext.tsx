@@ -11,6 +11,7 @@ interface IShoppingBagContext {
   bagWorthValue: number;
   discountedValue: number;
   discountBasedOnNumberOfProducts: number;
+  valueAfterDiscount: number;
 }
 
 // Create the context
@@ -36,7 +37,7 @@ export const ShoppingBagProvider: React.FC<ChildrenProps> = ({ children }) => {
       case 2:
         return 0.1;
       case 3:
-        return 0.3;
+        return 0.2;
       default:
         return 0;
     }
@@ -63,9 +64,10 @@ export const ShoppingBagProvider: React.FC<ChildrenProps> = ({ children }) => {
       }
     })
     .reduce((acc, currentValue) => acc + currentValue, 0);
-  const discountedValue = (
-    discountBasedOnNumberOfProducts * bagWorthValue
-  );
+  const discountedValue = discountBasedOnNumberOfProducts * bagWorthValue;
+
+  const valueAfterDiscount =
+    bagWorthValue - bagWorthValue * discountBasedOnNumberOfProducts;
   return (
     <ShoppingBagContext.Provider
       value={{
@@ -76,6 +78,7 @@ export const ShoppingBagProvider: React.FC<ChildrenProps> = ({ children }) => {
         bagWorthValue,
         discountedValue,
         discountBasedOnNumberOfProducts,
+        valueAfterDiscount,
       }}
     >
       {children}

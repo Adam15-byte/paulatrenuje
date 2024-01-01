@@ -1,16 +1,15 @@
 'use client';
 
 import ListItem from '@/components/ListItem';
-import { EbookConfigType, paymentMethodsIcons } from '@/configs/ebooksConfig';
-import { AnimatePresence, motion } from 'framer-motion';
-import { FC, useEffect, useState } from 'react';
-import Image from 'next/image';
 import PrimaryButton from '@/components/PrimaryButton';
-import { ShoppingBag } from 'lucide-react';
 import SmallInfoCard from '@/components/SmallInfoCard';
+import { EbookConfigType, paymentMethodsIcons } from '@/configs/ebooksConfig';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
-import { useDisclosure } from '@nextui-org/react';
-import AddedToBagModal from '@/components/AddedToBagModal';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ShoppingBag } from 'lucide-react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { FC, useEffect, useState } from 'react';
 
 interface AboutEbookProps {
   ebookData: EbookConfigType;
@@ -25,7 +24,7 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
     discountPrice,
     commonFeatures,
   } = ebookData;
-  const { addItem, isItemIncludedInBag } = useShoppingBag();
+  const { addItem, isItemIncludedInBag, removeItem } = useShoppingBag();
   // temporarily disabled
   // const { width: screenWidth } = useWindowDimensions();
   const isScreenSmall = false;
@@ -67,7 +66,6 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
     if (!isHoveringImages && !isInitialLoad) {
-      // Only run the interval when not hovering
       intervalId = setInterval(() => {
         if (array && array.length > 0) {
           const newArray = [...array];
@@ -79,21 +77,11 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
     }
     return () => clearInterval(intervalId);
   }, [array, isHoveringImages, isInitialLoad]);
-
-  const {
-    isOpen: isModalOep,
-    onOpen: onModalOpen,
-    onOpenChange: onModalOpenChange,
-  } = useDisclosure();
+  const router = useRouter();
 
   if (array) {
     return (
       <section className="flex flex-col px-5 md:flex-row">
-        <AddedToBagModal
-          ebookData={ebookData}
-          isOpen={isModalOep}
-          onOpenChange={onModalOpenChange}
-        />
         <div className="flex flex-col w-full h-full items-center justify-center">
           <div
             onMouseEnter={handleMouseEnter}
@@ -187,15 +175,15 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
             leftIcon={<ShoppingBag size={24} strokeWidth={2.5} />}
             additionalStyle="w-full mx-auto mb-2 text-lg font-semibold"
             text={
-              isItemIncludedInBag && isItemIncludedInBag(ebookData.id)
-                ? 'Produkt dodany do koszyka'
+              isItemIncludedInBag(ebookData.id)
+                ? 'Produkt znajduje się w koszyku'
                 : 'Dodaj do koszyka'
             }
             onClick={() => {
-              addItem && addItem(ebookData);
-              onModalOpen();
+              addItem(ebookData);
+              router.push('/koszyk', { scroll: false });
             }}
-            disabled={isItemIncludedInBag && isItemIncludedInBag(ebookData.id)}
+            disabled={isItemIncludedInBag(ebookData.id)}
           />
           {/* Payment methods */}
           <div className="flex gap-2 justify-center mb-4">

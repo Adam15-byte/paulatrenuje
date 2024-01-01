@@ -42,7 +42,7 @@ const Hero: FC = () => {
             />
           </h2>
           <h1 className="text-5xl md:text-7xl font-bold uppercase">
-            Paula Trenuje
+            Paula Treningi
           </h1>
           <div className="w-20 h-1 bg-orange" />
           <p className="mt-12 text-lg md:text-xl">
