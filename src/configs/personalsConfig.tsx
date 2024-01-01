@@ -52,23 +52,23 @@ export const personalsConfigs = [
     description:
       'Śledzę Twój postęp i dostosowuję treningi, abyś zawsze miała wyzwanie i nigdy się nie nudziła.',
   },
-  {
-    id: 5,
-    title: 'Profesjonalizm',
-    icon: <HeartHandshake {...iconProps} />,
-    iconHover: <HeartHandshake {...iconPropsHover} />,
-    description:
-      'Mam wieloletnie doświadczenie w trenowaniu innych osób i jestem szeroko wykwalifikowana w prowadzeniu różnych form treningu, takich jak pilates, trening siłowy, trening funkcjonalny i wiele innych.',
-  },
+  // {
+  //   id: 5,
+  //   title: 'Profesjonalizm',
+  //   icon: <HeartHandshake {...iconProps} />,
+  //   iconHover: <HeartHandshake {...iconPropsHover} />,
+  //   description:
+  //     'Mam wieloletnie doświadczenie w trenowaniu innych osób i jestem szeroko wykwalifikowana w prowadzeniu różnych form treningu, takich jak pilates, trening siłowy, trening funkcjonalny i wiele innych.',
+  // },
 
-  {
-    id: 6,
-    title: 'Bezpieczeństwo',
-    icon: <ShieldCheck {...iconProps} />,
-    iconHover: <ShieldCheck {...iconPropsHover} />,
-    description:
-      'Twoje zdrowie jest najważniejsze. Zwracam uwagę na prawidłową technikę i bezpieczeństwo podczas każdego treningu.',
-  },
+  // {
+  //   id: 6,
+  //   title: 'Bezpieczeństwo',
+  //   icon: <ShieldCheck {...iconProps} />,
+  //   iconHover: <ShieldCheck {...iconPropsHover} />,
+  //   description:
+  //     'Twoje zdrowie jest najważniejsze. Zwracam uwagę na prawidłową technikę i bezpieczeństwo podczas każdego treningu.',
+  // },
   {
     id: 7,
     title: 'Gotowa? Start!',
