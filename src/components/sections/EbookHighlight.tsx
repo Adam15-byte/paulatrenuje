@@ -8,7 +8,7 @@ const EbookHighlight = () => {
         <div className="h-1 bg-orange w-20" />
         <div className=" flex gap-2">
           <div className="space-y-4">
-            <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-wider">
+            <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-wider">
               <span className="text-gray">8 TYGODNIOWY</span>
               <br /> <span className="text-orange">PROGRAM </span>
               <br /> TRENINGOWY

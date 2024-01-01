@@ -280,7 +280,7 @@ const Page: FC = () => {
           <div className="flex gap-2 mt-10 md:mt-4">
             <div className="w-1 bg-orange h-[100]" />
             <div className="space-y-4">
-              <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-wider">
+              <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-wider">
                 Metoda Płatności
               </h2>
             </div>

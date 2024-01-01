@@ -41,7 +41,7 @@ const Hero: FC = () => {
               delaySpeed={1000}
             />
           </h2>
-          <h1 className="text-5xl md:text-6xl font-bold uppercase">
+          <h1 className="text-4xl md:text-6xl font-bold uppercase">
             Paula Trenuje
           </h1>
           <div className="w-20 h-1 bg-orange" />

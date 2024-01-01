@@ -154,7 +154,7 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
           </div>
         </div>
         <div className="flex flex-col md:max-w-[500px] w-full h-full">
-          <h1 className="text-5xl md:text-6xl font-bold my-4 tracking-wider uppercase">
+          <h1 className="text-4xl md:text-6xl font-bold my-4 tracking-wider uppercase">
             {title}
           </h1>
           <div className="flex flex-col gap-2 md:gap-4">

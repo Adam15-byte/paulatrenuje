@@ -41,7 +41,7 @@ const StoriesForWhom: FC<StoriesForWhomProps> = ({ ebookData }) => {
         <div className="flex gap-2">
           <div className="w-1 bg-orange h-[100]" />
           <div className="space-y-4">
-            <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-wider">
+            <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-wider">
               Dla kogo?
             </h2>
           </div>
@@ -63,7 +63,7 @@ const StoriesForWhom: FC<StoriesForWhomProps> = ({ ebookData }) => {
         <div className="flex gap-2">
           <div className="w-1 bg-orange h-[100]" />
           <div className="space-y-4">
-            <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-wider">
+            <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-wider">
               Insta stories
             </h2>
           </div>

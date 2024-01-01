@@ -4,7 +4,7 @@ import { privacyPolicyConfig } from '@/configs/termsConditionsConfig';
 const page = () => {
   return (
     <div className="flex flex-col gap-8 px-4">
-      <h1 className="font-bold text-5xl mx-auto">Polityka prywatności</h1>
+      <h1 className="font-bold text-4xl mx-auto">Polityka prywatności</h1>
       {privacyPolicyConfig.map((paragraph) => (
         <div key={paragraph.title} className="flex flex-col gap-4">
           <div className="flex gap-2">

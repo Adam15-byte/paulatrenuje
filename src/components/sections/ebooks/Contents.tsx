@@ -47,7 +47,7 @@ const Contents: FC<ContentsProps> = ({ ebookData }) => {
           />
         </div>
         <div className="flex flex-col gap-4 items-center">
-          <h2 className="text-5xl md:text-6xl font-bold uppercase text-center tracking-wide">
+          <h2 className="text-4xl md:text-6xl font-bold uppercase text-center tracking-wide">
             Spis treści
           </h2>
           <p className="text-lg md:text-xl font-semibold bg-gray px-4 py-2 rounded-md text-white">

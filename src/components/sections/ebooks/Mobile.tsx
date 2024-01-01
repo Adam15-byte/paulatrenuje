@@ -15,13 +15,13 @@ const Mobile: FC<MobileProps> = ({ ebookData }) => {
       <div className="flex gap-2">
         <div className="w-1 bg-orange h-[100]" />
         <div className="space-y-4">
-          <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-wider text-gray">
+          <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-wider text-gray">
             {trainingsInfo.weeks}
           </h2>
-          <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-wider text-orange">
+          <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-wider text-orange">
             {trainingsInfo.workouts}
           </h2>
-          <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-wider">
+          <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-wider">
             Zawsze pod ręką
           </h2>
         </div>
