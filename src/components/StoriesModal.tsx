@@ -26,7 +26,7 @@ const StoriesModal: FC<StoriesModalProps> = ({
   return (
     <Modal
       placement="center"
-      size={'md'}
+      size={'sm'}
       isOpen={isOpen}
       onOpenChange={onOpenChange}
     >
@@ -36,16 +36,16 @@ const StoriesModal: FC<StoriesModalProps> = ({
             <ModalHeader className="flex flex-col gap-1 uppercase">
               {title}
             </ModalHeader>
-            <ModalBody>
+            <ModalBody className="flex justify-center items-center">
               <Stories
                 stories={stories}
                 defaultInterval={2000}
-                width="100%"
-                height="100%"
+                width="92%"
+                height="92%"
               />
             </ModalBody>
             <ModalFooter>
-              <Button color="danger" variant="light" onPress={onClose}>
+              <Button color="primary" onPress={onClose}>
                 Zamknij
               </Button>
             </ModalFooter>

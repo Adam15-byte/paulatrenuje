@@ -12,7 +12,7 @@ const InfoCard: FC<InfoCardProps> = ({ cardInfo }) => {
   const { id, title, icon, iconHover, description } = cardInfo;
   if (id < 7) {
     return (
-      <div className="group border border-gray rounded-md flex flex-col p-4 gap-4 hover:scale-[101%] relative overflow-hidden shadow-lg hover:shadow-xl">
+      <div className="group h-full border border-gray rounded-md flex flex-col p-4 gap-4 hover:scale-[101%] relative overflow-hidden shadow-lg hover:shadow-xl">
         <div className="flex gap-4">
           <div className="group-hover:text-orange transition-all">{icon}</div>
           <p className="text-lg font-semibold tracking-wide">{title}</p>
@@ -25,7 +25,7 @@ const InfoCard: FC<InfoCardProps> = ({ cardInfo }) => {
     );
   }
   return (
-    <div className="group col-span-1 md:col-span-2 border border-gray rounded-md flex flex-col md:flex-row p-4 gap-4 hover:scale-[101%] items-center justify-between overflow-hidden shadow-lg hover:shadow-xl">
+    <div className="group h-full col-span-1 md:col-span-2 border border-gray rounded-md flex flex-col md:flex-row p-4 gap-4 hover:scale-[101%] items-center justify-between overflow-hidden shadow-lg hover:shadow-xl">
       <div className="flex flex-col gap-4">
         <div className="flex gap-4">
           <div className="group-hover:text-orange transition-all">{icon}</div>
