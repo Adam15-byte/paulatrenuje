@@ -1,11 +1,10 @@
 'use client';
 
+import { P24 } from '@ingameltd/node-przelewy24';
 import { Button } from '@nextui-org/button';
-import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import ShoppingCartIcon from './ShoppingCartIcon';
-import { P24 } from '@ingameltd/node-przelewy24';
 
 const NavBar = () => {
   const p24 = new P24(
@@ -30,7 +29,29 @@ const NavBar = () => {
           />
         </Link>
         <ShoppingCartIcon />
-        <Button onClick={async () => await p24.testAccess()}>Check</Button>
+        <Button
+          onClick={async () => {
+            console.log(
+              'NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID:',
+              Number(process.env.NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID)
+            );
+            console.log(
+              'NEXT_PUBLIC_PRZELEWY24_POS_ID:',
+              Number(process.env.NEXT_PUBLIC_PRZELEWY24_POS_ID)
+            );
+            console.log(
+              'NEXT_PUBLIC_PRZELEWY24_APIKEY:',
+              Number(process.env.NEXT_PUBLIC_PRZELEWY24_APIKEY)
+            );
+            console.log(
+              'NEXT_PUBLIC_PRZELEWY24_CRC:',
+              Number(process.env.NEXT_PUBLIC_PRZELEWY24_CRC)
+            );
+            await p24.testAccess();
+          }}
+        >
+          Check
+        </Button>
       </nav>
     </header>
   );
