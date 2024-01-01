@@ -70,7 +70,7 @@ const Page: FC = () => {
   const roundedValue = Number(bagWorthValue.toFixed(0));
   const isMobile = false;
   const [isAllMethodsShown, setIsAllMethodsShown] = useState<boolean>(false);
-  const paymentMethodsURL = `https://sandbox.przelewy24.pl/api/v1/payment/methods/pl?amount=${roundedValue}&currency=PLN`;
+  const paymentMethodsURL = `https://secure.przelewy24.pl/api/v1/payment/methods/pl?amount=${roundedValue}&currency=PLN`;
   const { data, isLoading } = useQuery({
     queryKey: ['paymentMethods'],
     queryFn: () => fetchPaymentMethods(paymentMethodsURL),
