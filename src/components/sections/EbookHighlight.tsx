@@ -33,14 +33,14 @@ const EbookHighlight = () => {
           width={900}
           height={900}
           alt={'slim legs program'}
-          className="z-10 drop-shadow-xl mb-6 group-hover:-rotate-3 transition-all group-hover:-translate-x-3"
+          className="z-10 mb-6 group-hover:-rotate-3 transition-all group-hover:-translate-x-3"
         />
         <Image
           src={'/iphone-slim-legs.png'}
           width={200}
           height={200}
           alt={'slim legs program'}
-          className="absolute bottom-12 right-0 z-20 drop-shadow-xl group-hover:rotate-3 group-hover:translate-x-3 transition-all"
+          className="absolute bottom-12 right-0 z-20 group-hover:rotate-3 group-hover:translate-x-3 transition-all"
         />
       </div>
     </section>
