@@ -7,8 +7,8 @@ import ShoppingCartIcon from './ShoppingCartIcon';
 import axios from 'axios';
 
 const NavBar = () => {
-  const username = 150483;
-  const password = '72db040f40245696baa45b44c5d84b3f';
+  const username = Number(process.env.NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID);
+  const password = String(process.env.NEXT_PUBLIC_PRZELEWY24_APIKEY);
   const encodedCredentials = btoa(`${username}:${password}`);
   const testAccess = async () => {
     axios.get('https://secure.przelewy24.pl/api/v1/testAccess', {
@@ -32,22 +32,6 @@ const NavBar = () => {
         <ShoppingCartIcon />
         <Button
           onClick={async () => {
-            // console.log(
-            //   'NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID:',
-            //   Number(process.env.NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID)
-            // );
-            // console.log(
-            //   'NEXT_PUBLIC_PRZELEWY24_POS_ID:',
-            //   Number(process.env.NEXT_PUBLIC_PRZELEWY24_POS_ID)
-            // );
-            // console.log(
-            //   'NEXT_PUBLIC_PRZELEWY24_APIKEY:',
-            //   String(process.env.NEXT_PUBLIC_PRZELEWY24_APIKEY)
-            // );
-            // console.log(
-            //   'NEXT_PUBLIC_PRZELEWY24_CRC:',
-            //   String(process.env.NEXT_PUBLIC_PRZELEWY24_CRC)
-            // );
             await testAccess();
           }}
         >
