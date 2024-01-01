@@ -12,7 +12,7 @@ const Ebooks = () => {
       <div className="px-5 flex gap-2">
         <div className="w-1 bg-orange h-[100]" />
         <div className="space-y-4">
-          <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-wider">
+          <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-wider">
             Ebooki
           </h2>
           <div className="uppercase flex items-center cursor-pointer group">

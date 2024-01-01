@@ -57,6 +57,8 @@ export const ebooksConfig = [
     tags: ['get thin', 'workout plan', 'cardio', 'sweat', 'TRX', 'abs'],
     shortDescription:
       'Wszystko na temat WYSMUKLANIA nóg - zbiór wiedzy na temat treningu nóg i pośladków.',
+    longDescription:
+      'Informacje zawarte w ebooku pozwolą Ci zmodyfikować i poprawić własne treningi tak, aby sprzyjały celowi modelowania nóg. Wewnątrz znajdziesz jednak również konkretną propozycję planu treningowego, stworzonego w oparciu o opisane wcześniej koncepcje programowania treningowego.',
     price: 199,
     discountPrice: null,
     pointsDescription: [
@@ -259,6 +261,8 @@ export const ebooksConfig = [
     ],
     shortDescription:
       '8 tygodniowy plan treningowy dla osób chcących wyrzeźbić sylwetkę i poprawić kondycję.',
+    longDescription:
+      'W planie są 4 treningi w tygodniu, w którym mamy 2 treningi siłowo-wytrzymałościowe, trening wzmacniający z obciążeniem oraz trening cardio. W każdym angażujemy wszystkie partie mięśniowe, co przekłada się na szybszą utratę tkanki tłuszczowej oraz większe spalanie kalorii.',
     price: 159,
     discountPrice: null,
     pointsDescription: [
@@ -393,6 +397,8 @@ export const ebooksConfig = [
       'love yourself',
     ],
     shortDescription: '12 tygodniowe wyzwanie treningowe i podstawy żywienia.',
+    longDescription:
+      'Treningi są zróżnicowane, dzięki czemu każdy będzie stanowił wyzwanie. Jest to kompleksowy plan, więc znajdziesz w nim treningi na pośladki, brzuch, oraz treningi kondycyjne pozwalające zaangażować każdą partię ciała do pracy. Dodatkowo jako bonus przygotowałam dla Ciebie pełny trening z zakresu mobility oraz video ze wskazówkami, jak poprawnie ustawiać się podczas ćwiczeń.',
     price: 189,
     discountPrice: null,
     pointsDescription: [

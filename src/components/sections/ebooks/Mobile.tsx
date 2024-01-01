@@ -9,30 +9,26 @@ interface MobileProps {
 }
 
 const Mobile: FC<MobileProps> = ({ ebookData }) => {
-  const { trainingsInfo } = ebookData;
+  const { trainingsInfo, longDescription } = ebookData;
   return (
     <section className="bg-pink flex mt-16 z-20 lg:mt-28 lg:min-h-0 w-full flex-col gap-4 lg:gap-12 lg:justify-between px-5 pt-10">
       <div className="flex gap-2">
         <div className="w-1 bg-orange h-[100]" />
         <div className="space-y-4">
-          <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-wider text-gray">
+          <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-wider text-gray">
             {trainingsInfo.weeks}
           </h2>
-          <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-wider text-orange">
+          <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-wider text-orange">
             {trainingsInfo.workouts}
           </h2>
-          <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-wider">
+          <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-wider">
             Zawsze pod ręką
           </h2>
         </div>
       </div>
       <div className="mt-2 leading-7">
         <p>
-          Informacje zawarte w ebooku pozwolą Ci zmodyfikować i poprawić własne
-          treningi tak, aby sprzyjały celowi modelowania nóg. Wewnątrz
-          znajdziesz jednak również konkretną propozycję planu treningowego,
-          stworzonego w oparciu o opisane wcześniej koncepcje programowania
-          treningowego.
+          {longDescription}
           <br />
           <br /> Ebook oraz wszystkie jego treści są zoptymalizowane pod kątem
           czytania na smartfonie, co umożliwia korzystanie z niego nawet w

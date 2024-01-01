@@ -5,6 +5,7 @@ import PrimaryButton from '@/components/PrimaryButton';
 import SmallInfoCard from '@/components/SmallInfoCard';
 import { EbookConfigType, paymentMethodsIcons } from '@/configs/ebooksConfig';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
+import useWindowDimensions from '@/hooks/useWindowDimension';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ShoppingBag } from 'lucide-react';
 import Image from 'next/image';
@@ -24,10 +25,9 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
     discountPrice,
     commonFeatures,
   } = ebookData;
-  const { addItem, isItemIncludedInBag, removeItem } = useShoppingBag();
-  // temporarily disabled
-  // const { width: screenWidth } = useWindowDimensions();
-  const isScreenSmall = false;
+  const { addItem, isItemIncludedInBag } = useShoppingBag();
+  const { width: screenWidth } = useWindowDimensions();
+  const isScreenSmall = screenWidth < 700;
   const rotationBasedScreen = isScreenSmall
     ? 'rotate3d(1, -2, -1, 4deg) perspective(100px)'
     : 'rotate3d(1, -3, -1, 8deg) perspective(500px)';
@@ -154,7 +154,7 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
           </div>
         </div>
         <div className="flex flex-col md:max-w-[500px] w-full h-full">
-          <h1 className="text-5xl md:text-7xl font-bold my-4 tracking-wider uppercase">
+          <h1 className="text-5xl md:text-6xl font-bold my-4 tracking-wider uppercase">
             {title}
           </h1>
           <div className="flex flex-col gap-2 md:gap-4">

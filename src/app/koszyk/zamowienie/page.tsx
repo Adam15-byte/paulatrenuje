@@ -61,7 +61,7 @@ const Page: FC = () => {
     process.env.NEXT_PUBLIC_PRZELEWY24_APIKEY ?? '',
     process.env.NEXT_PUBLIC_PRZELEWY24_CRC ?? '',
     {
-      sandbox: true,
+      sandbox: false,
     }
   );
 
@@ -133,7 +133,7 @@ const Page: FC = () => {
       sessionId: sessionId,
       amount: 100,
       currency: Currency.PLN,
-      description: 'Zamówienie ebooków',
+      description: 'Zamówienie www.PaulaTreningi.pl',
       email: formData.emailAddress,
       country: Country.Poland,
       language: formData.country as Language,
@@ -177,7 +177,7 @@ const Page: FC = () => {
       <div className="flex gap-2">
         <div className="w-1 bg-orange h-[100]" />
         <div className="space-y-4">
-          <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-wider">
+          <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-wider">
             Dane rozliczeniowe
           </h2>
         </div>
@@ -280,7 +280,7 @@ const Page: FC = () => {
           <div className="flex gap-2 mt-10 md:mt-4">
             <div className="w-1 bg-orange h-[100]" />
             <div className="space-y-4">
-              <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-wider">
+              <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-wider">
                 Metoda Płatności
               </h2>
             </div>
