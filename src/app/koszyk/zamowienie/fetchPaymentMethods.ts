@@ -29,12 +29,12 @@ export async function fetchPaymentMethods(url: string) {
       method: 'GET',
       headers: {
         Authorization:
-          'Basic ' +
-          btoa(
-            process.env.NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID?.toString() +
-              ':' +
-              process.env.NEXT_PUBLIC_PRZELEWY24_APIKEY?.toString()
-          ),
+          'Basic ' + btoa('150483' + ':' + '8c8d1d6e7ec8d81730caa78e4140e929'),
+        // btoa(
+        //   process.env.NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID?.toString() +
+        //     ':' +
+        //     process.env.NEXT_PUBLIC_PRZELEWY24_APIKEY?.toString()
+        // ),
       },
     });
     const result = data.json();
