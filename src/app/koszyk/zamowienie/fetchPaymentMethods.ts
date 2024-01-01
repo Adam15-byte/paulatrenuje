@@ -29,7 +29,7 @@ export async function fetchPaymentMethods(url: string) {
       method: 'GET',
       headers: {
         Authorization:
-          'Basic ' + btoa('150483' + ':' + '8c8d1d6e7ec8d81730caa78e4140e929'),
+          'Basic ' + btoa('150483' + ':' + '72db040f40245696baa45b44c5d84b3f'),
         // btoa(
         //   process.env.NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID?.toString() +
         //     ':' +

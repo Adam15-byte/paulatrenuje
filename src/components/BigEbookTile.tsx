@@ -27,14 +27,14 @@ const BigEbookTile: FC<BigEbookTileProps> = ({ ebook, ebooksList }) => {
       )}
     >
       <div className="flex flex-col justify-between gap-2 relative px-4 md:px-0">
-        <div className="text-3xl font-bold z-20 tracking-wider">
+        <div className="text-xl md:text-3xl font-bold z-20 tracking-wider">
           <span className="text-gray">{titleFirstPart}</span>
           <span className="text-orange">{titleSecondPart}</span>
         </div>
-        <div className="text-lg font-thin z-20 tracking-widest text-gray uppercase">
+        <div className="text-md md:text-lg font-thin z-20 tracking-widest text-gray uppercase">
           {tags.filter((item, index) => index < 2).join(' / ')}
         </div>
-        <div className="text-md group/seeall text-black flex font-bold z-20 tracking-wide uppercase">
+        <div className="text-sm md:text-md group/seeall text-black flex font-bold z-20 tracking-wide uppercase">
           Zobacz produkt
           <ChevronRight
             size={22}
@@ -55,7 +55,6 @@ const BigEbookTile: FC<BigEbookTileProps> = ({ ebook, ebooksList }) => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false }}
         transition={{ duration: 0.5 }}
         variants={{
           visible: { opacity: 1, x: 0 },

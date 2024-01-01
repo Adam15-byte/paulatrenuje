@@ -70,7 +70,7 @@ const Page: FC = () => {
   const roundedValue = Number(bagWorthValue.toFixed(0));
   const isMobile = false;
   const [isAllMethodsShown, setIsAllMethodsShown] = useState<boolean>(false);
-  const paymentMethodsURL = `https://sandbox.przelewy24.pl/api/v1/payment/methods/pl?amount=${roundedValue}&currency=PLN`;
+  const paymentMethodsURL = `https://secured.przelewy24.pl/api/v1/payment/methods/pl?amount=${roundedValue}&currency=PLN`;
   const { data, isLoading } = useQuery({
     queryKey: ['paymentMethods'],
     queryFn: () => fetchPaymentMethods(paymentMethodsURL),
@@ -177,7 +177,7 @@ const Page: FC = () => {
       <div className="flex gap-2">
         <div className="w-1 bg-orange h-[100]" />
         <div className="space-y-4">
-          <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-wider">
+          <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-wider">
             Dane rozliczeniowe
           </h2>
         </div>
