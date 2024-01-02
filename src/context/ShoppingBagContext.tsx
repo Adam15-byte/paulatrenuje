@@ -25,7 +25,6 @@ interface ChildrenProps {
 // Context provider component
 export const ShoppingBagProvider: React.FC<ChildrenProps> = ({ children }) => {
   const [shoppingBag, setShoppingBag] = useState<EbookForShoppingBag[]>([]);
-  console.log('shoppingBag:', shoppingBag);
   const addItem = (item: EbookForShoppingBag) => {
     setShoppingBag((prevState) => [...prevState, item]);
   };

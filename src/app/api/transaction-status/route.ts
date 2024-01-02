@@ -47,18 +47,18 @@ export async function POST(req: NextRequest, res: Response) {
         };
         console.log('confirmation gate 3');
         await axios.post(
-          'https://paulatreningi.pl/api/email-send/user-confirmation',
+          `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/email-send/user-confirmation`,
           dataFormatted
         );
         // change transaction status
         await axios.post(
-          'https://paulatreningi.pl/api/transactions/change/email-sent',
+          `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/transactions/change/email-sent`,
           {
             id: transactionData.id,
           }
         );
         await axios.post(
-          'https://paulatreningi.pl/api/transactions/change/paid',
+          `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/transactions/change/paid`,
           {
             id: transactionData.id,
           }

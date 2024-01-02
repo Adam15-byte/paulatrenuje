@@ -48,7 +48,6 @@ const PromoCodesTable = () => {
   const renderCell = useCallback(
     (item: Record<string | number, any>, columnKey: string | number) => {
       const cellValue = item[columnKey];
-      console.log('item:', item);
       switch (columnKey) {
         case 'actions':
           return (

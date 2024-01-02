@@ -73,7 +73,6 @@ const Page: FC = () => {
       return result.data as IPaymentMethodsReponse;
     },
   });
-  console.log('data:', data);
   const paymentMethods: IPaymentMethod[] = useMemo(
     () =>
       data
@@ -127,44 +126,42 @@ const Page: FC = () => {
   const [p24Rules, setP24Rules] = useState<boolean>(false);
 
   const onSubmit: SubmitHandler<IFormInput> = async (formData) => {
-    if (formData.emailAddress.includes('Adam')) {
-      const sessionId = await generateTransactionId();
-      //register transaction in p24
-      const order: Order = {
-        sessionId: sessionId,
-        amount: 100,
-        currency: Currency.PLN,
-        description: 'Zamówienie www.Paulatrenuje.pl',
-        email: formData.emailAddress,
-        country: Country.Poland,
-        language: formData.country as Language,
-        urlReturn: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/koszyk/zamowienie/${sessionId}`,
-        urlStatus: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/transaction-status`,
-        timeLimit: 15,
-        encoding: Encoding.UTF8,
-        method: selectedPaymentMethod,
-        regulationAccept: p24Rules,
-        waitForResult: true,
-      };
-      const result = await axios.post(
-        '/api/transactions/register-transaction-p24',
-        order
-      );
-      // create transaction in database
-      const transactionBody: ITransactionValidator = {
-        id: sessionId,
-        userEmail: formData.emailAddress,
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        productIds: shoppingBag.map((item) => item.id),
-        moneyCharged: bagWorthValue,
-        isPaid: false,
-        isEmailSent: false,
-        createdAt: new Date().toISOString(),
-      };
-      await axios.post('/api/transactions/create', transactionBody);
-      router.push(result.data.link);
-    }
+    const sessionId = await generateTransactionId();
+    //register transaction in p24
+    const order: Order = {
+      sessionId: sessionId,
+      amount: valueAfterDiscount * 100,
+      currency: Currency.PLN,
+      description: 'Zamówienie www.Paulatrenuje.pl',
+      email: formData.emailAddress,
+      country: Country.Poland,
+      language: formData.country as Language,
+      urlReturn: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/koszyk/zamowienie/${sessionId}`,
+      urlStatus: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/transaction-status`,
+      timeLimit: 15,
+      encoding: Encoding.UTF8,
+      method: selectedPaymentMethod,
+      regulationAccept: p24Rules,
+      waitForResult: true,
+    };
+    const result = await axios.post(
+      '/api/transactions/register-transaction-p24',
+      order
+    );
+    // create transaction in database
+    const transactionBody: ITransactionValidator = {
+      id: sessionId,
+      userEmail: formData.emailAddress,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      productIds: shoppingBag.map((item) => item.id),
+      moneyCharged: bagWorthValue,
+      isPaid: false,
+      isEmailSent: false,
+      createdAt: new Date().toISOString(),
+    };
+    await axios.post('/api/transactions/create', transactionBody);
+    router.push(result.data.link);
   };
 
   const mutatePaymentName = (name: string) => {
@@ -374,6 +371,7 @@ const Page: FC = () => {
           form="hook-form"
           additionalStyle="w-full md:max-w-[500px]"
           isLoading={isSubmitting}
+          disabled={isSubmitting || !valueAfterDiscount}
           onClick={() => {
             handleSubmit(onSubmit);
           }}

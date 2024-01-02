@@ -107,16 +107,19 @@ export const ReceiptEmail: React.FC<Props> = ({
         </Section>
         <Hr style={global.hr} />
         <Section style={menu.container} align="center">
-          <Text style={global.heading}>PaulaTreningi.pl</Text>
+          <Text style={global.heading}>PaulaTrenuje.pl</Text>
           <Row style={categories.container}>
             <Row style={paddingYSmall} align="center">
-              <Link href="https://paulatreningi.pl" style={categories.text}>
+              <Link
+                href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}`}
+                style={categories.text}
+              >
                 Strona główna
               </Link>
             </Row>
             <Row style={paddingYSmall} align="center">
               <Link
-                href="https://paulatreningi.pl/#ebooki"
+                href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/#ebooki`}
                 style={categories.text}
               >
                 Ebooki
@@ -124,7 +127,7 @@ export const ReceiptEmail: React.FC<Props> = ({
             </Row>
             <Row style={paddingYSmall} align="center">
               <Link
-                href="https://paulatreningi.pl/#personalne"
+                href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/#personalne`}
                 style={categories.text}
               >
                 Treningi personalne
@@ -137,7 +140,7 @@ export const ReceiptEmail: React.FC<Props> = ({
           <Row style={{ ...footer.policy }}>
             <Row align="center">
               <Link
-                href="https://paulatreningi.pl/regulamin"
+                href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/regulamin`}
                 style={footer.text}
                 className="cursor-pointer"
               >
@@ -146,7 +149,7 @@ export const ReceiptEmail: React.FC<Props> = ({
             </Row>
             <Row align="center">
               <Link
-                href="https://paulatreningi.pl/polityka-prywatnosci"
+                href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/polityka-prywatnosci`}
                 style={footer.text}
                 className="cursor-pointer"
               >
