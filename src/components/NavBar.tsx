@@ -11,7 +11,7 @@ const NavBar = () => {
   const password = String(process.env.NEXT_PUBLIC_PRZELEWY24_APIKEY);
   const encodedCredentials = btoa(`${username}:${password}`);
   const testAccess = async () => {
-    axios.get('https://secure.przelewy24.pl/api/v1/testAccess', {
+    await axios.get('https://secure.przelewy24.pl/api/v1/testAccess', {
       headers: {
         Authorization: `Basic ${encodedCredentials}`,
       },
