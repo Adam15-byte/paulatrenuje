@@ -132,7 +132,7 @@ const Page: FC = () => {
       sessionId: sessionId,
       amount: valueAfterDiscount * 100,
       currency: Currency.PLN,
-      description: 'Zamówienie www.Paulatrenuje.pl',
+      description: `Zamówienie ${formData.emailAddress}`,
       email: formData.emailAddress,
       country: Country.Poland,
       language: formData.country as Language,
