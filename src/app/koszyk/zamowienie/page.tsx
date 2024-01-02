@@ -3,8 +3,14 @@
 import { generateTransactionId } from '@/app/api/actions';
 import PrimaryButton from '@/components/PrimaryButton';
 import SecondaryButton from '@/components/SecondaryButton';
+import CheckoutSummary from '@/components/sections/shopping-bag/CheckoutSummary';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
 import { cn } from '@/lib/utils';
+import {
+  IPaymentMethod,
+  IPaymentMethodsReponse,
+} from '@/lib/validators/paymentMethodsValidator';
+import { ITransactionValidator } from '@/lib/validators/transactionsValidators';
 import {
   Country,
   Currency,
@@ -15,17 +21,14 @@ import {
 } from '@ingameltd/node-przelewy24';
 import { Checkbox, Input, Select, SelectItem } from '@nextui-org/react';
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import countries, { registerLocale } from 'i18n-iso-countries';
 import { MailIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { IPaymentMethod, fetchPaymentMethods } from './fetchPaymentMethods';
-import { useRouter } from 'next/navigation';
-import { ITransactionValidator } from '@/lib/validators/transactionsValidators';
-import axios from 'axios';
-import CheckoutSummary from '@/components/sections/shopping-bag/CheckoutSummary';
 registerLocale(require('i18n-iso-countries/langs/pl.json'));
 
 const unavailableImages = [
@@ -38,7 +41,7 @@ const unavailableImages = [
   'https://static.przelewy24.pl/payment-form-logo/svg/153',
 ];
 
-const prioretyPaymentMethods = [154, 20, 177, 270, 26, 31, 176, 112];
+const prioretyPaymentMethods = [154, 177, 270, 274, 275, 276, 45, 280];
 
 interface IFormInput {
   firstName: string;
@@ -55,26 +58,22 @@ interface IFormInput {
 
 const Page: FC = () => {
   const router = useRouter();
-  const p24 = new P24(
-    Number(process.env.NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID),
-    Number(process.env.NEXT_PUBLIC_PRZELEWY24_POS_ID),
-    String(process.env.NEXT_PUBLIC_PRZELEWY24_APIKEY),
-    String(process.env.NEXT_PUBLIC_PRZELEWY24_CRC),
-    {
-      sandbox: false,
-    }
-  );
 
   // Fetch payment methods
-  const { bagWorthValue, shoppingBag } = useShoppingBag();
-  const roundedValue = Number(bagWorthValue.toFixed(0));
+  const { bagWorthValue, shoppingBag, valueAfterDiscount } = useShoppingBag();
+  const roundedValue = Number(valueAfterDiscount.toFixed(0));
   const isMobile = false;
   const [isAllMethodsShown, setIsAllMethodsShown] = useState<boolean>(false);
-  const paymentMethodsURL = `https://secured.przelewy24.pl/api/v1/payment/methods/pl?amount=${roundedValue}&currency=PLN`;
   const { data, isLoading } = useQuery({
     queryKey: ['paymentMethods'],
-    queryFn: () => fetchPaymentMethods(paymentMethodsURL),
+    queryFn: async () => {
+      const result = await axios.get(
+        `/api/fetch-payment-methods/${roundedValue}`
+      );
+      return result.data as IPaymentMethodsReponse;
+    },
   });
+  console.log('data:', data);
   const paymentMethods: IPaymentMethod[] = useMemo(
     () =>
       data
@@ -128,49 +127,50 @@ const Page: FC = () => {
   const [p24Rules, setP24Rules] = useState<boolean>(false);
 
   const onSubmit: SubmitHandler<IFormInput> = async (formData) => {
-    const sessionId = await generateTransactionId();
-    const order: Order = {
-      sessionId: sessionId,
-      amount: 100,
-      currency: Currency.PLN,
-      description: 'Zamówienie www.PaulaTreningi.pl',
-      email: formData.emailAddress,
-      country: Country.Poland,
-      language: formData.country as Language,
-      urlReturn: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/koszyk/zamowienie/${sessionId}`,
-      urlStatus: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/transaction-status`,
-      timeLimit: 15,
-      encoding: Encoding.UTF8,
-      method: selectedPaymentMethod,
-      regulationAccept: p24Rules,
-      waitForResult: true,
-    };
-    // get link to payment
-    const result = await p24.createTransaction(order);
-
-    // create transaction in database
-    const transactionBody: ITransactionValidator = {
-      id: sessionId,
-      userEmail: formData.emailAddress,
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      productIds: shoppingBag.map((item) => item.id),
-      moneyCharged: bagWorthValue,
-      isPaid: false,
-      isEmailSent: false,
-      createdAt: new Date().toISOString(),
-    };
-    await axios.post('/api/transactions/create', transactionBody);
-    router.push(result.link);
+    if (formData.emailAddress.includes('Adam')) {
+      const sessionId = await generateTransactionId();
+      //register transaction in p24
+      const order: Order = {
+        sessionId: sessionId,
+        amount: 100,
+        currency: Currency.PLN,
+        description: 'Zamówienie www.Paulatrenuje.pl',
+        email: formData.emailAddress,
+        country: Country.Poland,
+        language: formData.country as Language,
+        urlReturn: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/koszyk/zamowienie/${sessionId}`,
+        urlStatus: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/transaction-status`,
+        timeLimit: 15,
+        encoding: Encoding.UTF8,
+        method: selectedPaymentMethod,
+        regulationAccept: p24Rules,
+        waitForResult: true,
+      };
+      const result = await axios.post(
+        '/api/transactions/register-transaction-p24',
+        order
+      );
+      // create transaction in database
+      const transactionBody: ITransactionValidator = {
+        id: sessionId,
+        userEmail: formData.emailAddress,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        productIds: shoppingBag.map((item) => item.id),
+        moneyCharged: bagWorthValue,
+        isPaid: false,
+        isEmailSent: false,
+        createdAt: new Date().toISOString(),
+      };
+      await axios.post('/api/transactions/create', transactionBody);
+      router.push(result.data.link);
+    }
   };
 
   const mutatePaymentName = (name: string) => {
-    switch (name) {
-      case 'BLIK - PSP':
-        return 'BLIK';
-      default:
-        return name;
-    }
+    if (name === 'BLIK - PSP') return 'BLIK';
+    if (name.includes('(Usługa ITP)')) return name.replace('(Usługa ITP)', '');
+    return name;
   };
   return (
     <section className="flex mt-16 z-20 lg:mt-28 lg:min-h-0 w-full px-5 flex-col gap-4 lg:gap-12 lg:justify-between">

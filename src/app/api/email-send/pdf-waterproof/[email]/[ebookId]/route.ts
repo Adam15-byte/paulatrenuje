@@ -9,7 +9,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
   console.log('gate2');
   try {
     if (filePath && typeof email === 'string') {
-      const fullFilePath = 'https://paulatreningi.pl' + filePath;
+      const fullFilePath = 'https://paulatrenuje.pl' + filePath;
       const response = await fetch(fullFilePath);
       if (!response.ok)
         throw new Error(`Failed to fetch the PDF: ${response.statusText}`);

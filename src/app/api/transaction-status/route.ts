@@ -14,10 +14,10 @@ export async function POST(req: NextRequest, res: Response) {
     const p24 = new P24(
       Number(process.env.NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID),
       Number(process.env.NEXT_PUBLIC_PRZELEWY24_POS_ID),
-      process.env.NEXT_PUBLIC_PRZELEWY24_APIKEY ?? '',
-      process.env.NEXT_PUBLIC_PRZELEWY24_CRC ?? '',
+      String(process.env.NEXT_PUBLIC_PRZELEWY24_APIKEY),
+      String(process.env.NEXT_PUBLIC_PRZELEWY24_CRC),
       {
-        sandbox: true,
+        sandbox: false,
       }
     );
     const verify: NotificationRequest = await req.json();

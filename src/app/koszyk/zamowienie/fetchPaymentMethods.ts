@@ -1,27 +1,4 @@
-import axios from 'axios';
-let base64 = require('base-64');
-
-export interface IPaymentMethod {
-  availabilityHours: {
-    mondayToFriday: string;
-    saturday: string;
-    sunday: string;
-  };
-  group: string;
-  id: number;
-  imgUrl: string;
-  mobile: boolean;
-  mobileImgUrl: string;
-  name: string;
-  status: boolean;
-  subgroup: string;
-}
-
-interface IPaymentMethodsReponse {
-  agreements: any[];
-  data: IPaymentMethod[];
-  responseCode: number;
-}
+import { IPaymentMethodsReponse } from '@/lib/validators/paymentMethodsValidator';
 
 export async function fetchPaymentMethods(url: string) {
   try {
@@ -30,11 +7,6 @@ export async function fetchPaymentMethods(url: string) {
       headers: {
         Authorization:
           'Basic ' + btoa(150483 + ':' + '72db040f40245696baa45b44c5d84b3f'),
-        // btoa(
-        //   process.env.NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID?.toString() +
-        //     ':' +
-        //     process.env.NEXT_PUBLIC_PRZELEWY24_APIKEY?.toString()
-        // ),
       },
     });
     const result = data.json();
