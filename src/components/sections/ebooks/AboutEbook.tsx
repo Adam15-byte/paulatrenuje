@@ -95,12 +95,12 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
                 })
                 .map((item, index) => {
                   const initialPagePosition = isScreenSmall
-                    ? index * 40 + 20
+                    ? index * 40 + 10
                     : index * 60 + 60;
                   const isFirstCentered =
                     (index === 0 && isHoveringImages) ||
                     (index === 0 && isInitialLoad);
-                  const leftOffset = isScreenSmall ? '70px' : '200px';
+                  const leftOffset = isScreenSmall ? '40px' : '200px';
                   return (
                     <motion.div
                       key={item}
@@ -131,13 +131,13 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
                       <Image
                         className="custom-ebook-image"
                         src={item ?? pagesLookup[index]}
-                        width={isScreenSmall ? 350 : 400}
-                        height={isScreenSmall ? 350 : 400}
+                        width={isScreenSmall ? 320 : 400}
+                        height={isScreenSmall ? 320 : 400}
                         alt={`${title} image ${index}`}
                         style={{
                           zIndex: `${40 - index * 10}`,
                           bottom: isFirstCentered
-                            ? '100px'
+                            ? '80px'
                             : `${initialPagePosition}px`,
                           left: isFirstCentered
                             ? leftOffset

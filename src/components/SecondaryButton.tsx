@@ -30,7 +30,11 @@ const SecondaryButton: FC<SecondaryButtonProps> = ({
 }) => {
   if (href && disabled !== true) {
     return (
-      <Link href={href} className={cn(additionalStyle, 'relative group')}>
+      <Link
+        href={href}
+        scroll={false}
+        className={cn(additionalStyle, 'relative group')}
+      >
         <div
           className={cn(
             additionalStyle,
