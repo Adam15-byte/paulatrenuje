@@ -117,8 +117,6 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
                         },
                       }}
                       exit={{
-                        x: -50,
-                        y: -50,
                         opacity: 0,
                         transition: {
                           duration: 0.5,
