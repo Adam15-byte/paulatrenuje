@@ -23,7 +23,7 @@ const BigEbookTile: FC<BigEbookTileProps> = ({ ebook, ebooksList }) => {
         title === 'Slim legs' && !isEbooksDisplayedEven
           ? 'col-span-1 md:col-span-2'
           : 'col-span-1',
-        'min-h-[300px] group transition-all w-full relative p-5 cursor-pointer'
+        'min-h-[250px] group transition-all w-full relative p-5 cursor-pointer'
       )}
     >
       <div className="flex flex-col justify-between gap-2 relative px-4 md:px-0">
@@ -47,8 +47,8 @@ const BigEbookTile: FC<BigEbookTileProps> = ({ ebook, ebooksList }) => {
         <Image
           className="group-hover:rotate-6 transition-all"
           src={picture}
-          width={200}
-          height={200}
+          width={170}
+          height={170}
           alt={`${title} image`}
         />
       </div>

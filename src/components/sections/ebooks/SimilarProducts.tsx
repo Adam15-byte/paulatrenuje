@@ -18,7 +18,7 @@ const SimilarProducts: FC<SimilarProductsProps> = ({ ebookData }) => {
           </h2>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 h-full md:h-fit gap-10 px-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 px-5">
         {TwoEbooks.map((ebook) => (
           <BigEbookTile
             key={ebook.title}
