@@ -22,6 +22,8 @@ const ProductsList = () => {
                 ? discountPrice -
                   discountPrice * discountBasedOnNumberOfProducts
                 : price - price * discountBasedOnNumberOfProducts;
+              const isFinalPriceDifferentThanPrice =
+                finalPriceToDisplay !== price;
               return (
                 <motion.div
                   key={`${item.title}-${index}`}
@@ -54,9 +56,11 @@ const ProductsList = () => {
                       ) : null}
                       <p className="text-gray">
                         {finalPriceToDisplay.toFixed(1)} zł{' '}
-                        <span className="line-through text-gray text-xs">
-                          {price} zł
-                        </span>
+                        {!!isFinalPriceDifferentThanPrice && (
+                          <span className="line-through text-gray text-xs">
+                            {price} zł
+                          </span>
+                        )}
                       </p>
                     </div>
                   </div>
