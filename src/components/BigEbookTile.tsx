@@ -55,12 +55,13 @@ const BigEbookTile: FC<BigEbookTileProps> = ({ ebook, ebooksList }) => {
       <motion.div
         initial="hidden"
         whileInView="visible"
+        viewport={{ once: true }}
         transition={{ duration: 0.5 }}
         variants={{
           visible: { opacity: 1, x: 0 },
           hidden: { opacity: 0, x: 50 },
         }}
-        className="absolute top-0 bottom-0 right-0 w-[70%] group-hover:w-[90%] md:w-full md:group-hover:w-[70%] transition-all bg-pink z-0"
+        className="absolute top-0 bottom-0 right-0 w-[70%] group-hover:w-[90%] md:w-full md:group-hover:w-[70%] h-full transition-all bg-pink z-0"
       />
     </Link>
   );
