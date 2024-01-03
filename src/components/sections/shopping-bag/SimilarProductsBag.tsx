@@ -22,7 +22,7 @@ const SimilarProductsBag = () => {
             </h2>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 h-full md:h-fit gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           {productsToShow.map((item, index) => (
             <BigEbookTile
               key={`${item.id}-${index}`}
