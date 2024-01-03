@@ -2,8 +2,14 @@ import { ebooksConfig } from '@/configs/ebooksConfig';
 import { HOME_PAGE_IDS } from '@/configs/sectionIDs';
 import { ChevronRight } from 'lucide-react';
 import BigEbookTile from '../BigEbookTile';
+import { FC } from 'react';
+import Link from 'next/link';
 
-const Ebooks = () => {
+interface Props {
+  seeAllButton: boolean;
+}
+
+const Ebooks: FC<Props> = ({ seeAllButton }) => {
   return (
     <section
       id={HOME_PAGE_IDS.ebooki}
@@ -15,14 +21,18 @@ const Ebooks = () => {
           <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-wider">
             Ebooki
           </h2>
-          <div className="uppercase flex items-center cursor-pointer group">
-            Zobacz wszystkie
-            <ChevronRight
-              size={20}
-              strokeWidth={2}
-              className="group-hover:translate-x-2 transition-all"
-            />
-          </div>
+          {!!seeAllButton && (
+            <Link href="/ebooki">
+              <div className="uppercase flex items-center cursor-pointer group">
+                Zobacz wszystkie
+                <ChevronRight
+                  size={20}
+                  strokeWidth={2}
+                  className="group-hover:translate-x-2 transition-all"
+                />
+              </div>
+            </Link>
+          )}
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 h-full md:h-fit gap-10 px-5">

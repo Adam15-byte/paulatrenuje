@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col gap-8 items-center w-full overflow-x-hidden overflow-y-hidden relative">
       <Hero />
-      <Ebooks />
+      <Ebooks seeAllButton={true} />
       <PersonalKrakow />
       <AboutMe />
       <Partners />

@@ -18,7 +18,7 @@ const BigEbookTile: FC<BigEbookTileProps> = ({ ebook, ebooksList }) => {
   const isEbooksDisplayedEven = ebooksList.length % 2 === 0;
   return (
     <Link
-      href={`/ebooks/${ebook.id}`}
+      href={`/ebooki/${ebook.id}`}
       className={cn(
         title === 'Slim legs' && !isEbooksDisplayedEven
           ? 'col-span-1 md:col-span-2'
