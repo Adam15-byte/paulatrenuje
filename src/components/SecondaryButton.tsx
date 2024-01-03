@@ -32,7 +32,7 @@ const SecondaryButton: FC<SecondaryButtonProps> = ({
     return (
       <Link
         href={href}
-        scroll={false}
+        scroll={true}
         className={cn(additionalStyle, 'relative group')}
       >
         <div

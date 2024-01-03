@@ -179,10 +179,11 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
             }
             onClick={() => {
               addItem(ebookData);
-              router.push('/koszyk', { scroll: false });
+              router.push('/koszyk', { scroll: true });
             }}
             disabled={isItemIncludedInBag(ebookData.id)}
           />
+          
           {/* Payment methods */}
           <div className="flex gap-2 justify-center mb-4">
             {paymentMethodsIcons.map((item) => (

@@ -26,7 +26,7 @@ const CenteredBuyButton: FC<CenteredBuyButtonProps> = ({ ebookData }) => {
         }
         onClick={() => {
           addItem(ebookData);
-          router.push('/koszyk', { scroll: false });
+          router.push('/koszyk', { scroll: true });
         }}
         disabled={isItemIncludedInBag(ebookData.id)}
       />

@@ -34,7 +34,7 @@ const PrimaryButton: FC<PrimaryButtonProps> = ({
     return (
       <Link
         href={href}
-        scroll={false}
+        scroll={true}
         className={cn(additionalStyle, 'relative group')}
       >
         <div
