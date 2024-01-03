@@ -60,7 +60,7 @@ const Mobile: FC<MobileProps> = ({ ebookData }) => {
           <div className=" bg-white w-fit h-full  mx-auto px-2 pt-2 md:px-12 md:pt-12  rounded-t-full relative z-10">
             <AnimatedDialogWindow
               text="Ściągnij łopatki"
-              additionalClassName="absolute -right-20 md:-right-16 top-12 md:top-32 uppercase font-semibold tracking-widest text-white"
+              additionalClassName="absolute -right-12 md:-right-16 top-6 md:top-32 uppercase font-semibold tracking-widest text-white"
               arrowPlacement="bottomLeft"
               delay={0}
               repeatDelay={2}
@@ -74,7 +74,7 @@ const Mobile: FC<MobileProps> = ({ ebookData }) => {
             />
             <AnimatedDialogWindow
               text="Pochyl się lekko"
-              additionalClassName="absolute -right-20 md:-right-8 bottom-24 uppercase font-semibold tracking-widest text-white"
+              additionalClassName="absolute -right-10 md:-right-8 bottom-12 uppercase font-semibold tracking-widest text-white"
               arrowPlacement="topLeft"
               delay={4}
               repeatDelay={2}

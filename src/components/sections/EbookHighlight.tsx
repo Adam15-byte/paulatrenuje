@@ -23,7 +23,7 @@ const EbookHighlight = () => {
         </div>
         <PrimaryButton
           text="zobacz więcej"
-          href="/"
+          href="/ebooki/slim_legs"
           additionalStyle="w-full md:w-[200px] md:mx-auto"
         />
       </div>
