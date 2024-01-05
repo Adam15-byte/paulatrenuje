@@ -15,7 +15,7 @@ const PromoAvailable = () => {
           {shoppingBag.length < 2 ? (
             <p>
               Dodaj do koszyka jeden produkt. Kupując 2 produkty otrzymasz{' '}
-              <span className="font-semibold">10%</span> zniżki na wszystkie
+              <span className="font-semibold">15%</span> zniżki na wszystkie
               kupowane produkty.{' '}
             </p>
           ) : null}
@@ -23,7 +23,7 @@ const PromoAvailable = () => {
             <p>
               {' '}
               Dodaj do koszyka dwa produkty. Kupując 3 produkty otrzymasz{' '}
-              <span className="font-semibold">20%</span> zniżki na wszystkie
+              <span className="font-semibold">25%</span> zniżki na wszystkie
               kupowane produkty.{' '}
             </p>
           ) : null}

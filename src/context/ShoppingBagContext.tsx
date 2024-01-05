@@ -34,9 +34,9 @@ export const ShoppingBagProvider: React.FC<ChildrenProps> = ({ children }) => {
       case 1:
         return 0;
       case 2:
-        return 0.1;
+        return 0.15;
       case 3:
-        return 0.2;
+        return 0.25;
       default:
         return 0;
     }
