@@ -58,7 +58,7 @@ export const ebooksConfig = [
     shortDescription:
       'Wszystko na temat WYSMUKLANIA nóg - zbiór wiedzy na temat treningu nóg i pośladków.',
     longDescription:
-      'Informacje zawarte w ebooku pozwolą Ci zmodyfikować i poprawić własne treningi tak, aby sprzyjały celowi modelowania nóg. Wewnątrz znajdziesz jednak również konkretną propozycję planu treningowego, stworzonego w oparciu o opisane wcześniej koncepcje programowania treningowego.',
+      'Informacje zawarte w ebooku pozwolą Ci zmodyfikować i poprawić własne treningi tak, aby sprzyjały celowi kształtowaniu pośladków. Wewnątrz znajdziesz jednak również konkretną propozycję planu treningowego, stworzonego w oparciu o opisane wcześniej koncepcje programowania treningowego.',
     price: 199,
     discountPrice: null,
     pointsDescription: [
@@ -73,7 +73,7 @@ export const ebooksConfig = [
       'Treningi do wykonania w domu lub na siłowni',
     ],
     forWhom:
-      'Niemal codziennie dostaję pytania na moim instagramie, od dziewczyn , kobiet, moich obserwatorek jak sobie poradzić z masywnymi udami. W tym ebooku opisuję od A do Z jak to zrobić, gdyż sama borykałam się z tym "problemem". Niezależnie od tego jaki masz staż treningowy, wiedza zawarta w tym ebooku pomoże Ci lepiej zrozumieć zasady programowania treningowego.',
+      'Dla osób, które chcą skupić się na kształtowaniu pośladków, minimalizując przy tym rozbudowę ud. W tym ebooku opisuję od A do Z jak to zrobić. Niezależnie od tego jaki masz staż treningowy, wiedza zawarta w tym ebooku pomoże Ci wdrożyć poznane wskazówki w swój plan treningowy.',
     contents: [
       { label: 'MÓJ PRZYPADEK' },
       {

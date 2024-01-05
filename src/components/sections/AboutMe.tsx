@@ -30,13 +30,7 @@ const AboutMe = () => {
           <br />
           <br />W związku z tym staram się być otwarta na różne aktywności i
           mimo tego, że różnią się one od siebie znacznie - to każda wnosi coś
-          pozytywnego i pozwala rozwijać ciało na każdej płaszczyźnie. <br />
-          <br /> Sport i zdrowy tryb życia są moją ogromną pasją.{' '}
-          <span className="font-semibold">
-            Chciałabym pokazać, że da się być fit, bez mnóstwa godzin spędzonych
-            na siłowni i katorżniczych diet, w których wszystkiego trzeba sobie
-            odmawiać.
-          </span>
+          pozytywnego i pozwala rozwijać ciało na każdej płaszczyźnie.
         </p>
         <Image
           src="/AboutMe.png"
