@@ -62,9 +62,9 @@ export const ebooksConfig = [
     price: 199,
     discountPrice: null,
     pointsDescription: [
-      'Wszystko na temat WYSMUKLANIA nóg',
+      'Ebook treningowy nastawiony na poprawę wzmonienie pośladków, jak i poprawę ogólnej sprawności',
       'Zbiór wiedzy na temat treningu nóg i pośladków',
-      'Wskazówki jakie błędy są najczęściej popełniane na treningu, które wpływają na rozbudowę ud',
+      'Wskazówki treningowe, jak ćwiczyć mięśnie pośladkow, nie rozbudowując przy tym znacznie ud',
       'Praktyczne porady, które pomogą Ci świadomie planować treningi i poprawnie wykonywać ćwiczenia',
       'Podstawy żywienia dzięki którym zaplanujesz swoją dietę, aby odpowiadała twoim celom sylwetkowym',
       'Podstawowe i zaawansowane zasady treningowe',

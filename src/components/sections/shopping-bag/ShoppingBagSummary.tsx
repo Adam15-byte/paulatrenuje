@@ -3,8 +3,15 @@
 import PrimaryButton from '@/components/PrimaryButton';
 import SecondaryButton from '@/components/SecondaryButton';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
+import { PromoCodeValidator } from '@/lib/validators/promoCodeValidator';
 import { Input } from '@nextui-org/react';
+import axios from 'axios';
 import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+interface IFormInput {
+  name: string;
+}
 
 const ShoppingBagSummary = () => {
   const {
@@ -13,35 +20,73 @@ const ShoppingBagSummary = () => {
     discountBasedOnNumberOfProducts,
     discountedValue,
     valueAfterDiscount,
+    appliedPromoCode,
+    setAppliedPromoCode,
   } = useShoppingBag();
   const [isPromoFormOpen, setIsPromoFormOpen] = useState<boolean>(false);
   const [promoCode, setPromoCode] = useState<string>('');
+  const [errorText, setErrorText] = useState<string>('');
   const handleOpenPromoForm = () => {
     setIsPromoFormOpen(true);
   };
-  const handleAddPromoCode = () => {
-    setPromoCode('');
+  console.log('appliedPromoCode:', appliedPromoCode);
+
+  const { register, handleSubmit, formState } = useForm<IFormInput>({
+    defaultValues: {
+      name: '',
+    },
+  });
+  const { isSubmitting } = formState;
+
+  const onSubmit = async () => {
+    try {
+      const { data } = await axios.get('/api/promo-codes/find/' + promoCode);
+      const codeValidated = PromoCodeValidator.parse(data);
+      setAppliedPromoCode(codeValidated);
+    } catch (e) {
+      console.log(e);
+      setErrorText('Nie znaleziono kodu');
+    }
   };
 
   return (
     <div className="flex flex-col gap-4">
-      {!isPromoFormOpen ? (
+      {!appliedPromoCode && !!shoppingBag.length && !isPromoFormOpen && (
         <SecondaryButton
           text="Mam kod rabatowy"
           onClick={handleOpenPromoForm}
         />
-      ) : (
-        <div className="flex flex-col md:flex-row gap-4 mt-2 items-end">
-          {' '}
+      )}
+      {!appliedPromoCode && !!shoppingBag.length && isPromoFormOpen && (
+        <form
+          id="code-form"
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col md:flex-row gap-4 mt-2 items-end"
+        >
           <Input
+            {...register('name')}
             label="Kod promocyjny"
             labelPlacement={'outside'}
             variant="bordered"
             value={promoCode}
             onValueChange={setPromoCode}
+            isInvalid={!!errorText}
+            errorMessage={errorText}
           />
-          <SecondaryButton text="Dodaj kod" onClick={handleAddPromoCode} />
-        </div>
+          <SecondaryButton
+            text={isSubmitting ? 'Dodawanie' : 'Dodaj kod'}
+            type="submit"
+            form="code-form"
+            disabled={isSubmitting}
+            additionalStyle="w-full mb-auto"
+            onClick={() => {
+              handleSubmit(onSubmit);
+            }}
+          />
+        </form>
+      )}
+      {!!appliedPromoCode && (
+        <p className="text-green">Dodano kod {appliedPromoCode.name}</p>
       )}
       <p> Suma przed rabatami: {bagWorthValue} zł</p>
       {discountBasedOnNumberOfProducts ? (

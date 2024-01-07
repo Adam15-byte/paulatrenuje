@@ -95,13 +95,13 @@ const TransactionsTable = () => {
           return cellValue ? (
             <Chip color="success">Tak</Chip>
           ) : (
-            <Chip color="danger">Nie</Chip>
+            <Chip color="secondary">Nie</Chip>
           );
         case 'isEmailSent':
           return cellValue ? (
             <Chip color="success">Tak</Chip>
           ) : (
-            <Chip color="danger">Nie</Chip>
+            <Chip color="secondary">Nie</Chip>
           );
         case 'actions':
           return <SendEmailButton onEmailClick={onEmailClick} />;

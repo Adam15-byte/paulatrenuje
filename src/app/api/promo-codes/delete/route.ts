@@ -6,7 +6,6 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { name } = PromoDeleteValidator.parse(body);
-    console.log('name:', name);
     await db.promoCode.delete({
       where: {
         name: name,

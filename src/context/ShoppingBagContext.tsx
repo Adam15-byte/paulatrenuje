@@ -1,7 +1,8 @@
 'use client';
 
 import { EbookForShoppingBag } from '@/configs/ebooksConfig';
-import { ReactNode, createContext, useContext, useState } from 'react';
+import { IPromoCodeValidator } from '@/lib/validators/promoCodeValidator';
+import { ReactNode, createContext, useContext, useMemo, useState } from 'react';
 
 interface IShoppingBagContext {
   shoppingBag: EbookForShoppingBag[];
@@ -12,6 +13,8 @@ interface IShoppingBagContext {
   discountedValue: number;
   discountBasedOnNumberOfProducts: number;
   valueAfterDiscount: number;
+  appliedPromoCode: IPromoCodeValidator | null;
+  setAppliedPromoCode: (_: IPromoCodeValidator | null) => void;
 }
 
 // Create the context
@@ -28,19 +31,22 @@ export const ShoppingBagProvider: React.FC<ChildrenProps> = ({ children }) => {
   const addItem = (item: EbookForShoppingBag) => {
     setShoppingBag((prevState) => [...prevState, item]);
   };
+  const [appliedPromoCode, setAppliedPromoCode] =
+    useState<IPromoCodeValidator | null>(null);
 
   const calculateDiscountBasedOnNumberOfProducts = (): number => {
     switch (shoppingBag.length) {
       case 1:
         return 0;
       case 2:
-        return 0.15;
+        return 0;
       case 3:
-        return 0.25;
+        return 0;
       default:
         return 0;
     }
   };
+
   const discountBasedOnNumberOfProducts =
     calculateDiscountBasedOnNumberOfProducts();
 
@@ -63,10 +69,24 @@ export const ShoppingBagProvider: React.FC<ChildrenProps> = ({ children }) => {
       }
     })
     .reduce((acc, currentValue) => acc + currentValue, 0);
-  const discountedValue = discountBasedOnNumberOfProducts * bagWorthValue;
+
+  const valueDiscountedWithPromoCode = useMemo(() => {
+    if (!appliedPromoCode) return bagWorthValue;
+    switch (appliedPromoCode.promoType) {
+      case '%':
+        return bagWorthValue - bagWorthValue * (appliedPromoCode.value / 100);
+      case 'PLN':
+        return bagWorthValue - appliedPromoCode.value;
+      default:
+        return bagWorthValue;
+    }
+  }, [appliedPromoCode, bagWorthValue]);
 
   const valueAfterDiscount =
-    bagWorthValue - bagWorthValue * discountBasedOnNumberOfProducts;
+    valueDiscountedWithPromoCode -
+    valueDiscountedWithPromoCode * discountBasedOnNumberOfProducts;
+
+  const discountedValue = bagWorthValue - valueAfterDiscount;
   return (
     <ShoppingBagContext.Provider
       value={{
@@ -77,6 +97,8 @@ export const ShoppingBagProvider: React.FC<ChildrenProps> = ({ children }) => {
         bagWorthValue,
         discountedValue,
         discountBasedOnNumberOfProducts,
+        appliedPromoCode,
+        setAppliedPromoCode,
         valueAfterDiscount,
       }}
     >

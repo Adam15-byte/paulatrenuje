@@ -14,7 +14,7 @@ const page = () => {
           </h2>
         </div>
       </div>
-      <PromoAvailable />
+      {/* <PromoAvailable /> */}
       <div>
         <div className="flex flex-col md:flex-row gap-4 w-full h-full">
           <div className="w-full group border border-gray rounded-md flex flex-col p-4 gap-4 relative overflow-hidden h-full shadow-lg">

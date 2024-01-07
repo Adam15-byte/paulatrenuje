@@ -45,7 +45,7 @@ const config: Config = {
               foreground: '#13a150',
             },
             danger: {
-              DEFAULT: '#fdd2e0',
+              DEFAULT: '#f71616',
               foreground: '#f5296e',
             },
             focus: '#f88231',
