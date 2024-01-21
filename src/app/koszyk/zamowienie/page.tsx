@@ -29,6 +29,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 registerLocale(require('i18n-iso-countries/langs/pl.json'));
 
 const unavailableImages = [
@@ -283,6 +285,18 @@ const Page: FC = () => {
             </div>
           </div>
           <div className="inline-grid grid-cols-3 md:grid-cols-8 gap-4 mt-4">
+            {(isLoading || !paymentMethods.length) &&
+              new Array(8)
+                .fill(0)
+                .map((item, index) => (
+                  <Skeleton
+                    key={index}
+                    width={'90%'}
+                    height={80}
+                    baseColor="#c7c7c7"
+                    highlightColor="#d1d1d1"
+                  />
+                ))}
             {paymentMethods.map((item) => (
               <div
                 key={item.id}
