@@ -12,9 +12,6 @@
 /.next/
 /out/
 
-# Files
-/public
-
 # production
 /build
 
