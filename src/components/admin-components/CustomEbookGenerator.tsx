@@ -17,7 +17,7 @@ const CustomEbookGenerator = () => {
   });
   const onSubmit: SubmitHandler<IPdfWatermarkValidator> = async (formData) => {
     window.open(
-      `http://localhost:3000/api/email-send/pdf-waterproof/${formData.userEmail}/${formData.productId}`,
+      `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/email-send/pdf-waterproof/${formData.userEmail}/${formData.productId}`,
       '_blank'
     );
   };
