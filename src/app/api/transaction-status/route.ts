@@ -10,7 +10,6 @@ import { NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest, res: Response) {
   try {
-    console.log('confirmation gate 1');
     const p24 = new P24(
       Number(process.env.NEXT_PUBLIC_PRZELEWY24_MERCHANT_ID),
       Number(process.env.NEXT_PUBLIC_PRZELEWY24_POS_ID),
@@ -29,10 +28,7 @@ export async function POST(req: NextRequest, res: Response) {
       amount: verify.amount,
     };
     const verifyResponse = await p24.verifyTransaction(verifyRequest);
-    console.log('verifyResponse:', verifyResponse);
-    console.log('notificationResponse:', notificationResponse);
     // IF TRANSACTION IS CONFIRMED
-    console.log('confirmation gate 2');
     if (verifyResponse && notificationResponse) {
       // get transaction data
       const transactionData = await db.transaction.findUnique({
@@ -45,7 +41,6 @@ export async function POST(req: NextRequest, res: Response) {
           userEmail: transactionData?.userEmail,
           productIds: transactionData?.productIds,
         };
-        console.log('confirmation gate 3');
         await axios.post(
           `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/email-send/user-confirmation`,
           dataFormatted
@@ -69,7 +64,6 @@ export async function POST(req: NextRequest, res: Response) {
       status: 200,
     });
   } catch (e) {
-    console.log('transaction wasnt confirmed');
     return new Response('Could not verify transaction', { status: 500 });
   }
 }

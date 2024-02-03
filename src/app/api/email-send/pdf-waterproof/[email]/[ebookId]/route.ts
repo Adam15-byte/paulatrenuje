@@ -6,7 +6,6 @@ export async function GET(req: NextRequest, res: NextResponse) {
   const ebookId = req.nextUrl.href.split('/').slice(-1)[0];
   const email = req.nextUrl.href.split('/').slice(-2)[0];
   const filePath = ebooksConfig.find((ebook) => ebook.id === ebookId)?.file;
-  console.log('gate2');
   try {
     if (filePath && typeof email === 'string') {
       const fullFilePath = 'https://paulatrenuje.pl' + filePath;

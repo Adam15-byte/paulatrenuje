@@ -29,8 +29,6 @@ const ShoppingBagSummary = () => {
   const handleOpenPromoForm = () => {
     setIsPromoFormOpen(true);
   };
-  console.log('appliedPromoCode:', appliedPromoCode);
-
   const { register, handleSubmit, formState } = useForm<IFormInput>({
     defaultValues: {
       name: '',
@@ -44,7 +42,6 @@ const ShoppingBagSummary = () => {
       const codeValidated = PromoCodeValidator.parse(data);
       setAppliedPromoCode(codeValidated);
     } catch (e) {
-      console.log(e);
       setErrorText('Nie znaleziono kodu');
     }
   };
