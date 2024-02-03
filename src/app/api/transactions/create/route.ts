@@ -6,7 +6,11 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const validatedData = TransactionValidator.parse(body);
-    console.log('validatedData', validatedData);
+    console.log('DATABASE_URL:', process.env.DATABASE_URL);
+    console.log(
+      'NEXT_PUBLIC_DATABASE_URL:',
+      process.env.NEXT_PUBLIC_DATABASE_URL
+    );
     await db.transaction.create({
       data: {
         ...validatedData,
