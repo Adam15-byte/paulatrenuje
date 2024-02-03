@@ -129,6 +129,7 @@ const Page: FC = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = async (formData) => {
     const sessionId = await generateTransactionId();
+    console.log('sessionId', sessionId);
     //register transaction in p24
     const order: Order = {
       sessionId: sessionId,
@@ -146,10 +147,12 @@ const Page: FC = () => {
       regulationAccept: p24Rules,
       waitForResult: true,
     };
+    console.log('order', order);
     const result = await axios.post(
       '/api/transactions/register-transaction-p24',
       order
     );
+    console.log('result', result);
     // create transaction in database
     const transactionBody: ITransactionValidator = {
       id: sessionId,
@@ -163,6 +166,7 @@ const Page: FC = () => {
       createdAt: new Date().toISOString(),
     };
     await axios.post('/api/transactions/create', transactionBody);
+    console.log('after create transaction');
     router.push(result.data.link);
   };
 
