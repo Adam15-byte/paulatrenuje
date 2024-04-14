@@ -29,3 +29,8 @@ model Transaction {
   isEmailSent Boolean
   createdAt String
 }
+
+model Settings {
+  id String @id
+  isEmailSentToOwner Boolean
+}

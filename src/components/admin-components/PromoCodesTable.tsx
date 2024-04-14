@@ -1,7 +1,9 @@
 'use client';
 
+import { queryClient } from '@/context/Providers';
 import { PromoArrayValidator } from '@/lib/validators/promoCodeValidator';
 import {
+  Button,
   Spinner,
   Table,
   TableBody,
@@ -9,17 +11,13 @@ import {
   TableColumn,
   TableHeader,
   TableRow,
-  Button,
 } from '@nextui-org/react';
-import { PrismaClient } from '@prisma/client';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Trash2 } from 'lucide-react';
 import { useCallback } from 'react';
 import AddPromoCode from './AddPromoCode';
-import { queryClient } from '@/context/Providers';
 import { promoCodesColumns } from './columns';
-const prisma = new PrismaClient();
 
 const PromoCodesTable = () => {
   const fetchPromoCodes = async () => {

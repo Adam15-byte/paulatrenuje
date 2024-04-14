@@ -19,6 +19,7 @@ export const promoCodesColumns = [
 ];
 
 export const transactionsColumns = [
+  { key: 'createdAt', label: 'DATA' },
   {
     key: 'firstName',
     label: 'IMIĘ',

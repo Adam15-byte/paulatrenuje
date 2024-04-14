@@ -20,6 +20,7 @@ import { IEmailValidator } from '@/lib/validators/emailValidator';
 import { toast } from 'react-hot-toast';
 import { queryClient } from '@/context/Providers';
 import SendEmailButton from './SendEmailButton';
+import dayjs from 'dayjs';
 
 const TransactionsTable = () => {
   const [filterValue, setFilterValue] = useState<string>('');
@@ -42,7 +43,19 @@ const TransactionsTable = () => {
   // refetch every 1 minute
   const { data, isLoading } = useQuery({
     queryKey: ['transactions'],
-    queryFn: () => fetchTransactions(),
+    queryFn: async () => {
+      const data = await fetchTransactions();
+      // filter test transactions and then sort by createdAT
+      return data
+        .filter(
+          (item) => item.userEmail.toLowerCase() !== 'adamjankowski5@gmail.com'
+        )
+        .sort((a, b) => {
+          return (
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+        });
+    },
     refetchInterval: 60000,
   });
 
@@ -87,6 +100,8 @@ const TransactionsTable = () => {
         }
       };
       switch (columnKey) {
+        case 'createdAt':
+          return dayjs(cellValue).format('DD.MM');
         case 'productIds':
           return cellValue.join(', ');
         case 'moneyCharged':

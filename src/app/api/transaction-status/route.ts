@@ -41,10 +41,21 @@ export async function POST(req: NextRequest, res: Response) {
           userEmail: transactionData?.userEmail,
           productIds: transactionData?.productIds,
         };
+        // to user
         await axios.post(
           `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/email-send/user-confirmation`,
           dataFormatted
         );
+        // to owner
+        const ownerEmailSettings = await axios.get(
+          '/api/settings/get-email-confirmation'
+        );
+        if (ownerEmailSettings.data) {
+          await axios.post(
+            `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/email-send/owner-confirmation`,
+            dataFormatted
+          );
+        }
         // change transaction status
         await axios.post(
           `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/transactions/change/email-sent`,

@@ -1,14 +1,15 @@
 'use client';
 
-import { FC, useState } from 'react';
-import TransactionsTable from './TransactionsTable';
-import PromoCodesTable from './PromoCodesTable';
-import { Card, CardBody, Input, Tab, Tabs } from '@nextui-org/react';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { IAdminLoginValidator } from '@/lib/validators/adminLoginValidator';
-import PrimaryButton from '../PrimaryButton';
+import { Card, CardBody, Input, Tab, Tabs } from '@nextui-org/react';
+import { FC, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import PrimaryButton from '../PrimaryButton';
 import CustomEbookGenerator from './CustomEbookGenerator';
+import PromoCodesTable from './PromoCodesTable';
+import Settings from './Settings';
+import TransactionsTable from './TransactionsTable';
 
 const AdminPage: FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -27,6 +28,11 @@ const AdminPage: FC = () => {
       id: 'generateEbook',
       label: 'Wygeneruj ebook z watermarkiem',
       content: <CustomEbookGenerator />,
+    },
+    {
+      id: 'settings',
+      label: 'Ustawienia',
+      content: <Settings />,
     },
   ];
 
@@ -49,7 +55,7 @@ const AdminPage: FC = () => {
 
   return (
     <div className="flex w-full flex-col p-4">
-      {!isAuthenticated ? (
+      {isAuthenticated ? (
         <Card className="w-[500px] mx-auto">
           <CardBody>
             <form
