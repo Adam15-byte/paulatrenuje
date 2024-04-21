@@ -132,7 +132,7 @@ const Page: FC = () => {
     //register transaction in p24
     const order: Order = {
       sessionId: sessionId,
-      amount: 1 * 100,
+      amount: valueAfterDiscount * 100,
       currency: Currency.PLN,
       description: `Zamówienie ${formData.emailAddress}`,
       email: formData.emailAddress,

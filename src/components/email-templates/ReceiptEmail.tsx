@@ -37,7 +37,7 @@ export const ReceiptEmail: React.FC<Props> = ({
           <Row>
             <Column>
               <Text style={{ ...global.paragraphWithBold }}>
-                Dziękuję za zamówienie {capitalizeFirstLetter(firstName)}!
+                Dziękuję za zamówienie, {capitalizeFirstLetter(firstName)}!
               </Text>
             </Column>
           </Row>
