@@ -5,7 +5,6 @@ export async function GET() {
     const result = await db.settings.findFirst({
       where: { id: 'admin_settings' },
     });
-    console.log('result:', result);
     const jsonResult = JSON.stringify(result?.isEmailSentToOwner);
     return new Response(jsonResult, {
       headers: { 'Content-Type': 'application/json' },

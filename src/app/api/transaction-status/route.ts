@@ -47,17 +47,10 @@ export async function POST(req: NextRequest, res: Response) {
           dataFormatted
         );
         // to owner
-        const ownerEmailSettings = await axios.get(
-          '/api/settings/get-email-confirmation'
+        await axios.post(
+          `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/email-send/owner-confirmation`,
+          dataFormatted
         );
-        console.log('ownerEmailSettings:', ownerEmailSettings);
-        console.log('ownerEmailSettings.data:', ownerEmailSettings.data);
-        if (ownerEmailSettings.data) {
-          await axios.post(
-            `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/email-send/owner-confirmation`,
-            dataFormatted
-          );
-        }
         // change transaction status
         await axios.post(
           `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/transactions/change/email-sent`,

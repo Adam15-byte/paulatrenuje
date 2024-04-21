@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import ShoppingCartIcon from './ShoppingCartIcon';
+import { Button } from '@nextui-org/react';
+import axios from 'axios';
 
 const NavBar = () => {
   return (

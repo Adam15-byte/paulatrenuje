@@ -52,7 +52,7 @@ export const OwnerConfirmation: React.FC<Props> = ({
             className="object-contain"
             style={{ margin: 'auto' }}
           />
-          <Heading style={global.heading}>Czas działać</Heading>
+          <Heading style={global.heading}>Ebook kupiony!</Heading>
           <Text style={global.text}>Twoje zamówienie jest zrealizowane</Text>
           <Text style={{ ...global.text, marginTop: 24 }}>
             Ten email jest potwierdzeniem zakupu przez{' '}
