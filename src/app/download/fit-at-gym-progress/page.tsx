@@ -8,7 +8,8 @@ var FileSaver = require('file-saver');
 
 const ProgressDownload: FC = () => {
   const downloadAction = async () => {
-    const url = 'https://paulatrenuje.s3.amazonaws.com/Progress.xlsx';
+    const url =
+      'https://paulatrenuje.s3.amazonaws.com/Plan+treningowy.+Sledzenie+progresu.xlsx';
     const response = await axios.get(url, { responseType: 'blob' });
     FileSaver.saveAs(response.data, 'Progress.xlsx');
   };
@@ -25,7 +26,9 @@ const ProgressDownload: FC = () => {
       <PrimaryButton
         text={'POBIERZ'}
         leftIcon={<Download />}
-        onClick={downloadAction}
+        href={
+          'https://paulatrenuje.s3.amazonaws.com/Plan+treningowy.+Sledzenie+progresu.xlsx'
+        }
       />
     </div>
   );
