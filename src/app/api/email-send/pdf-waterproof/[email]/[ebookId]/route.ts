@@ -1,4 +1,4 @@
-import { ebooksConfig, ebooksConfig } from '@/configs/ebooksConfig';
+import { ebooksConfig } from '@/configs/ebooksConfig';
 import { NextRequest, NextResponse } from 'next/server';
 import { PDFDocument, rgb } from 'pdf-lib';
 

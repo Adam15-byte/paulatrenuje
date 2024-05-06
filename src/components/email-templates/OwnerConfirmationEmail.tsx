@@ -1,4 +1,4 @@
-import { ebooksConfig, ebooksConfig } from '@/configs/ebooksConfig';
+import { ebooksConfig } from '@/configs/ebooksConfig';
 import {
   Body,
   Container,
