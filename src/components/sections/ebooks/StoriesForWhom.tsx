@@ -69,22 +69,20 @@ const StoriesForWhom: FC<StoriesForWhomProps> = ({ ebookData }) => {
           </div>
         </div>
         <div className="w-full flex gap-8 mt-2 justify-center">
-          {id !== 'fit-at-gym' && (
-            <div className="flex flex-col gap-2">
-              <div className="story-icon" onClick={onPersonalizedOpen}>
-                <Image
-                  width={150}
-                  height={150}
-                  src={ebookData.pagesLookup[0]}
-                  alt={`${title} insta stories`}
-                  className="rounded-full object-cover h-full w-full"
-                />
-              </div>
-              <p className="uppercase text-lg tracking-wider">
-                {dedicatedStoryTitle}
-              </p>
+          <div className="flex flex-col gap-2">
+            <div className="story-icon" onClick={onPersonalizedOpen}>
+              <Image
+                width={150}
+                height={150}
+                src={ebookData.pagesLookup[0]}
+                alt={`${title} insta stories`}
+                className="rounded-full object-cover h-full w-full"
+              />
             </div>
-          )}
+            <p className="uppercase text-lg tracking-wider">
+              {dedicatedStoryTitle}
+            </p>
+          </div>
           <div className="flex flex-col gap-2">
             <div className="story-icon" onClick={onOpinionsOpen}>
               <Image

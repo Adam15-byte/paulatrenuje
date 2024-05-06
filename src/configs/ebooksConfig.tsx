@@ -123,54 +123,45 @@ export const ebooksConfig = [
     dedicatedStoryTitle: 'FIT AT GYM💪🏼',
     stories: [
       {
-        type: 'video',
-        url: '/stories_content/slim_legs_story_1.mp4',
-      },
-      {
-        type: 'video',
-        url: '/stories_content/slim_legs_story_2.mp4',
-      },
-      {
         type: 'image',
-        url: '/stories_content/slim_legs_story_3.jpg',
-        duration: 3000,
-      },
-      {
-        type: 'image',
-        url: '/stories_content/slim_legs_story_4.jpg',
-        duration: 3000,
-      },
-      {
-        type: 'image',
-        url: '/stories_content/slim_legs_story_5.jpg',
-        duration: 3000,
-      },
-      {
-        type: 'image',
-        url: '/stories_content/slim_legs_story_6.jpg',
-        duration: 3000,
-      },
-      {
-        type: 'image',
-        url: '/stories_content/slim_legs_story_7.jpg',
-        duration: 3000,
-      },
-      {
-        type: 'image',
-        url: '/stories_content/slim_legs_story_8.jpg',
+        url: '/stories_content/fit_at_gym1.jpg',
         duration: 3000,
       },
       {
         type: 'video',
-        url: '/stories_content/slim_legs_story_9.mp4',
+        url: '/stories_content/fit_at_gym2.mp4',
       },
       {
         type: 'video',
-        url: '/stories_content/slim_legs_story_10.mp4',
+        url: '/stories_content/fit_at_gym3.mp4',
       },
       {
         type: 'video',
-        url: '/stories_content/slim_legs_story_11.mp4',
+        url: '/stories_content/fit_at_gym4.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_gym5.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_gym6.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_gym7.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_gym8.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_gym9.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/fit_at_gym10.mp4',
       },
     ],
   },
