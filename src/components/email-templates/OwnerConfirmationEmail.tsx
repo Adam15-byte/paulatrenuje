@@ -1,4 +1,4 @@
-import { ebooksConfig, ebooksConfigAll } from '@/configs/ebooksConfig';
+import { ebooksConfig, ebooksConfig } from '@/configs/ebooksConfig';
 import {
   Body,
   Container,
@@ -65,9 +65,7 @@ export const OwnerConfirmation: React.FC<Props> = ({
           style={{ ...paddingX, paddingTop: '40px', paddingBottom: '40px' }}
         >
           {productIds.map((id, index) => {
-            const productData = ebooksConfigAll.find(
-              (ebook) => ebook.id === id
-            );
+            const productData = ebooksConfig.find((ebook) => ebook.id === id);
             if (productData) {
               const downloadlink = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/email-send/pdf-waterproof/${userEmail}/${id}`;
               return (

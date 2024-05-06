@@ -1,11 +1,11 @@
-import { ebooksConfig, ebooksConfigAll } from '@/configs/ebooksConfig';
+import { ebooksConfig, ebooksConfig } from '@/configs/ebooksConfig';
 import { NextRequest, NextResponse } from 'next/server';
 import { PDFDocument, rgb } from 'pdf-lib';
 
 export async function GET(req: NextRequest, res: NextResponse) {
   const ebookId = req.nextUrl.href.split('/').slice(-1)[0];
   const email = req.nextUrl.href.split('/').slice(-2)[0];
-  const filePath = ebooksConfigAll.find((ebook) => ebook.id === ebookId)?.file;
+  const filePath = ebooksConfig.find((ebook) => ebook.id === ebookId)?.file;
   try {
     if (filePath && typeof email === 'string') {
       const fullFilePath = 'https://paulatrenuje.pl' + filePath;

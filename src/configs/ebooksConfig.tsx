@@ -42,9 +42,9 @@ export const commonFeatures = [
   },
 ];
 
-export const ebooksConfigAll = [
+export const ebooksConfig = [
   {
-    enabled: false,
+    enabled: true,
     id: 'fit-at-gym',
     picture: '/fit_at_gym.png',
     file: '/ebooks/FIT_AT_GYM.pdf',
@@ -55,12 +55,12 @@ export const ebooksConfigAll = [
       weeks: '8 tygodni',
       workouts: '32 treningi',
     },
-    tags: ['get stronger', 'build endurance', 'gym', 'abs'],
+    tags: ['get stronger', 'shape up', 'gym', 'abs'],
     shortDescription:
       'Trening siłowy, który pozwoli Ci stać się silniejszą i poprawić swoją kondycję.',
     longDescription:
       'Plan treningowy skupiający się na wzmocnieniu mięśni, kształtowaniu sylwetki i poprawie ogólnej sprawności, by być zwinną i wytrzymałą. Skutkiem ubocznym całego planu jest smukła i wysportowana sylwetka.',
-    price: 1,
+    price: 159,
     discountPrice: null,
     pointsDescription: [
       'Wideo instruktażowe do wszystkich ćwiczeń',
@@ -811,5 +811,3 @@ export const opinionsStories: Story[] = [
     duration: 3000,
   },
 ];
-
-export const ebooksConfig = ebooksConfigAll.filter((ebook) => ebook.enabled);

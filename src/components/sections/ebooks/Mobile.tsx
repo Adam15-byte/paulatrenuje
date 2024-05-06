@@ -1,12 +1,27 @@
 import AnimatedDialogWindow from '@/components/AnimatedDialogWindow';
 import { EbookConfigType } from '@/configs/ebooksConfig';
-import { Dumbbell, Repeat, Timer } from 'lucide-react';
+import { CircleDot, Dumbbell, Repeat, Timer } from 'lucide-react';
 import Image from 'next/image';
 import { FC } from 'react';
 
 interface MobileProps {
   ebookData: EbookConfigType;
 }
+
+const equipment = [
+  'Sztanga',
+  'Wyciąg',
+  'Hantle',
+  'Kettle',
+  'Piłka',
+  'Box',
+  'Skakanka',
+  'Podstawowe maszyny',
+  'Bieżnia',
+  'Airbike',
+  'Ergometr',
+  'TRX',
+];
 
 const Mobile: FC<MobileProps> = ({ ebookData }) => {
   const { trainingsInfo, longDescription } = ebookData;
@@ -35,6 +50,27 @@ const Mobile: FC<MobileProps> = ({ ebookData }) => {
           trakcie ćwiczeń.
         </p>
       </div>
+      {ebookData.id === 'fit-at-gym' && (
+        <div className="w-full flex flex-col items-center mb-12">
+          <h2 className="text-2xl md:text-4xl font-semibold tracking-wide">
+            <span className="text-orange">POTRZEBNY</span> SPRZĘT
+          </h2>
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
+            {equipment.map((item, index) => (
+              <div
+                key={`${item}-${index}`}
+                className="group border-1 border-gray hover:border-orange flex gap-4 items-center px-8 py-2 md:py-4 rounded-lg shadow-lg md:shadow-xl bg-white font-semibold tracking-wide text-gray-800 transition-all"
+              >
+                <CircleDot
+                  className="text-gray group-hover:text-orange group-hover:scale-110 transition-all"
+                  size="32px"
+                />
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
       {ebookData.id !== 'fit-at-gym' && (
         <div className="w-full">
           <div className="mx-auto w-full md:w-fit h-full ">

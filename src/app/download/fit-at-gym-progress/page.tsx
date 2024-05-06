@@ -1,18 +1,10 @@
 'use client';
 
 import PrimaryButton from '@/components/PrimaryButton';
-import axios from 'axios';
 import { Download, Sheet } from 'lucide-react';
 import { FC } from 'react';
-var FileSaver = require('file-saver');
 
 const ProgressDownload: FC = () => {
-  const downloadAction = async () => {
-    const url =
-      'https://paulatrenuje.s3.amazonaws.com/Plan+treningowy.+Sledzenie+progresu.xlsx';
-    const response = await axios.get(url, { responseType: 'blob' });
-    FileSaver.saveAs(response.data, 'Progress.xlsx');
-  };
   return (
     <div className="w-full max-w-lg flex flex-col items-center mx-auto gap-2">
       <h1 className="text-lg font-semibold">Fit At Gym Progress Sheet.xlsx</h1>

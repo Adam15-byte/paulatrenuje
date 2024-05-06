@@ -46,11 +46,11 @@ export async function POST(req: NextRequest, res: Response) {
           `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/email-send/user-confirmation`,
           dataFormatted
         );
-        // to owner
-        await axios.post(
-          `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/email-send/owner-confirmation`,
-          dataFormatted
-        );
+        // // to owner
+        // await axios.post(
+        //   `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/email-send/owner-confirmation`,
+        //   dataFormatted
+        // );
         // change transaction status
         await axios.post(
           `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/transactions/change/email-sent`,
