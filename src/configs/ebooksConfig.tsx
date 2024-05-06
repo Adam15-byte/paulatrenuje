@@ -68,7 +68,7 @@ export const ebooksConfig = [
       'Treningi do wykonania na siłowni',
       'Praktyczne porady jak skutecznie trenować siłowo',
       'Czas treningów wzmacniających od 60 do 70 minut',
-      'Czas treningów croos od 45 do 60 minut',
+      'Czas treningów cross od 45 do 60 minut',
     ],
     forWhom:
       'Dla osób zaawansowanych i średniozaawansowanych które miały już styczność z treningiem siłowym. Dla osób które chcą nie tylko wzmocnić mięśni i poprawić proporcje sylwetki, ale również pracować nad sprawnym ciałem. Plan treningowy jest w pełni do realizacji na siłowni.',
