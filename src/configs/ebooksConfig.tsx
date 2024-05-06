@@ -81,9 +81,6 @@ export const ebooksConfig = [
         label: 'TRENINGI BLISKO UPADKU MIĘŚNIOWEGO',
       },
       {
-        label: 'ŚLEDZENIE PROGRESU',
-      },
-      {
         label: 'TEMPO',
       },
       {
