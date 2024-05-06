@@ -36,13 +36,15 @@ const Ebooks: FC<Props> = ({ seeAllButton }) => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 h-full md:h-fit gap-10 px-5">
-        {ebooksConfig.map((ebook) => (
-          <BigEbookTile
-            key={ebook.title}
-            ebook={ebook}
-            ebooksList={ebooksConfig}
-          />
-        ))}
+        {ebooksConfig
+          .filter((x) => x.enabled)
+          .map((ebook) => (
+            <BigEbookTile
+              key={ebook.title}
+              ebook={ebook}
+              ebooksList={ebooksConfig}
+            />
+          ))}
       </div>
     </section>
   );

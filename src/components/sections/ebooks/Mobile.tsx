@@ -35,60 +35,63 @@ const Mobile: FC<MobileProps> = ({ ebookData }) => {
           trakcie ćwiczeń.
         </p>
       </div>
-      <div className="w-full">
-        <div className="mx-auto w-full md:w-fit h-full ">
-          <div
-            className="h-[450px] w-full flex flex-col gap-8 items-center justify-center z-50 -mb-[100px] md:-mb-[140px] relative"
-            style={{
-              backgroundImage: 'url(/blob.svg)',
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-              backgroundSize: '130%',
-              zIndex: 30,
-            }}
-          >
-            <div className="flex gap-4 text-white items-center text-xl font-semibold tracking-widest">
-              <Timer size={28} strokeWidth={2.5} /> <p>45 sekund przerwy</p>
+      {ebookData.id !== 'fit-at-gym' && (
+        <div className="w-full">
+          <div className="mx-auto w-full md:w-fit h-full ">
+            <div
+              className="h-[450px] w-full flex flex-col gap-8 items-center justify-center z-50 -mb-[100px] md:-mb-[140px] relative"
+              style={{
+                backgroundImage: 'url(/blob.svg)',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                backgroundSize: '130%',
+                zIndex: 30,
+              }}
+            >
+              <div className="flex gap-4 text-white items-center text-xl font-semibold tracking-widest">
+                <Timer size={28} strokeWidth={2.5} /> <p>45 sekund przerwy</p>
+              </div>
+              <div className="flex gap-4 text-white items-center text-xl font-semibold tracking-widest">
+                <Dumbbell size={28} strokeWidth={2.5} /> <p>12 powtórzeń</p>
+              </div>
+              <div className="flex gap-4 text-white items-center text-xl font-semibold tracking-widest">
+                <Repeat size={28} strokeWidth={2.5} /> <p>3 serie</p>
+              </div>
             </div>
-            <div className="flex gap-4 text-white items-center text-xl font-semibold tracking-widest">
-              <Dumbbell size={28} strokeWidth={2.5} /> <p>12 powtórzeń</p>
+
+            <div className=" bg-white w-fit h-full  mx-auto px-2 pt-2 md:px-12 md:pt-12  rounded-t-full relative z-10">
+              <AnimatedDialogWindow
+                text="Ściągnij łopatki"
+                additionalClassName="absolute -right-12 md:-right-16 top-6 md:top-32 uppercase font-semibold tracking-widest text-white"
+                arrowPlacement="bottomLeft"
+                delay={0}
+                repeatDelay={2}
+              />
+              <AnimatedDialogWindow
+                text="Napnij brzuch"
+                additionalClassName="absolute -left-4 md:left-0 top-48 md:top-60 uppercase font-semibold tracking-widest text-white"
+                arrowPlacement="topRight"
+                delay={2}
+                repeatDelay={2}
+              />
+              <AnimatedDialogWindow
+                text="Pochyl się lekko"
+                additionalClassName="absolute -right-10 md:-right-8 bottom-12 uppercase font-semibold tracking-widest text-white"
+                arrowPlacement="topLeft"
+                delay={4}
+                repeatDelay={2}
+              />
+              <Image
+                src={'/phone_exercise.png'}
+                height={300}
+                width={300}
+                alt="exercise on the phone"
+                className="mx-auto z-10"
+              />
             </div>
-            <div className="flex gap-4 text-white items-center text-xl font-semibold tracking-widest">
-              <Repeat size={28} strokeWidth={2.5} /> <p>3 serie</p>
-            </div>
-          </div>
-          <div className=" bg-white w-fit h-full  mx-auto px-2 pt-2 md:px-12 md:pt-12  rounded-t-full relative z-10">
-            <AnimatedDialogWindow
-              text="Ściągnij łopatki"
-              additionalClassName="absolute -right-12 md:-right-16 top-6 md:top-32 uppercase font-semibold tracking-widest text-white"
-              arrowPlacement="bottomLeft"
-              delay={0}
-              repeatDelay={2}
-            />
-            <AnimatedDialogWindow
-              text="Napnij brzuch"
-              additionalClassName="absolute -left-4 md:left-0 top-48 md:top-60 uppercase font-semibold tracking-widest text-white"
-              arrowPlacement="topRight"
-              delay={2}
-              repeatDelay={2}
-            />
-            <AnimatedDialogWindow
-              text="Pochyl się lekko"
-              additionalClassName="absolute -right-10 md:-right-8 bottom-12 uppercase font-semibold tracking-widest text-white"
-              arrowPlacement="topLeft"
-              delay={4}
-              repeatDelay={2}
-            />
-            <Image
-              src={'/phone_exercise.png'}
-              height={300}
-              width={300}
-              alt="exercise on the phone"
-              className="mx-auto z-10"
-            />
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };

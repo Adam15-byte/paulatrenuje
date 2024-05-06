@@ -83,73 +83,86 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
     return (
       <section className="flex flex-col px-5 md:flex-row">
         <div className="flex flex-col w-full h-full items-center justify-center">
-          <div
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            className="w-full h-full relative min-h-[600px] md:min-h-[800px] transition-all"
-          >
-            <AnimatePresence>
-              {array
-                .filter((_, index) => {
-                  return isInitialLoad ? index < 1 : index < 3;
-                })
-                .map((item, index) => {
-                  const initialPagePosition = isScreenSmall
-                    ? index * 40 + 10
-                    : index * 60 + 60;
-                  const isFirstCentered =
-                    (index === 0 && isHoveringImages) ||
-                    (index === 0 && isInitialLoad);
-                  const leftOffset = isScreenSmall ? '30px' : '200px';
-                  return (
-                    <motion.div
-                      key={item}
-                      initial={{
-                        opacity: 0,
-                      }}
-                      animate={{
-                        y: 0,
-                        x: 0,
-                        opacity: 1,
-                        transition: {
-                          duration: 0.5,
-                          delay: index * 0.5,
-                        },
-                      }}
-                      exit={{
-                        opacity: 0,
-                        transition: {
-                          duration: 0.5,
-                        },
-                      }}
-                      style={{
-                        zIndex: `${40 - index * 10}`,
-                      }}
-                    >
-                      <Image
-                        className="custom-ebook-image"
-                        src={item ?? pagesLookup[index]}
-                        width={isScreenSmall ? 310 : 400}
-                        height={isScreenSmall ? 310 : 400}
-                        alt={`${title} image ${index}`}
+          {array.length === 1 && (
+            <div className="px-2 lg:px-0">
+              <Image
+                className="custom-ebook-image-static"
+                src={array[0] as string}
+                alt={`${title} lookup`}
+                width={400}
+                height={400}
+              />
+            </div>
+          )}
+          {array.length > 1 && (
+            <div
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              className="w-full h-full relative min-h-[600px] md:min-h-[800px] transition-all"
+            >
+              <AnimatePresence>
+                {array
+                  .filter((_, index) => {
+                    return isInitialLoad ? index < 1 : index < 3;
+                  })
+                  .map((item, index) => {
+                    const initialPagePosition = isScreenSmall
+                      ? index * 40 + 10
+                      : index * 60 + 60;
+                    const isFirstCentered =
+                      (index === 0 && isHoveringImages) ||
+                      (index === 0 && isInitialLoad);
+                    const leftOffset = isScreenSmall ? '30px' : '200px';
+                    return (
+                      <motion.div
+                        key={item}
+                        initial={{
+                          opacity: 0,
+                        }}
+                        animate={{
+                          y: 0,
+                          x: 0,
+                          opacity: 1,
+                          transition: {
+                            duration: 0.5,
+                            delay: index * 0.5,
+                          },
+                        }}
+                        exit={{
+                          opacity: 0,
+                          transition: {
+                            duration: 0.5,
+                          },
+                        }}
                         style={{
                           zIndex: `${40 - index * 10}`,
-                          bottom: isFirstCentered
-                            ? '80px'
-                            : `${initialPagePosition}px`,
-                          left: isFirstCentered
-                            ? leftOffset
-                            : `${initialPagePosition}px`,
-                          transform: isFirstCentered
-                            ? `${imagesTransform}`
-                            : `perspective(500px) ${rotationBasedScreen} scale(1)`,
                         }}
-                      />
-                    </motion.div>
-                  );
-                })}
-            </AnimatePresence>
-          </div>
+                      >
+                        <Image
+                          className="custom-ebook-image"
+                          src={item ?? pagesLookup[index]}
+                          width={isScreenSmall ? 310 : 400}
+                          height={isScreenSmall ? 310 : 400}
+                          alt={`${title} image ${index}`}
+                          style={{
+                            zIndex: `${40 - index * 10}`,
+                            bottom: isFirstCentered
+                              ? '80px'
+                              : `${initialPagePosition}px`,
+                            left: isFirstCentered
+                              ? leftOffset
+                              : `${initialPagePosition}px`,
+                            transform: isFirstCentered
+                              ? `${imagesTransform}`
+                              : `perspective(500px) ${rotationBasedScreen} scale(1)`,
+                          }}
+                        />
+                      </motion.div>
+                    );
+                  })}
+              </AnimatePresence>
+            </div>
+          )}
         </div>
         <div className="flex flex-col md:max-w-[500px] w-full h-full">
           <h1 className="text-4xl md:text-6xl font-bold my-4 tracking-wider uppercase">
@@ -183,7 +196,7 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
             }}
             disabled={isItemIncludedInBag(ebookData.id)}
           />
-          
+
           {/* Payment methods */}
           <div className="flex gap-2 justify-center mb-4">
             {paymentMethodsIcons.map((item) => (

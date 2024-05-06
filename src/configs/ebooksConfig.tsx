@@ -42,8 +42,143 @@ export const commonFeatures = [
   },
 ];
 
-export const ebooksConfig = [
+export const ebooksConfigAll = [
   {
+    enabled: false,
+    id: 'fit-at-gym',
+    picture: '/fit_at_gym.png',
+    file: '/ebooks/FIT_AT_GYM.pdf',
+    title: 'Fit at Gym',
+    titleFirstPart: 'Fit at',
+    titleSecondPart: ' Gym',
+    trainingsInfo: {
+      weeks: '8 tygodni',
+      workouts: '32 treningi',
+    },
+    tags: ['get stronger', 'build endurance', 'gym', 'abs'],
+    shortDescription:
+      'Trening siłowy, który pozwoli Ci stać się silniejszą i poprawić swoją kondycję.',
+    longDescription:
+      'Plan treningowy skupiający się na wzmocnieniu mięśni, kształtowaniu sylwetki i poprawie ogólnej sprawności, by być zwinną i wytrzymałą. Skutkiem ubocznym całego planu jest smukła i wysportowana sylwetka.',
+    price: 1,
+    discountPrice: null,
+    pointsDescription: [
+      'Wideo instruktażowe do wszystkich ćwiczeń',
+      '4 treningi w tygodniu siłowo-kondycyjne',
+      'Treningi do wykonania na siłowni',
+      'Praktyczne porady jak skutecznie trenować siłowo',
+      'Czas treningów wzmacniających od 60 do 70 minut',
+      'Czas treningów croos od 45 do 60 minut',
+    ],
+    forWhom:
+      'Dla osób zaawansowanych i średniozaawansowanych które miały już styczność z treningiem siłowym. Dla osób które chcą nie tylko wzmocnić mięśni i poprawić proporcje sylwetki, ale również pracować nad sprawnym ciałem. Plan treningowy jest w pełni do realizacji na siłowni.',
+    contents: [
+      { label: 'TRENINGI' },
+      {
+        label: 'PROGRESOWANIE',
+      },
+      {
+        label: 'TRENINGI BLISKO UPADKU MIĘŚNIOWEGO',
+      },
+      {
+        label: 'ŚLEDZENIE PROGRESU',
+      },
+      {
+        label: 'TEMPO',
+      },
+      {
+        label: 'ODDYCHANIE',
+      },
+      {
+        label: 'ZAMIENNIKI ĆWICZEŃ',
+      },
+      {
+        label: 'POWTARZALNOŚĆ ĆWICZEŃ',
+      },
+      {
+        label: 'FORMUŁY TRENINGOWE',
+      },
+      {
+        label: 'SKALOWANIE',
+      },
+      {
+        label: 'CO DALEJ PO UKOŃCZENIU PLANU',
+      },
+      {
+        label: 'ROZGRZEWKA',
+      },
+      {
+        label: 'PLAN TRENINGOWY',
+        children: [
+          { label: '1 TYDZIEŃ' },
+          { label: '2 TYDZIEŃ' },
+          { label: '3 TYDZIEŃ' },
+          { label: '4 TYDZIEŃ' },
+          { label: '5 TYDZIEŃ' },
+          { label: '6 TYDZIEŃ' },
+          { label: '7 TYDZIEŃ' },
+          { label: '8 TYDZIEŃ' },
+        ],
+      },
+    ],
+    commonFeatures,
+    pagesLookup: ['/fit_at_gym_page1.png'],
+    dedicatedStoryTitle: 'FIT AT GYM💪🏼',
+    stories: [
+      {
+        type: 'video',
+        url: '/stories_content/slim_legs_story_1.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/slim_legs_story_2.mp4',
+      },
+      {
+        type: 'image',
+        url: '/stories_content/slim_legs_story_3.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/slim_legs_story_4.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/slim_legs_story_5.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/slim_legs_story_6.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/slim_legs_story_7.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'image',
+        url: '/stories_content/slim_legs_story_8.jpg',
+        duration: 3000,
+      },
+      {
+        type: 'video',
+        url: '/stories_content/slim_legs_story_9.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/slim_legs_story_10.mp4',
+      },
+      {
+        type: 'video',
+        url: '/stories_content/slim_legs_story_11.mp4',
+      },
+    ],
+  },
+  {
+    enabled: true,
     id: 'slim_legs',
     picture: '/slim-legs.png',
     file: '/ebooks/SLIM_LEG_PROGRAM.pdf',
@@ -239,6 +374,7 @@ export const ebooksConfig = [
     ],
   },
   {
+    enabled: true,
     id: 'sweat_at_home',
     picture: '/sweat-at-home.png',
     file: '/ebooks/SWEAT_AT_HOME.pdf',
@@ -377,6 +513,7 @@ export const ebooksConfig = [
     ],
   },
   {
+    enabled: true,
     id: 'fit_at_home',
     picture: '/fit-at-home.png',
     file: '/ebooks/FIT_AT_HOME.pdf',
@@ -674,3 +811,5 @@ export const opinionsStories: Story[] = [
     duration: 3000,
   },
 ];
+
+export const ebooksConfig = ebooksConfigAll.filter((ebook) => ebook.enabled);
