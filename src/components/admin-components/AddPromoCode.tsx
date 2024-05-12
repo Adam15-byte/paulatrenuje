@@ -7,6 +7,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Input, Select, SelectItem } from '@nextui-org/react';
 import SecondaryButton from '../SecondaryButton';
 import { queryClient } from '@/context/Providers';
+import toast from 'react-hot-toast';
 
 const AddPromoCode = () => {
   const { register, handleSubmit } = useForm<IPromoCodeValidator>({
@@ -24,6 +25,7 @@ const AddPromoCode = () => {
       value: Number(formData.value),
     };
     const { data } = await axios.post('/api/promo-codes/create', dataFormatted);
+    toast.success('Kod promocyjny dodany');
     queryClient.invalidateQueries({ queryKey: ['promoCodes'] });
     return data;
   };

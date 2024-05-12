@@ -18,6 +18,7 @@ import { Trash2 } from 'lucide-react';
 import { useCallback } from 'react';
 import AddPromoCode from './AddPromoCode';
 import { promoCodesColumns } from './columns';
+import toast from 'react-hot-toast';
 
 const PromoCodesTable = () => {
   const fetchPromoCodes = async () => {
@@ -40,6 +41,7 @@ const PromoCodesTable = () => {
     onSuccess: () => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: ['promoCodes'] });
+      toast.success('Kod promocyjny usunięty');
     },
   });
 

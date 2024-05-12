@@ -1,6 +1,7 @@
+import { queryClient } from '@/context/Providers';
+import { IEmailValidator } from '@/lib/validators/emailValidator';
 import { TransactionsArrayValidator } from '@/lib/validators/transactionsValidators';
 import {
-  Button,
   Chip,
   Input,
   Spinner,
@@ -13,14 +14,12 @@ import {
 } from '@nextui-org/react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { useCallback, useState, useMemo } from 'react';
-import { transactionsColumns } from './columns';
-import { SearchIcon } from 'lucide-react';
-import { IEmailValidator } from '@/lib/validators/emailValidator';
-import { toast } from 'react-hot-toast';
-import { queryClient } from '@/context/Providers';
-import SendEmailButton from './SendEmailButton';
 import dayjs from 'dayjs';
+import { SearchIcon } from 'lucide-react';
+import { useCallback, useMemo, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import SendEmailButton from './SendEmailButton';
+import { transactionsColumns } from './columns';
 
 const TransactionsTable = () => {
   const [filterValue, setFilterValue] = useState<string>('');
@@ -56,7 +55,6 @@ const TransactionsTable = () => {
           );
         });
     },
-    refetchInterval: 60000,
   });
 
   const filteredData = useMemo(() => {
@@ -75,6 +73,7 @@ const TransactionsTable = () => {
     }
     return [];
   }, [data, filterValue]);
+
   const renderCell = useCallback(
     (item: Record<string | number, any>, columnKey: string | number) => {
       const cellValue = item[columnKey];
