@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { Dumbbell, Heart, Salad } from 'lucide-react';
 import { FC, useEffect, useState } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
-import PrimaryButton from '../PrimaryButton';
+import PrimaryButton from '../reusable-components/PrimaryButton';
 import AnimatedDialogIcon from '../AnimatedDialogIcon';
 
 const Hero: FC = () => {

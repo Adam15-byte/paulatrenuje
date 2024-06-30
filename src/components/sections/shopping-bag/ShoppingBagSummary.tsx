@@ -1,7 +1,7 @@
 'use client';
 
-import PrimaryButton from '@/components/PrimaryButton';
-import SecondaryButton from '@/components/SecondaryButton';
+import PrimaryButton from '@/components/reusable-components/PrimaryButton';
+import SecondaryButton from '@/components/reusable-components/SecondaryButton';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
 import { PromoCodeValidator } from '@/lib/validators/promoCodeValidator';
 import { Input } from '@nextui-org/react';

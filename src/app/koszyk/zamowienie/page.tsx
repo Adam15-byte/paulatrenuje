@@ -1,8 +1,8 @@
 'use client';
 
 import { generateTransactionId } from '@/app/api/actions';
-import PrimaryButton from '@/components/PrimaryButton';
-import SecondaryButton from '@/components/SecondaryButton';
+import PrimaryButton from '@/components/reusable-components/PrimaryButton';
+import SecondaryButton from '@/components/reusable-components/SecondaryButton';
 import CheckoutSummary from '@/components/sections/shopping-bag/CheckoutSummary';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
 import { cn } from '@/lib/utils';
@@ -380,12 +380,14 @@ const Page: FC = () => {
 
       <div className="flex w-full justify-center">
         <PrimaryButton
-          text={isSubmitting ? 'Przekierowywanie' : 'Przejdź do płatności'}
+          // text={isSubmitting ? 'Przekierowywanie' : 'Przejdź do płatności'}
+          text={'Chwilowo niedostępne'}
           type="submit"
           form="hook-form"
           additionalStyle="w-full md:max-w-[500px]"
           isLoading={isSubmitting}
-          disabled={isSubmitting || !valueAfterDiscount}
+          // disabled={isSubmitting || !valueAfterDiscount}
+          disabled={true}
           onClick={() => {
             handleSubmit(onSubmit);
           }}

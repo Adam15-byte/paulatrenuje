@@ -3,7 +3,7 @@
 import { IPdfWatermarkValidator } from '@/lib/validators/PDFWatermarkValidator';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import PrimaryButton from '../PrimaryButton';
+import PrimaryButton from '../reusable-components/PrimaryButton';
 import { Input, Select, SelectItem } from '@nextui-org/react';
 import axios from 'axios';
 import { ebooksConfig } from '@/configs/ebooksConfig';

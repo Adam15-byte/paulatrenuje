@@ -35,7 +35,7 @@ export default function RootLayout({
         <Providers>
           <div className="flex flex-col w-full items-center">
             <NavBar />
-            <div className="min-h-screen max-w-7xl w-full">{children}</div>
+            <div className="min-h-screen container w-full">{children}</div>
             <Footer />
           </div>
         </Providers>

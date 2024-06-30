@@ -4,8 +4,9 @@ import { FC } from 'react';
 import Link from 'next/link';
 import { Button } from '@nextui-org/react';
 import { cn } from '@/lib/utils';
+import { capitalizeFirstLetter } from '@/utils/stringUtils';
 
-interface SecondaryButtonProps {
+interface PrimaryButtonProps {
   text: string;
   href?: string;
   type?: 'button' | 'submit';
@@ -15,9 +16,10 @@ interface SecondaryButtonProps {
   leftIcon?: JSX.Element;
   rightIcon?: JSX.Element;
   disabled?: boolean;
+  isLoading?: boolean;
 }
 
-const SecondaryButton: FC<SecondaryButtonProps> = ({
+const PrimaryButton: FC<PrimaryButtonProps> = ({
   text,
   href,
   type,
@@ -27,6 +29,7 @@ const SecondaryButton: FC<SecondaryButtonProps> = ({
   leftIcon,
   rightIcon,
   disabled,
+  isLoading,
 }) => {
   if (href && disabled !== true) {
     return (
@@ -38,21 +41,21 @@ const SecondaryButton: FC<SecondaryButtonProps> = ({
         <div
           className={cn(
             additionalStyle,
-            'text-orange border shadow-md border-gray justify-center text-md py-3 px-6 font-semibold rounded-lg bg-orange z-10 absolute group-hover:animate-pulse group-hover:scale-[102%] gap-2 tracking-wide'
+            'text-white flex justify-center text-base py-3 px-6 font-medium rounded-md bg-orange z-10 absolute group-hover:animate-pulse group-hover:scale-[101%] gap-2 tracking-wide'
           )}
         >
           {leftIcon}
-          {text}
+          {capitalizeFirstLetter(text)}
           {rightIcon}
         </div>
         <div
           className={cn(
             additionalStyle,
-            'text-white flex justify-center text-md py-3 px-6 font-semibold rounded-lg bg-pink group-hover:scale-[102%] gap-2 tracking-wide'
+            'text-white flex justify-center text-base py-3 px-6 font-medium rounded-md bg-pink group-hover:scale-[101%] gap-2 tracking-wide'
           )}
         >
           {leftIcon}
-          {text}
+          {capitalizeFirstLetter(text)}
           {rightIcon}
         </div>
       </Link>
@@ -65,35 +68,37 @@ const SecondaryButton: FC<SecondaryButtonProps> = ({
           type={type}
           form={form}
           disabled={disabled}
-          size="md"
+          size="lg"
           radius="sm"
           onClick={onClick}
           className={cn(
             additionalStyle,
-            disabled ? 'bg-gray' : 'bg-white',
-            disabled ? '' : 'hover:animate-pulse hover:scale-[102%]',
-            'text-orange border shadow-md border-gray z-20 absolute text-md font-semibold tracking-wide'
+            disabled || isLoading ? 'bg-gray' : 'bg-orange',
+            disabled || isLoading
+              ? ''
+              : 'hover:animate-pulse hover:scale-[101%]',
+            'text-white z-20 absolute text-base font-medium tracking-wide'
           )}
         >
           {leftIcon}
-          {text}
+          {capitalizeFirstLetter(text)}
           {rightIcon}
         </Button>
         <Button
           type={type}
           form={form}
           disabled={disabled}
-          size="md"
+          size="lg"
           radius="sm"
           onClick={onClick}
           className={cn(
             additionalStyle,
-            disabled ? '' : 'hover:scale-[102%]',
-            'text-white bg-pink text-md font-semibold tracking-wide'
+            disabled || isLoading ? '' : 'hover:scale-[101%]',
+            'text-white bg-pink text-base font-medium tracking-wide'
           )}
         >
           {leftIcon}
-          {text}
+          {capitalizeFirstLetter(text)}
           {rightIcon}
         </Button>
       </div>
@@ -101,4 +106,4 @@ const SecondaryButton: FC<SecondaryButtonProps> = ({
   }
 };
 
-export default SecondaryButton;
+export default PrimaryButton;

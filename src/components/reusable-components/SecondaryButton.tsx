@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Button } from '@nextui-org/react';
 import { cn } from '@/lib/utils';
 
-interface PrimaryButtonProps {
+interface SecondaryButtonProps {
   text: string;
   href?: string;
   type?: 'button' | 'submit';
@@ -15,10 +15,9 @@ interface PrimaryButtonProps {
   leftIcon?: JSX.Element;
   rightIcon?: JSX.Element;
   disabled?: boolean;
-  isLoading?: boolean;
 }
 
-const PrimaryButton: FC<PrimaryButtonProps> = ({
+const SecondaryButton: FC<SecondaryButtonProps> = ({
   text,
   href,
   type,
@@ -28,7 +27,6 @@ const PrimaryButton: FC<PrimaryButtonProps> = ({
   leftIcon,
   rightIcon,
   disabled,
-  isLoading,
 }) => {
   if (href && disabled !== true) {
     return (
@@ -40,7 +38,7 @@ const PrimaryButton: FC<PrimaryButtonProps> = ({
         <div
           className={cn(
             additionalStyle,
-            'text-white flex justify-center text-lg py-3 px-6 font-semibold rounded-lg bg-orange z-10 absolute group-hover:animate-pulse group-hover:scale-[102%] gap-2 tracking-wider'
+            'text-orange border shadow-md border-gray justify-center text-base py-3 px-6 font-medium rounded-md bg-orange z-10 absolute group-hover:animate-pulse group-hover:scale-[101%] gap-2 tracking-wide'
           )}
         >
           {leftIcon}
@@ -50,7 +48,7 @@ const PrimaryButton: FC<PrimaryButtonProps> = ({
         <div
           className={cn(
             additionalStyle,
-            'text-white flex justify-center text-lg py-3 px-6 font-semibold rounded-lg bg-pink group-hover:scale-[102%] gap-2 tracking-wider'
+            'text-white flex justify-center text-base py-3 px-6 font-medium rounded-md bg-pink group-hover:scale-[101%] gap-2 tracking-wide'
           )}
         >
           {leftIcon}
@@ -67,16 +65,14 @@ const PrimaryButton: FC<PrimaryButtonProps> = ({
           type={type}
           form={form}
           disabled={disabled}
-          size="lg"
+          size="md"
           radius="sm"
           onClick={onClick}
           className={cn(
             additionalStyle,
-            disabled || isLoading ? 'bg-gray' : 'bg-orange',
-            disabled || isLoading
-              ? ''
-              : 'hover:animate-pulse hover:scale-[102%]',
-            'text-white z-20 absolute text-lg font-semibold tracking-wider'
+            disabled ? 'bg-gray' : 'bg-white',
+            disabled ? '' : 'hover:animate-pulse hover:scale-[101%]',
+            'text-orange border shadow-md border-gray z-20 absolute text-base font-medium tracking-wide'
           )}
         >
           {leftIcon}
@@ -87,13 +83,13 @@ const PrimaryButton: FC<PrimaryButtonProps> = ({
           type={type}
           form={form}
           disabled={disabled}
-          size="lg"
+          size="md"
           radius="sm"
           onClick={onClick}
           className={cn(
             additionalStyle,
-            disabled || isLoading ? '' : 'hover:scale-[102%]',
-            'text-white bg-pink text-lg font-semibold tracking-wider'
+            disabled ? '' : 'hover:scale-[101%]',
+            'text-white bg-pink text-base font-medium tracking-wide'
           )}
         >
           {leftIcon}
@@ -105,4 +101,4 @@ const PrimaryButton: FC<PrimaryButtonProps> = ({
   }
 };
 
-export default PrimaryButton;
+export default SecondaryButton;

@@ -1,6 +1,6 @@
 'use client';
 
-import PrimaryButton from '@/components/PrimaryButton';
+import PrimaryButton from '@/components/reusable-components/PrimaryButton';
 import { EbookConfigType } from '@/configs/ebooksConfig';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
 import { ShoppingBag } from 'lucide-react';

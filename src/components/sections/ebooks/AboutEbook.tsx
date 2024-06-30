@@ -1,7 +1,7 @@
 'use client';
 
 import ListItem from '@/components/ListItem';
-import PrimaryButton from '@/components/PrimaryButton';
+import PrimaryButton from '@/components/reusable-components/PrimaryButton';
 import SmallInfoCard from '@/components/SmallInfoCard';
 import { EbookConfigType, paymentMethodsIcons } from '@/configs/ebooksConfig';
 import { useShoppingBag } from '@/context/ShoppingBagContext';

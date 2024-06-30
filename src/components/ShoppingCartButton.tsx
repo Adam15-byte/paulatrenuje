@@ -18,10 +18,10 @@ const ShoppingCartIcon = () => {
       <Link href={'/koszyk'} className={'relative group'}>
         <div
           className={
-            'text-white flex text-lg py-3 px-6 font-semibold rounded-lg bg-orange z-10 absolute group-hover:animate-pulse group-hover:scale-[102%] gap-2 tracking-wider'
+            'text-white flex text-base py-3 px-6 font-medium rounded-md bg-orange z-10 absolute group-hover:animate-pulse group-hover:scale-[102%] gap-2 tracking-wider'
           }
         >
-          <ShoppingBag size={24} strokeWidth={3} />
+          <ShoppingBag size={18} strokeWidth={2.5} />
           {discountedValue ? (
             <p>
               {valueAfterDiscount}{' '}
@@ -36,10 +36,10 @@ const ShoppingCartIcon = () => {
         </div>
         <div
           className={
-            'text-white flex text-lg py-3 px-6 font-semibold rounded-lg bg-pink group-hover:scale-[102%] gap-2 tracking-wider'
+            'text-white flex text-base py-3 px-6 font-medium rounded-md bg-pink group-hover:scale-[102%] gap-2 tracking-wider'
           }
         >
-          <ShoppingBag size={24} strokeWidth={3} />
+          <ShoppingBag size={18} strokeWidth={2.5} />
           {discountedValue ? (
             <p>
               {valueAfterDiscount}{' '}

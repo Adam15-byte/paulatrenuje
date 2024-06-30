@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import PrimaryButton from '../PrimaryButton';
+import PrimaryButton from '../reusable-components/PrimaryButton';
 
 const EbookHighlight = () => {
   return (

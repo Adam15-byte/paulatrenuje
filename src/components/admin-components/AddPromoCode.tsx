@@ -5,7 +5,7 @@ import axios from 'axios';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Input, Select, SelectItem } from '@nextui-org/react';
-import SecondaryButton from '../SecondaryButton';
+import SecondaryButton from '../reusable-components/SecondaryButton';
 import { queryClient } from '@/context/Providers';
 import toast from 'react-hot-toast';
 

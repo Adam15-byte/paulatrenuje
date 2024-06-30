@@ -10,7 +10,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { userEmail, productIds, firstName } = EmailValidator.parse(body);
     const data = await resend.emails.send({
-      from: 'Paula <Paula@paulatreningi.pl>',
+      from: 'Paula <Paula@paulatrenuje.pl>',
       to: 'PaulaDziubdziela.fitness@gmail.com',
       subject: 'Zakup ebooka',
       text: 'Zakup ebooka',

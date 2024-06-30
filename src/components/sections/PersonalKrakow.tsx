@@ -1,6 +1,6 @@
 import { personalsConfigs } from '@/configs/personalsConfig';
 import { HOME_PAGE_IDS } from '@/configs/sectionIDs';
-import InfoCard from '../InfoCard';
+import InfoCard from '../reusable-components/InfoCard';
 const PersonalKrakow = () => {
   return (
     <section

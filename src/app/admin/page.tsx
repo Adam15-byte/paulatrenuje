@@ -4,7 +4,7 @@ import TransactionsTable from '@/components/admin-components/TransactionsTable';
 import PromoCodesTable from '@/components/admin-components/PromoCodesTable';
 import CustomEbookGenerator from '@/components/admin-components/CustomEbookGenerator';
 import Settings from '@/components/admin-components/Settings';
-import PrimaryButton from '@/components/PrimaryButton';
+import PrimaryButton from '@/components/reusable-components/PrimaryButton';
 import { IAdminLoginValidator } from '@/lib/validators/adminLoginValidator';
 import { Card, CardBody, Input, Tab, Tabs } from '@nextui-org/react';
 import { FC, useState } from 'react';

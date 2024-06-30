@@ -1,12 +1,4 @@
-import {
-  Goal,
-  HeartHandshake,
-  MapPin,
-  Medal,
-  MonitorCheck,
-  ShieldCheck,
-  SmilePlus,
-} from 'lucide-react';
+import { Goal, MapPin, MonitorCheck, SmilePlus } from 'lucide-react';
 
 const iconProps = {
   strokeWidth: 2.5,
@@ -51,31 +43,6 @@ export const personalsConfigs = [
     iconHover: <MonitorCheck {...iconPropsHover} />,
     description:
       'Śledzę Twój postęp i dostosowuję treningi, abyś zawsze miała wyzwanie i nigdy się nie nudziła.',
-  },
-  // {
-  //   id: 5,
-  //   title: 'Profesjonalizm',
-  //   icon: <HeartHandshake {...iconProps} />,
-  //   iconHover: <HeartHandshake {...iconPropsHover} />,
-  //   description:
-  //     'Mam wieloletnie doświadczenie w trenowaniu innych osób i jestem szeroko wykwalifikowana w prowadzeniu różnych form treningu, takich jak pilates, trening siłowy, trening funkcjonalny i wiele innych.',
-  // },
-
-  // {
-  //   id: 6,
-  //   title: 'Bezpieczeństwo',
-  //   icon: <ShieldCheck {...iconProps} />,
-  //   iconHover: <ShieldCheck {...iconPropsHover} />,
-  //   description:
-  //     'Twoje zdrowie jest najważniejsze. Zwracam uwagę na prawidłową technikę i bezpieczeństwo podczas każdego treningu.',
-  // },
-  {
-    id: 7,
-    title: 'Gotowa? Start!',
-    icon: <Medal {...iconProps} />,
-    iconHover: <Medal {...iconPropsHover} />,
-    description:
-      'Nie czekaj, odezwij się do mnie na maila PaulaDziubdziela.fitness@gmail.com Ustalmy cenę, czas i miejsce pierwszego treningu.',
   },
 ];
 

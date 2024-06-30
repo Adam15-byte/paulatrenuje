@@ -1,6 +1,6 @@
 'use client';
 
-import PrimaryButton from '@/components/PrimaryButton';
+import PrimaryButton from '@/components/reusable-components/PrimaryButton';
 import { Download, Sheet } from 'lucide-react';
 import { FC } from 'react';
 

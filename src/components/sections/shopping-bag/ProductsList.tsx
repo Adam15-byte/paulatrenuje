@@ -1,6 +1,6 @@
 'use client';
 
-import PrimaryButton from '@/components/PrimaryButton';
+import PrimaryButton from '@/components/reusable-components/PrimaryButton';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
 import { Divider } from '@nextui-org/react';
 import { Trash2 } from 'lucide-react';

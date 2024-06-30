@@ -7,7 +7,11 @@ interface SimilarProductsProps {
 }
 
 const SimilarProducts: FC<SimilarProductsProps> = ({ ebookData }) => {
-  const TwoEbooks = ebooksConfig.filter((item) => item.id !== ebookData.id);
+  const TwoEbooks = ebooksConfig
+    .filter((item) => item.id !== ebookData.id)
+    // random sort;
+    .sort(() => Math.random() - 0.5)
+    .filter((_, index) => index < 2);
   return (
     <section className="flex mt-16 md:mt-28 lg:min-h-0 w-full flex-col gap-4 lg:gap-12 lg:justify-between">
       <div className="px-5 flex gap-2">
