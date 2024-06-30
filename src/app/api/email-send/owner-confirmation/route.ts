@@ -1,4 +1,4 @@
-import OwnerConfirmation from '@/components/email-templates/OwnerConfirmationEmail';
+import OwnerConfirmation from '@/email-templates/OwnerConfirmationEmail';
 import { EmailValidator } from '@/lib/validators/emailValidator';
 import { Resend } from 'resend';
 import { z } from 'zod';

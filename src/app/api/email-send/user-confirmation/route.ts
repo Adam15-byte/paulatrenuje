@@ -1,4 +1,4 @@
-import ReceiptEmail from '@/components/email-templates/ReceiptEmail';
+import ReceiptEmail from '@/email-templates/ReceiptEmail';
 import { EmailValidator } from '@/lib/validators/emailValidator';
 import { Resend } from 'resend';
 import { z } from 'zod';
