@@ -21,7 +21,7 @@ export const authConfig: NextAuthOptions = {
   adapter: PrismaAdapter(db) as Adapter,
 };
 
-export async function loginIsRequiredServer() {
-  const session = await getServerSession(authConfig);
-  if (!session) return redirect('/');
-}
+// export async function loginIsRequiredServer() {
+//   const session = await getServerSession(authConfig);
+//   if (!session) return redirect('/');
+// }

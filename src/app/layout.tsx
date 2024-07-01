@@ -7,8 +7,6 @@ import Footer from '@/components/Footer';
 import { cn } from '@/lib/utils';
 import Providers from '@/context/Providers';
 import { Toaster } from 'react-hot-toast';
-import { getServerSession } from 'next-auth';
-import { authConfig } from '@/lib/auth';
 
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
@@ -27,7 +25,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authConfig);
   return (
     <html lang="en">
       <head>
