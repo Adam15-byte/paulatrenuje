@@ -7,6 +7,8 @@ import Footer from '@/components/Footer';
 import { cn } from '@/lib/utils';
 import Providers from '@/context/Providers';
 import { Toaster } from 'react-hot-toast';
+import { getServerSession } from 'next-auth';
+import { authConfig } from '@/lib/auth';
 
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
@@ -17,14 +19,15 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: 'Paula Trenuje',
-  description: 'Twoje treningi',
+  description: 'Trenuj z Paulą',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authConfig);
   return (
     <html lang="en">
       <head>

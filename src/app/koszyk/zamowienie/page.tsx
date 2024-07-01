@@ -380,14 +380,12 @@ const Page: FC = () => {
 
       <div className="flex w-full justify-center">
         <PrimaryButton
-          // text={isSubmitting ? 'Przekierowywanie' : 'Przejdź do płatności'}
-          text={'Chwilowo niedostępne'}
+          text={isSubmitting ? 'Przekierowywanie' : 'Przejdź do płatności'}
           type="submit"
           form="hook-form"
           additionalStyle="w-full md:max-w-[500px]"
           isLoading={isSubmitting}
-          // disabled={isSubmitting || !valueAfterDiscount}
-          disabled={true}
+          disabled={isSubmitting || !valueAfterDiscount}
           onClick={() => {
             handleSubmit(onSubmit);
           }}

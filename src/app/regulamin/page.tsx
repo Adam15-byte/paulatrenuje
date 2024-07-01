@@ -19,7 +19,7 @@ const page = () => {
               <p key={index}>
                 <span className="font-semibold">
                   {contentItem.introduction}
-                </span>{' '}
+                </span>
                 {contentItem.text}
               </p>
             ))}

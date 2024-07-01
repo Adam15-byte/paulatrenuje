@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import ShoppingCartIcon from './ShoppingCartButton';
+import ShoppingCartButton from './ShoppingCartButton';
+import AuthButtons from './AuthButtons';
 
 const NavBar = () => {
   return (
@@ -15,7 +16,10 @@ const NavBar = () => {
             className="object-contain"
           />
         </Link>
-        <ShoppingCartIcon />
+        <div className="flex gap-4 items-center">
+          <ShoppingCartButton />
+          {/* <AuthButtons /> */}
+        </div>
       </nav>
     </header>
   );
