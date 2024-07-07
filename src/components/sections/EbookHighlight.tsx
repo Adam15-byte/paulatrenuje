@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import PrimaryButton from '../reusable-components/PrimaryButton';
+import DefaultButton from '../reusable-components/DefaultButton';
 
 const EbookHighlight = () => {
   return (
@@ -21,11 +21,13 @@ const EbookHighlight = () => {
             </p>
           </div>
         </div>
-        <PrimaryButton
-          text="zobacz więcej"
+        <DefaultButton
+          variant="default"
           href="/ebooki/slim_legs"
-          additionalStyle="w-full md:w-[200px] md:mx-auto"
-        />
+          className="w-full md:w-[200px] md:mx-auto"
+        >
+          Zobacz więcej
+        </DefaultButton>
       </div>
       <div className="relative pr-12 pb-12 group overflow-visible">
         <Image

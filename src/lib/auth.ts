@@ -1,11 +1,9 @@
-import { NextAuthOptions, User, getServerSession } from 'next-auth';
-import { redirect, useRouter } from 'next/navigation';
-import GoogleProvider from 'next-auth/providers/google';
-import AppleProvider from 'next-auth/providers/apple';
-import FacebookProvider from 'next-auth/providers/facebook';
-import { db } from './db';
 import { PrismaAdapter } from '@auth/prisma-adapter';
+import { NextAuthOptions } from 'next-auth';
 import { Adapter } from 'next-auth/adapters';
+import FacebookProvider from 'next-auth/providers/facebook';
+import GoogleProvider from 'next-auth/providers/google';
+import { db } from './db';
 
 export const authConfig: NextAuthOptions = {
   providers: [
@@ -19,6 +17,9 @@ export const authConfig: NextAuthOptions = {
     }),
   ],
   adapter: PrismaAdapter(db) as Adapter,
+  pages: {
+    signIn: '/signin',
+  },
 };
 
 // export async function loginIsRequiredServer() {

@@ -1,4 +1,4 @@
-import PrimaryButton from '@/components/reusable-components/PrimaryButton';
+import DefaultButton from '@/components/reusable-components/DefaultButton';
 
 export default function FinishedPage({
   params,
@@ -14,12 +14,14 @@ export default function FinishedPage({
         Po zaksięgowaniu płatności na maila otrzymasz wiadomość z potwierdzeniem
         oraz linkami do pobrania zamówionego produktu.
       </p>
-      <PrimaryButton
-        text="Powrót do strony głównej"
-        type="button"
-        additionalStyle="w-full md:max-w-[500px]"
+      <DefaultButton
+        variant={'default'}
         href="/"
-      />
+        type="button"
+        className="w-full md:max-w-[500px]"
+      >
+        Powrót do strony głównej
+      </DefaultButton>
     </div>
   );
 }

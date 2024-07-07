@@ -1,8 +1,7 @@
 'use client';
 
 import { generateTransactionId } from '@/app/api/actions';
-import PrimaryButton from '@/components/reusable-components/PrimaryButton';
-import SecondaryButton from '@/components/reusable-components/SecondaryButton';
+import DefaultButton from '@/components/reusable-components/DefaultButton';
 import CheckoutSummary from '@/components/sections/shopping-bag/CheckoutSummary';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
 import { cn } from '@/lib/utils';
@@ -23,7 +22,7 @@ import { Checkbox, Input, Select, SelectItem } from '@nextui-org/react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import countries, { registerLocale } from 'i18n-iso-countries';
-import { MailIcon } from 'lucide-react';
+import { Loader2, MailIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -324,13 +323,15 @@ const Page: FC = () => {
             ))}
           </div>
           <div className="flex w-full justify-center">
-            <SecondaryButton
-              text={isAllMethodsShown ? 'Pokaż mniej' : 'Pokaż wszystkie'}
+            <DefaultButton
+              variant="outline"
               onClick={() => {
                 setIsAllMethodsShown((prevState) => !prevState);
               }}
-              additionalStyle="max-w-[250px] px-8"
-            />
+              className="max-w-[250px] px-8"
+            >
+              {isAllMethodsShown ? 'Pokaż mniej' : 'Pokaż wszystkie'}
+            </DefaultButton>
           </div>
           <CheckoutSummary />
           <p>
@@ -379,17 +380,19 @@ const Page: FC = () => {
       </form>
 
       <div className="flex w-full justify-center">
-        <PrimaryButton
-          text={isSubmitting ? 'Przekierowywanie' : 'Przejdź do płatności'}
+        <DefaultButton
+          variant="default"
           type="submit"
           form="hook-form"
-          additionalStyle="w-full md:max-w-[500px]"
-          isLoading={isSubmitting}
+          className="w-full md:max-w-[500[px]"
           disabled={isSubmitting || !valueAfterDiscount}
           onClick={() => {
             handleSubmit(onSubmit);
           }}
-        />
+        >
+          {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {isSubmitting ? 'Przekierowywanie' : 'Przejdź do płatności'}
+        </DefaultButton>
       </div>
     </section>
   );

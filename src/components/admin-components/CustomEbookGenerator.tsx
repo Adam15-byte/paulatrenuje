@@ -3,10 +3,9 @@
 import { IPdfWatermarkValidator } from '@/lib/validators/PDFWatermarkValidator';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import PrimaryButton from '../reusable-components/PrimaryButton';
 import { Input, Select, SelectItem } from '@nextui-org/react';
-import axios from 'axios';
 import { ebooksConfig } from '@/configs/ebooksConfig';
+import DefaultButton from '../reusable-components/DefaultButton';
 
 const CustomEbookGenerator = () => {
   const { register, handleSubmit } = useForm<IPdfWatermarkValidator>({
@@ -52,15 +51,17 @@ const CustomEbookGenerator = () => {
             </SelectItem>
           ))}
       </Select>
-      <PrimaryButton
-        text="Dodaj kod"
+      <DefaultButton
         type="submit"
+        variant="default"
         form="generate-ebook-form"
-        additionalStyle="w-full mt-auto"
+        className="w-full mt-auto"
         onClick={() => {
           handleSubmit(onSubmit);
         }}
-      />
+      >
+        Dodaj kod
+      </DefaultButton>
     </form>
   );
 };

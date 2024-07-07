@@ -1,7 +1,6 @@
 'use client';
 
-import PrimaryButton from '@/components/reusable-components/PrimaryButton';
-import SecondaryButton from '@/components/reusable-components/SecondaryButton';
+import DefaultButton from '@/components/reusable-components/DefaultButton';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
 import { PromoCodeValidator } from '@/lib/validators/promoCodeValidator';
 import { Input } from '@nextui-org/react';
@@ -49,37 +48,36 @@ const ShoppingBagSummary = () => {
   return (
     <div className="flex flex-col gap-4">
       {!appliedPromoCode && !!shoppingBag.length && !isPromoFormOpen && (
-        <SecondaryButton
-          text="Mam kod rabatowy"
-          onClick={handleOpenPromoForm}
-        />
+        <DefaultButton variant={'outline'} onClick={handleOpenPromoForm}>
+          Mam kod rabatowy
+        </DefaultButton>
       )}
       {!appliedPromoCode && !!shoppingBag.length && isPromoFormOpen && (
-        <form
-          id="code-form"
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col md:flex-row gap-4 mt-2 items-end"
-        >
-          <Input
-            {...register('name')}
-            label="Kod promocyjny"
-            labelPlacement={'outside'}
-            variant="bordered"
-            value={promoCode}
-            onValueChange={setPromoCode}
-            isInvalid={!!errorText}
-            errorMessage={errorText}
-          />
-          <SecondaryButton
-            text={isSubmitting ? 'Dodawanie' : 'Dodaj kod'}
-            type="submit"
-            form="code-form"
-            disabled={isSubmitting}
-            additionalStyle="w-full mb-auto"
-            onClick={() => {
-              handleSubmit(onSubmit);
-            }}
-          />
+        <form id="code-form" onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex items-end w-full gap-4">
+            <Input
+              {...register('name')}
+              label="Kod promocyjny"
+              labelPlacement={'outside'}
+              variant="bordered"
+              value={promoCode}
+              onValueChange={setPromoCode}
+              isInvalid={!!errorText}
+              errorMessage={errorText}
+            />
+            <DefaultButton
+              variant={'outline'}
+              type="submit"
+              form="code-form"
+              onClick={() => {
+                handleSubmit(onSubmit);
+              }}
+              disabled={isSubmitting}
+              className="w-full mt-auto"
+            >
+              {isSubmitting ? 'Dodawanie' : 'Dodaj kod'}
+            </DefaultButton>
+          </div>
         </form>
       )}
       {!!appliedPromoCode && (
@@ -99,11 +97,14 @@ const ShoppingBagSummary = () => {
       <p className="text-gray"> Koszt dostawy: 0 zł</p>
       <p className="font-bold"> Łącznie: {valueAfterDiscount} zł</p>
       {bagWorthValue ? (
-        <PrimaryButton
-          disabled={!shoppingBag.length}
-          text="Zamawiam"
+        <DefaultButton
+          variant={'default'}
           href="/koszyk/zamowienie"
-        />
+          disabled={!shoppingBag.length}
+          className="w-full"
+        >
+          Zamawiam
+        </DefaultButton>
       ) : null}
     </div>
   );

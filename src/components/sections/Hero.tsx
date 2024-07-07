@@ -7,8 +7,8 @@ import { motion } from 'framer-motion';
 import { Dumbbell, Heart, Salad } from 'lucide-react';
 import { FC, useEffect, useState } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
-import PrimaryButton from '../reusable-components/PrimaryButton';
 import AnimatedDialogIcon from '../AnimatedDialogIcon';
+import DefaultButton from '../reusable-components/DefaultButton';
 
 const Hero: FC = () => {
   const [rotation, setRotation] = useState(0);
@@ -51,20 +51,24 @@ const Hero: FC = () => {
             chciałabym zachęcić Ciebie.
           </p>
           <div className="mt-4 flex flex-col md:flex-row w-full justify-center gap-6">
-            <PrimaryButton
-              text="Umów się na trening"
+            <DefaultButton
+              variant="default"
               onClick={() => {
                 scrollToSection(HOME_PAGE_IDS.personalne);
               }}
-              additionalStyle="w-full"
-            />
-            <PrimaryButton
-              text="Trenuj z Ebookami"
+              className="w-full"
+            >
+              Umów się na trening
+            </DefaultButton>
+            <DefaultButton
+              variant="default"
               onClick={() => {
                 scrollToSection(HOME_PAGE_IDS.ebooki);
               }}
-              additionalStyle="w-full"
-            />
+              className="w-full"
+            >
+              Trenuj z Ebookami
+            </DefaultButton>
           </div>
         </div>
         <motion.div

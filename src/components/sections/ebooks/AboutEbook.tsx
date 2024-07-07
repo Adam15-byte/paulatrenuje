@@ -1,8 +1,8 @@
 'use client';
 
 import ListItem from '@/components/ListItem';
-import PrimaryButton from '@/components/reusable-components/PrimaryButton';
 import SmallInfoCard from '@/components/SmallInfoCard';
+import DefaultButton from '@/components/reusable-components/DefaultButton';
 import { EbookConfigType, paymentMethodsIcons } from '@/configs/ebooksConfig';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
 import useWindowDimensions from '@/hooks/useWindowDimension';
@@ -182,20 +182,19 @@ const AboutEbook: FC<AboutEbookProps> = ({ ebookData }) => {
               {discountPrice ? `${price} zł` : null}
             </span>
           </p>
-          <PrimaryButton
-            leftIcon={<ShoppingBag size={24} strokeWidth={2.5} />}
-            additionalStyle="w-full mx-auto mb-2 text-lg font-semibold"
-            text={
-              isItemIncludedInBag(ebookData.id)
-                ? 'Produkt znajduje się w koszyku'
-                : 'Dodaj do koszyka'
-            }
+          <DefaultButton
             onClick={() => {
               addItem(ebookData);
               router.push('/koszyk', { scroll: true });
             }}
             disabled={isItemIncludedInBag(ebookData.id)}
-          />
+            className="w-full mx-auto mb-2 text-lg font-semibold"
+          >
+            <ShoppingBag size={24} strokeWidth={2.5} className="mr-4" />
+            {isItemIncludedInBag(ebookData.id)
+              ? 'Produkt znajduje się w koszyku'
+              : 'Dodaj do koszyka'}
+          </DefaultButton>
 
           {/* Payment methods */}
           <div className="flex gap-2 justify-center mb-4">

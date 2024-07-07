@@ -5,9 +5,9 @@ import axios from 'axios';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Input, Select, SelectItem } from '@nextui-org/react';
-import SecondaryButton from '../reusable-components/SecondaryButton';
 import { queryClient } from '@/context/Providers';
 import toast from 'react-hot-toast';
+import DefaultButton from '../reusable-components/DefaultButton';
 
 const AddPromoCode = () => {
   const { register, handleSubmit } = useForm<IPromoCodeValidator>({
@@ -67,15 +67,17 @@ const AddPromoCode = () => {
           </SelectItem>
         ))}
       </Select>
-      <SecondaryButton
-        text="Dodaj kod"
+      <DefaultButton
+        variant="outline"
         type="submit"
         form="add-promo-form"
-        additionalStyle="w-full mt-auto"
+        className="w-full mt-auto"
         onClick={() => {
           handleSubmit(onSubmit);
         }}
-      />
+      >
+        Dodaj kod
+      </DefaultButton>
     </form>
   );
 };

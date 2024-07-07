@@ -1,12 +1,12 @@
 'use client';
 
-import PrimaryButton from '@/components/reusable-components/PrimaryButton';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
 import { Divider } from '@nextui-org/react';
 import { Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import DefaultButton from '@/components/reusable-components/DefaultButton';
 
 const ProductsList = () => {
   const { shoppingBag, removeItem, discountBasedOnNumberOfProducts } =
@@ -75,7 +75,7 @@ const ProductsList = () => {
       ) : (
         <div className="w-full h-full flex flex-col items-center justify-center gap-4">
           <p>Brak produktów w koszyku</p>
-          <PrimaryButton href="/" text="Wróc do przeglądania" />
+          <DefaultButton href="/">Wróc do przeglądania</DefaultButton>
         </div>
       )}
     </div>
