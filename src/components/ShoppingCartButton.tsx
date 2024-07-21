@@ -8,8 +8,8 @@ import { usePathname } from 'next/navigation';
 
 const ShoppingCartButton = () => {
   const pathname = usePathname();
-  if (pathname.includes('/aplikacja')) return null;
   const { bagWorthValue, shoppingBag } = useShoppingBag();
+  if (pathname.includes('/aplikacja')) return null;
   return (
     <Badge
       content={shoppingBag.length}
