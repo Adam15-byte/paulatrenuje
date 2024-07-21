@@ -36,6 +36,18 @@ module.exports = {
         port: '',
         pathname: '/image/upload/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'aceternity.com',
+        port: '',
+        pathname: '/images/products/thumbnails/new/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'paulatrenuje.s3.amazonaws.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

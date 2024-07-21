@@ -18,7 +18,7 @@ const NavBar = () => {
         </Link>
         <div className="flex gap-4 items-center">
           <ShoppingCartButton />
-          <AuthButtons />
+          {/* <AuthButtons /> */}
         </div>
       </nav>
     </header>

@@ -3,6 +3,8 @@
 import { generateTransactionId } from '@/app/api/actions';
 import DefaultButton from '@/components/reusable-components/DefaultButton';
 import CheckoutSummary from '@/components/sections/shopping-bag/CheckoutSummary';
+import { ErrorText, Input } from '@/components/ui/input';
+import { Label, LabelInputContainer } from '@/components/ui/label';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
 import { cn } from '@/lib/utils';
 import {
@@ -16,9 +18,8 @@ import {
   Encoding,
   Language,
   Order,
-  P24,
 } from '@ingameltd/node-przelewy24';
-import { Checkbox, Input, Select, SelectItem } from '@nextui-org/react';
+import { Checkbox } from '@nextui-org/react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import countries, { registerLocale } from 'i18n-iso-countries';
@@ -30,6 +31,13 @@ import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 registerLocale(require('i18n-iso-countries/langs/pl.json'));
 
 const unavailableImages = [
@@ -108,7 +116,11 @@ const Page: FC = () => {
   const countriesCodes = countries.getNames('pl', { select: 'official' });
 
   // Form handling
-  const { register, handleSubmit, formState } = useForm<IFormInput>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<IFormInput>({
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -122,9 +134,6 @@ const Page: FC = () => {
       przelewy24Rules: false,
     },
   });
-  const { isSubmitting } = formState;
-  const [rules, setRules] = useState<boolean>(false);
-  const [p24Rules, setP24Rules] = useState<boolean>(false);
 
   const onSubmit: SubmitHandler<IFormInput> = async (formData) => {
     const sessionId = await generateTransactionId();
@@ -142,7 +151,7 @@ const Page: FC = () => {
       timeLimit: 15,
       encoding: Encoding.UTF8,
       method: selectedPaymentMethod,
-      regulationAccept: p24Rules,
+      regulationAccept: formData.przelewy24Rules,
       waitForResult: true,
     };
     const result = await axios.post(
@@ -180,99 +189,146 @@ const Page: FC = () => {
           </h2>
         </div>
       </div>
-      <form id="hook-form" onSubmit={handleSubmit(onSubmit)}>
+      <form id="purchase-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 mt-8 md:mt-2 gap-x-4">
-          <Input
-            {...register('firstName')}
-            label="Imię"
-            placeholder="Imię"
-            labelPlacement="outside"
-            variant="bordered"
-            isRequired
-          />
-          <Input
-            {...register('lastName')}
-            label="Nazwisko"
-            placeholder="Nazwisko"
-            labelPlacement={'outside'}
-            variant="bordered"
-            isRequired
-          />
-          <Select
-            {...register('country')}
-            label="Państwo"
-            variant="bordered"
-            labelPlacement={'outside'}
-            defaultSelectedKeys={['PL']}
-            className="mt-4 md:mt-0"
-            isRequired
-          >
-            {Object.entries(countriesCodes)
-              .sort((a, b) => {
-                // a[1] and b[1] are the values of the country names
-                if (a[1].toLowerCase() < b[1].toLowerCase()) return -1;
-                if (a[1].toLowerCase() > b[1].toLowerCase()) return 1;
-                return 0;
-              })
-              .map(([key, value]) => (
-                <SelectItem key={key} value={key}>
-                  {value}
-                </SelectItem>
-              ))}
-          </Select>
-          <Input
-            {...register('street')}
-            label="Ulica"
-            placeholder="Ulica"
-            labelPlacement={'outside'}
-            variant="bordered"
-            isRequired
-          />
-          <Input
-            {...register('city')}
-            label="Miasto"
-            placeholder="Miasto"
-            labelPlacement={'outside'}
-            variant="bordered"
-            isRequired
-          />
-          <Input
-            {...register('postCode')}
-            label="Kod pocztowy"
-            placeholder="Kod pocztowy"
-            labelPlacement={'outside'}
-            variant="bordered"
-            isRequired
-          />
-          <Input
-            {...register('phoneNumber')}
-            label="Numer telefonu"
-            placeholder="Numer telefonu"
-            labelPlacement={'outside'}
-            variant="bordered"
-            startContent={
-              <div className="pointer-events-none flex items-center">
-                <span className="text-default-400 text-small">+48</span>
-              </div>
-            }
-            isRequired
-          />
-          <Input
-            {...register('emailAddress')}
-            label="Email"
-            placeholder="Email"
-            type="email"
-            labelPlacement={'outside'}
-            variant="bordered"
-            startContent={
-              <MailIcon
-                size={20}
-                strokeWidth={2.5}
-                className="text-default-400"
-              />
-            }
-            isRequired
-          />
+          <LabelInputContainer>
+            <Label htmlFor="firstName">Imię</Label>
+            <Input
+              id="firstName"
+              placeholder="Anna"
+              type="text"
+              aria-invalid={!!errors.firstName}
+              {...register('firstName', { required: true })}
+            />
+            {errors.firstName && errors.firstName.type === 'required' && (
+              <ErrorText>To pole jest wymagane</ErrorText>
+            )}
+          </LabelInputContainer>
+          <LabelInputContainer>
+            <Label htmlFor="lastName">Nazwisko</Label>
+            <Input
+              id="lastName"
+              placeholder="Przykładna"
+              type="text"
+              aria-invalid={!!errors.lastName}
+              {...register('lastName', { required: true })}
+            />
+            {errors.lastName && errors.lastName.type === 'required' && (
+              <ErrorText>To pole jest wymagane</ErrorText>
+            )}
+          </LabelInputContainer>
+          <LabelInputContainer>
+            <Label htmlFor="country">Państwo</Label>
+            <Select
+              defaultValue="PL"
+              aria-invalid={!!errors.country}
+              {...register('country', { required: true })}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Wybierz Państwo" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.entries(countriesCodes)
+                  .sort((a, b) => {
+                    // a[1] and b[1] are the values of the country names
+                    if (a[1].toLowerCase() < b[1].toLowerCase()) return -1;
+                    if (a[1].toLowerCase() > b[1].toLowerCase()) return 1;
+                    return 0;
+                  })
+                  .map(([key, value]) => (
+                    <SelectItem key={key} value={key}>
+                      {value}
+                    </SelectItem>
+                  ))}
+              </SelectContent>
+            </Select>
+            {errors.country && errors.country.type === 'required' && (
+              <ErrorText>To pole jest wymagane</ErrorText>
+            )}
+          </LabelInputContainer>
+          <LabelInputContainer>
+            <Label htmlFor="street">Ulica</Label>
+            <Input
+              id="street"
+              placeholder="Piłsudskiego"
+              type="text"
+              aria-invalid={!!errors.street}
+              {...register('street', { required: true })}
+            />
+            {errors.street && errors.street.type === 'required' && (
+              <ErrorText>To pole jest wymagane</ErrorText>
+            )}
+          </LabelInputContainer>
+          <LabelInputContainer>
+            <Label htmlFor="city">Miasto</Label>
+            <Input
+              id="city"
+              placeholder="Warszawa"
+              type="text"
+              aria-invalid={!!errors.street}
+              {...register('city', { required: true })}
+            />
+            {errors.city && errors.city.type === 'required' && (
+              <ErrorText>To pole jest wymagane</ErrorText>
+            )}
+          </LabelInputContainer>
+          <LabelInputContainer>
+            <Label htmlFor="postCode">Kod pocztowy</Label>
+            <Input
+              id="postCode"
+              placeholder="00-000"
+              type="text"
+              aria-invalid={!!errors.postCode}
+              {...register('postCode', {
+                required: true,
+                pattern: {
+                  value: /^\d{2}-\d{3}$/,
+                  message: 'Nieprawidłowy format kodu pocztowego',
+                },
+              })}
+            />
+            {errors.postCode && errors.postCode.type === 'required' && (
+              <ErrorText>To pole jest wymagane</ErrorText>
+            )}
+            {errors.postCode && errors.postCode.type === 'pattern' && (
+              <ErrorText>{errors.postCode.message}</ErrorText>
+            )}
+          </LabelInputContainer>
+          <LabelInputContainer>
+            <Label htmlFor="phoneNumber">Numer telefonu</Label>
+            <Input
+              id="phoneNumber"
+              placeholder="123456789"
+              type="text"
+              aria-invalid={!!errors.phoneNumber}
+              {...register('phoneNumber', {
+                required: true,
+                pattern: {
+                  value: /^\d{9,11}$/,
+                  message: 'Nieprawidłowy format numeru telefonu',
+                },
+              })}
+            />
+            {errors.phoneNumber && errors.phoneNumber.type === 'required' && (
+              <ErrorText>To pole jest wymagane</ErrorText>
+            )}
+            {errors.phoneNumber && errors.phoneNumber.type === 'pattern' && (
+              <ErrorText>{errors.phoneNumber.message}</ErrorText>
+            )}
+          </LabelInputContainer>
+          <LabelInputContainer>
+            <Label htmlFor="emailAddress">Email</Label>
+            <Input
+              id="emailAddress"
+              placeholder="123456789"
+              type="text"
+              aria-invalid={!!errors.emailAddress}
+              {...register('emailAddress', { required: true })}
+            />
+            {errors.emailAddress && errors.emailAddress.type === 'required' && (
+              <ErrorText>To pole jest wymagane</ErrorText>
+            )}
+          </LabelInputContainer>
         </div>
         <div className="flex flex-col gap-4 mt-4 md:mt-16">
           <div className="flex gap-2 mt-10 md:mt-4">
@@ -305,7 +361,7 @@ const Page: FC = () => {
                 className={cn(
                   selectedPaymentMethod === item.id
                     ? 'border-orange shadow-lg selected-payment-item'
-                    : 'border-gray shadow-md bg-white',
+                    : 'border-lightgray shadow-md bg-white',
                   'p-4 border relative cursor-pointer rounded-lg flex flex-col items-center'
                 )}
               >
@@ -344,21 +400,30 @@ const Page: FC = () => {
             .
           </p>
           <Checkbox
+            id={'internalRules'}
             isRequired
-            color="warning"
-            isSelected={rules}
-            onValueChange={setRules}
+            aria-invalid={!!errors.internalRules}
+            {...register('internalRules', { required: true })}
+            className={
+              errors.internalRules ? 'text-red border-red' : 'text-black'
+            }
           >
             Przeczytałem/am i akceptuję{' '}
             <Link className="text-orange" href="/regulamin">
               regulamin
             </Link>
+            {!!errors.internalRules && (
+              <span className="text-xs text-red"> * To pole jest wymagane</span>
+            )}
           </Checkbox>
           <Checkbox
+            id={'przelewy24Rules'}
             isRequired
-            color="warning"
-            isSelected={p24Rules}
-            onValueChange={setP24Rules}
+            aria-invalid={!!errors.przelewy24Rules}
+            {...register('przelewy24Rules', { required: true })}
+            className={
+              errors.przelewy24Rules ? 'text-red border-red' : 'text-black'
+            }
           >
             Oświadczam, że zapoznałem się z{' '}
             <Link
@@ -375,6 +440,9 @@ const Page: FC = () => {
               obowiązkiem informacyjnym
             </Link>{' '}
             serwisu Przelewy24
+            {!!errors.przelewy24Rules && (
+              <span className="text-xs text-red"> * To pole jest wymagane</span>
+            )}
           </Checkbox>
         </div>
       </form>
@@ -383,12 +451,9 @@ const Page: FC = () => {
         <DefaultButton
           variant="default"
           type="submit"
-          form="hook-form"
+          form="purchase-form"
           className="w-full md:max-w-[500[px]"
-          disabled={isSubmitting || !valueAfterDiscount}
-          onClick={() => {
-            handleSubmit(onSubmit);
-          }}
+          // disabled={isSubmitting || !valueAfterDiscount}
         >
           {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           {isSubmitting ? 'Przekierowywanie' : 'Przejdź do płatności'}

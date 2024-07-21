@@ -15,7 +15,7 @@ const AppNavigationBar = () => {
       {appNavigationConfig.map((item) => {
         const isToggled = toggledItem.includes(item.path);
         return (
-          <div className="w-full flex flex-col gap-1" key={item.path}>
+          <div className="w-full flex flex-col gap-1 text-sm" key={item.path}>
             <button
               className={cn(
                 'w-full flex items-center justify-between rounded-lg bg-transparent text-black transition-all px-4 py-2 z-20',
@@ -52,8 +52,8 @@ const AppNavigationBar = () => {
                       isPathActive && 'bg-pink'
                     )}
                   >
-                    <div className="border-b border-l border-gray absolute bottom-5 left-6  w-4 h-12 rounded-bl z-10" />
-                    <div className="flex gap-2 ml-6">
+                    <div className="border-b border-l border-gray absolute bottom-4 left-6  w-4 h-12 rounded-bl z-10" />
+                    <div className="flex gap-2 ml-7">
                       {!!child.icon && child.icon}
                       <div>{child.name}</div>
                     </div>

@@ -1,21 +1,10 @@
 'use client';
 
-import { authConfig } from '@/lib/auth';
-import { getServerSession } from 'next-auth/next';
-import { getProviders, useSession } from 'next-auth/react';
-import { redirect } from 'next/navigation';
-import { Modal, useDisclosure } from '@nextui-org/react';
 import ProviderButtons from '@/app/signin/ProviderButtons';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
+import { getProviders, useSession } from 'next-auth/react';
+import { redirect, useRouter } from 'next/navigation';
 import Skeleton from 'react-loading-skeleton';
 
 const Page = () => {

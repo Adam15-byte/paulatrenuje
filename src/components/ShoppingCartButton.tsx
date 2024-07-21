@@ -6,7 +6,7 @@ import { ShoppingBag } from 'lucide-react';
 import DefaultButton from './reusable-components/DefaultButton';
 import { usePathname } from 'next/navigation';
 
-const ShoppingCartIcon = () => {
+const ShoppingCartButton = () => {
   const pathname = usePathname();
   if (pathname.includes('/aplikacja')) return null;
   const { bagWorthValue, shoppingBag } = useShoppingBag();
@@ -24,4 +24,4 @@ const ShoppingCartIcon = () => {
   );
 };
 
-export default ShoppingCartIcon;
+export default ShoppingCartButton;

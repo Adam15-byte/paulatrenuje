@@ -9,7 +9,7 @@ const InfoCard: FC<InfoCardProps> = ({ cardInfo }) => {
   const { id, title, icon, description } = cardInfo;
   if (id < 7) {
     return (
-      <div className="group border border-gray rounded-md flex flex-col p-4 gap-4 shadow-lg">
+      <div className="group border border-lightgray rounded-md flex flex-col p-4 gap-4 shadow-lg">
         <div className="flex gap-4">
           <div className="group-hover:text-orange transition-all">{icon}</div>
           <p className="text-lg font-semibold tracking-wide">{title}</p>

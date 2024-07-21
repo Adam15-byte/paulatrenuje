@@ -12,7 +12,7 @@ const CheckoutSummary = () => {
   } = useShoppingBag();
 
   return (
-    <div className="group border border-gray bg-white rounded-md flex flex-col p-4 gap-4 relative overflow-hidden shadow-lg w-full h-full">
+    <div className="group border border-lightgray bg-white rounded-md flex flex-col p-4 gap-4 relative overflow-hidden shadow-lg w-full h-full">
       <h3 className="text-2xl font-semibold tracking-wider">Podsumowanie</h3>
       <div className="flex flex-col gap-4">
         {/* product images */}

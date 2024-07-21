@@ -8,7 +8,7 @@ interface SmallInfoCardProps {
 
 const SmallInfoCard: FC<SmallInfoCardProps> = ({ title, icon, iconHover }) => {
   return (
-    <div className="group border border-gray border-opacity-20 rounded-md flex items-center p-2 gap-4 hover:scale-[101%] relative overflow-hidden shadow-lg">
+    <div className="group border border-lightgray border-opacity-20 rounded-md flex items-center p-2 gap-4 hover:scale-[101%] relative overflow-hidden shadow-lg">
       <div className="flex items-center gap-4">
         <div className="group-hover:text-orange transition-all">{icon}</div>
         <p className=" text-xs tracking-wide">{title}</p>

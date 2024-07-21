@@ -1,9 +1,11 @@
 'use client';
 
 import DefaultButton from '@/components/reusable-components/DefaultButton';
+import { ErrorText, Input } from '@/components/ui/input';
+import { Label, LabelInputContainer } from '@/components/ui/label';
 import { useShoppingBag } from '@/context/ShoppingBagContext';
 import { PromoCodeValidator } from '@/lib/validators/promoCodeValidator';
-import { Input } from '@nextui-org/react';
+
 import axios from 'axios';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -24,16 +26,19 @@ const ShoppingBagSummary = () => {
   } = useShoppingBag();
   const [isPromoFormOpen, setIsPromoFormOpen] = useState<boolean>(false);
   const [promoCode, setPromoCode] = useState<string>('');
-  const [errorText, setErrorText] = useState<string>('');
   const handleOpenPromoForm = () => {
     setIsPromoFormOpen(true);
   };
-  const { register, handleSubmit, formState } = useForm<IFormInput>({
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { isSubmitting, errors },
+  } = useForm<IFormInput>({
     defaultValues: {
       name: '',
     },
   });
-  const { isSubmitting } = formState;
 
   const onSubmit = async () => {
     try {
@@ -41,7 +46,10 @@ const ShoppingBagSummary = () => {
       const codeValidated = PromoCodeValidator.parse(data);
       setAppliedPromoCode(codeValidated);
     } catch (e) {
-      setErrorText('Nie znaleziono kodu');
+      setError('name', {
+        type: 'manual',
+        message: 'Niepoprawny kod rabatowy',
+      });
     }
   };
 
@@ -55,16 +63,17 @@ const ShoppingBagSummary = () => {
       {!appliedPromoCode && !!shoppingBag.length && isPromoFormOpen && (
         <form id="code-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex items-end w-full gap-4">
-            <Input
-              {...register('name')}
-              label="Kod promocyjny"
-              labelPlacement={'outside'}
-              variant="bordered"
-              value={promoCode}
-              onValueChange={setPromoCode}
-              isInvalid={!!errorText}
-              errorMessage={errorText}
-            />
+            <LabelInputContainer>
+              <Label htmlFor="name">Kod promocyjny</Label>
+              <Input
+                id="name"
+                placeholder="TWOJKOD"
+                type="text"
+                aria-invalid={!!errors.name}
+                {...register('name')}
+              />
+              {errors.name && <ErrorText>{errors.name.message}</ErrorText>}
+            </LabelInputContainer>
             <DefaultButton
               variant={'outline'}
               type="submit"
