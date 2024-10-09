@@ -185,7 +185,7 @@ export const ebooksConfig = [
     price: 199,
     discountPrice: null,
     pointsDescription: [
-      'Ebook treningowy nastawiony na poprawę wzmonienie pośladków, jak i poprawę ogólnej sprawności',
+      'Ebook treningowy nastawiony na wzmocnienie pośladków, jak i poprawę ogólnej sprawności',
       'Zbiór wiedzy na temat treningu nóg i pośladków',
       'Wskazówki treningowe, jak ćwiczyć mięśnie pośladkow, nie rozbudowując przy tym znacznie ud',
       'Praktyczne porady, które pomogą Ci świadomie planować treningi i poprawnie wykonywać ćwiczenia',
